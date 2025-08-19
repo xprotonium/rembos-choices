@@ -1,8 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://bs6nap2mai1ok"]
+[gd_scene load_steps=5 format=4 uid="uid://bs6nap2mai1ok"]
 
 [ext_resource type="PackedScene" uid="uid://dlhwxlikqirl0" path="res://Assets/Scenes/Player/player.tscn" id="1_kwblh"]
+[ext_resource type="Texture2D" uid="uid://cfsvfud04mf6" path="res://Assets/Sprites/House/house_tileset.png" id="2_wkehv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygaiq"]
+texture = ExtResource("2_wkehv")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, -3.04577, -8, -3.07115, 8, -8, 8)
+1:2/0 = 0
+2:2/0 = 0
+2:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(3.0576, -8, 8, -8, 8, 8, 3.02059, 8)
+0:3/0 = 0
+0:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, -3.04577, -8, -3.07115, 8, -8, 8)
+1:3/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0/physics_layer_2/polygon_0/points = PackedVector2Array(3.0576, -8, 8, -8, 8, 8, 3.02059, 8)
+2:3/0/physics_layer_3/polygon_0/points = PackedVector2Array(-8, -8, -3.02059, -8, -3.0635, 3.04841, 8, 3.09329, 8, 8, -8, 8)
+0:4/0 = 0
+0:4/0/physics_layer_3/polygon_0/points = PackedVector2Array(-8, -8, -3.02059, -8, -3.07317, 3.04082, 8, 3.00575, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_4/polygon_0/points = PackedVector2Array(-8, 3.03119, 8, 3.04577, 8, 8, -8, 8)
+2:4/0 = 0
+2:4/0/physics_layer_5/polygon_0/points = PackedVector2Array(3.00491, 3.00491, 3.05311, -8, 8, -8, 8, 8, -8, 8, -8, 3.03119)
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0 = 0
+5:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, -2.98176, -8, -2.98176, 8, -8, 8)
+5:3/0 = 0
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_2qpql"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
+physics_layer_2/collision_layer = 1
+physics_layer_3/collision_layer = 1
+physics_layer_4/collision_layer = 1
+physics_layer_5/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ygaiq")
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_kwblh")]
-position = Vector2(42, 145)
+z_index = 1
+position = Vector2(247, 139)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAMAAAAAAADAAEAAAANAAAAAAABAAEAAAAOAAAAAAABAAEAAAAPAAAAAAADAAEAAAAQAAAAAAACAAEAAAALAAgAAAAEAAMAAAALAAkAAAAAAAIAAAALAAoAAAAAAAMAAAAMAAoAAAABAAIAAAANAAoAAAABAAIAAAAOAAoAAAABAAIAAAAPAAoAAAABAAIAAAATAAoAAAABAAIAAAATAAkAAAABAAMAAAATAAgAAAABAAMAAAATAAcAAAABAAMAAAAQAAEAAAACAAIAAAAPAAEAAAABAAIAAAAOAAEAAAABAAIAAAANAAEAAAABAAIAAAAMAAEAAAABAAIAAAAMAAIAAAABAAMAAAANAAIAAAABAAMAAAAOAAIAAAABAAMAAAAPAAIAAAABAAIAAAAQAAIAAAACAAIAAAARAAoAAAACAAIAAAAQAAkAAAABAAMAAAAPAAkAAAABAAMAAAAOAAkAAAABAAMAAAANAAkAAAABAAMAAAAMAAkAAAABAAMAAAAMAAgAAAAFAAMAAAANAAgAAAABAAMAAAAOAAgAAAABAAMAAAAPAAgAAAABAAMAAAAQAAgAAAABAAMAAAARAAgAAAABAAMAAAASAAgAAAABAAMAAAASAAcAAAAAAAIAAAAQAAMAAAACAAIAAAAPAAMAAAABAAIAAAAOAAMAAAABAAMAAAANAAMAAAABAAMAAAAMAAMAAAABAAMAAAARAAcAAAACAAIAAAAQAAcAAAABAAMAAAAPAAcAAAABAAMAAAAOAAcAAAABAAMAAAANAAcAAAABAAMAAAANAAYAAAABAAMAAAAMAAYAAAAFAAEAAAAMAAQAAAACAAMAAAAMAAcAAAAFAAIAAAAOAAYAAAABAAIAAAAPAAYAAAABAAEAAAAQAAYAAAABAAEAAAAQAAUAAAABAAAAAAAPAAUAAAABAAAAAAAOAAUAAAABAAMAAAANAAQAAAABAAMAAAAOAAQAAAABAAMAAAAPAAQAAAACAAMAAAAQAAQAAAACAAMAAAASAAkAAAABAAMAAAASAAoAAAAAAAMAAAALAAcAAAAEAAIAAAALAAYAAAAEAAEAAAALAAUAAAAAAAAAAAALAAQAAAACAAMAAAALAAMAAAAAAAIAAAALAAIAAAAAAAIAAAALAAEAAAAAAAIAAAALAAAAAAAAAAEAAAANAAUAAAABAAMAAAAMAAUAAAABAAAAAAASAAAAAAABAAEAAAASAAEAAAABAAMAAAASAAIAAAABAAIAAAASAAMAAAABAAIAAAASAAQAAAACAAMAAAASAAUAAAACAAMAAAARAAYAAAACAAEAAAARAAAAAAACAAMAAAARAAEAAAACAAMAAAARAAIAAAACAAMAAAARAAMAAAACAAMAAAARAAQAAAACAAMAAAARAAUAAAACAAAAAAASAAYAAAAAAAAAAAAUAAcAAAABAAMAAAAUAAgAAAABAAMAAAAUAAkAAAABAAMAAAAVAAcAAAABAAMAAAAVAAgAAAABAAMAAAAVAAkAAAABAAIAAAAWAAcAAAACAAIAAAAWAAgAAAACAAIAAAAWAAkAAAACAAIAAAATAAIAAAABAAMAAAATAAMAAAABAAMAAAATAAQAAAABAAMAAAAUAAIAAAABAAMAAAAUAAMAAAABAAMAAAAUAAQAAAABAAMAAAAVAAIAAAABAAMAAAAVAAMAAAABAAMAAAAVAAQAAAACAAMAAAAUAAUAAAABAAIAAAATAAUAAAABAAIAAAATAAYAAAABAAIAAAAUAAYAAAABAAIAAAAVAAUAAAACAAMAAAAVAAYAAAABAAAAAAAWAAIAAAACAAIAAAAWAAMAAAACAAIAAAAWAAQAAAACAAMAAAAWAAUAAAACAAMAAAAWAAYAAAACAAAAAAATAAAAAAABAAEAAAAUAAAAAAABAAEAAAAVAAAAAAABAAEAAAAWAAAAAAACAAEAAAAWAAEAAAACAAIAAAATAAEAAAABAAMAAAAUAAEAAAABAAMAAAAVAAEAAAABAAMAAAAWAAoAAAACAAIAAAAVAAoAAAABAAIAAAAUAAoAAAABAAIAAAARAAsAAAACAAQAAAAMAAsAAAADAAQAAAANAAsAAAABAAQAAAAOAAsAAAADAAQAAAAPAAsAAAABAAQAAAALAAsAAAAAAAQAAAASAAsAAAAAAAQAAAATAAsAAAABAAQAAAAUAAsAAAABAAQAAAAVAAsAAAABAAQAAAAWAAsAAAACAAQAAAAMAP//AAADAAAAAAANAP//AAABAAAAAAAOAP//AAABAAAAAAAPAP//AAADAAAAAAAQAP//AAACAAAAAAALAP//AAAAAAAAAAARAAkAAAABAAMAAAAQAAoAAAABAAMAAAAQAAsAAAABAAQAAAASAP//AAABAAAAAAATAP//AAABAAAAAAAUAP//AAABAAAAAAAVAP//AAABAAAAAAARAP//AAACAAMAAAAWAP//AAACAAAAAAA=")
+tile_set = SubResource("TileSet_2qpql")
