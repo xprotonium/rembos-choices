@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dw6pgn4stiges" path="res://Assets/Sprites/UI Sprites/E_Key.png" id="2_ufj5g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ufj5g"]
-radius = 24.0
+radius = 20.0
 
 [node name="ProximityButton" type="Node2D"]
 script = ExtResource("1_m5wue")
@@ -15,6 +15,7 @@ script = ExtResource("1_m5wue")
 shape = SubResource("CircleShape2D_ufj5g")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
 offset_left = -8.0
 offset_top = -8.0
 offset_right = 8.0
