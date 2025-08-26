@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://bs6nap2mai1ok"]
+[gd_scene load_steps=7 format=4 uid="uid://bs6nap2mai1ok"]
 
 [ext_resource type="PackedScene" uid="uid://dlhwxlikqirl0" path="res://Assets/Scenes/Player/player.tscn" id="1_kwblh"]
 [ext_resource type="Texture2D" uid="uid://cfsvfud04mf6" path="res://Assets/Sprites/House/house_tileset.png" id="2_wkehv"]
 [ext_resource type="PackedScene" uid="uid://cbbkwd6d6arfs" path="res://Assets/Scenes/ProximityButton/ProximityButton.tscn" id="3_ygaiq"]
+[ext_resource type="PackedScene" uid="uid://nhtu0dgdsol8" path="res://Assets/Scenes/Operating System/Operating System.tscn" id="4_2qpql"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygaiq"]
 texture = ExtResource("2_wkehv")
@@ -80,3 +81,9 @@ tile_set = SubResource("TileSet_2qpql")
 [node name="ProximityButton" parent="." instance=ExtResource("3_ygaiq")]
 position = Vector2(232, 183)
 radius = 24.0
+ui_path = NodePath("../CanvasLayer/OperatingSystem")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="OperatingSystem" parent="CanvasLayer" instance=ExtResource("4_2qpql")]
+visible = false
