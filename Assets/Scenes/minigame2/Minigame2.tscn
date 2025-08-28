@@ -1,16 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://ds3gjk5gq3n1x"]
+[gd_scene load_steps=8 format=3 uid="uid://ds3gjk5gq3n1x"]
 
-[ext_resource type="PackedScene" uid="uid://cp2yfxubcj7mi" path="res://Assets/Scenes/minigame2/minigame2background.tscn" id="1_vuexv"]
+[ext_resource type="Script" uid="uid://c3frqlr2uusud" path="res://Assets/Scenes/minigame2/background_mananger.gd" id="1_p4m2c"]
 [ext_resource type="PackedScene" uid="uid://cilere32v252r" path="res://Assets/Scenes/minigame2/minigame2player.tscn" id="2_5qla4"]
+[ext_resource type="Texture2D" uid="uid://culd3efwnp6kh" path="res://Assets/Scenes/minigame2/minigame2_sprites/minigame2_background.png" id="2_783id"]
 [ext_resource type="Script" uid="uid://dmxep5tpu1nci" path="res://Assets/Scenes/minigame2/minigame2_code/minigame2_spawner.gd" id="3_bld5l"]
 [ext_resource type="PackedScene" uid="uid://bef8j4p3ga0e3" path="res://Assets/Scenes/minigame2/minigame2obstacle.tscn" id="4_nfvou"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt1fq"]
+size = Vector2(116, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4m2c"]
+size = Vector2(317, 20)
+
 [node name="Main" type="Node2D"]
 
-[node name="Background" parent="." instance=ExtResource("1_vuexv")]
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("1_p4m2c")
+
+[node name="BG1" type="Sprite2D" parent="Background"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_783id")
+
+[node name="BG3" type="Sprite2D" parent="Background"]
+position = Vector2(641, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_783id")
+
+[node name="BG2" type="Sprite2D" parent="Background"]
+position = Vector2(320, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_783id")
+
+[node name="Area2D" type="Area2D" parent="Background/BG2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/BG2/Area2D"]
+position = Vector2(60.4, 0)
+shape = SubResource("RectangleShape2D_kt1fq")
 
 [node name="Player" parent="." instance=ExtResource("2_5qla4")]
+position = Vector2(-4, 23)
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("3_bld5l")
 obstacle_scene = ExtResource("4_nfvou")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-1.5, 79)
+shape = SubResource("RectangleShape2D_p4m2c")

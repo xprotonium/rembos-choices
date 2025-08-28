@@ -1,15 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp2yfxubcj7mi"]
 
-[ext_resource type="Script" uid="uid://bpjmvfk5d27fs" path="res://Assets/Scenes/minigame2/minigame2_code/minigame2background.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://bvsk636b5r2ep" path="res://Assets/Scenes/minigame2/background.jpg" id="1_nou1y"]
+[ext_resource type="Texture2D" uid="uid://culd3efwnp6kh" path="res://Assets/Scenes/minigame2/minigame2_sprites/minigame2_background.png" id="1_j5dhx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5dhx"]
+size = Vector2(128, 72)
 
 [node name="Background" type="Node2D"]
 
+[node name="Background1" type="Node2D" parent="."]
+
 [node name="BG1" type="Sprite2D" parent="."]
-texture = ExtResource("1_nou1y")
-script = ExtResource("1")
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_j5dhx")
 
 [node name="BG2" type="Sprite2D" parent="."]
-position = Vector2(800, 0)
-texture = ExtResource("1_nou1y")
-script = ExtResource("1")
+position = Vector2(320, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_j5dhx")
+
+[node name="Area2D" type="Area2D" parent="BG2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG2/Area2D"]
+shape = SubResource("RectangleShape2D_j5dhx")
