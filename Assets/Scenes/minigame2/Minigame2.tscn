@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds3gjk5gq3n1x"]
+[gd_scene load_steps=9 format=3 uid="uid://ds3gjk5gq3n1x"]
 
 [ext_resource type="Script" uid="uid://c3frqlr2uusud" path="res://Assets/Scenes/minigame2/background_mananger.gd" id="1_p4m2c"]
 [ext_resource type="PackedScene" uid="uid://cilere32v252r" path="res://Assets/Scenes/minigame2/minigame2player.tscn" id="2_5qla4"]
 [ext_resource type="Texture2D" uid="uid://culd3efwnp6kh" path="res://Assets/Scenes/minigame2/minigame2_sprites/minigame2_background.png" id="2_783id"]
 [ext_resource type="Script" uid="uid://dmxep5tpu1nci" path="res://Assets/Scenes/minigame2/minigame2_code/minigame2_spawner.gd" id="3_bld5l"]
 [ext_resource type="PackedScene" uid="uid://bef8j4p3ga0e3" path="res://Assets/Scenes/minigame2/minigame2obstacle.tscn" id="4_nfvou"]
+[ext_resource type="Texture2D" uid="uid://7g6ygteifbgn" path="res://Assets/Sprites/UI Sprites/OS/taskbar.png" id="6_783id"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kt1fq"]
 size = Vector2(116, 72)
@@ -51,3 +52,8 @@ obstacle_scene = ExtResource("4_nfvou")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(-1.5, 79)
 shape = SubResource("RectangleShape2D_p4m2c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(-0.5, 79)
+scale = Vector2(2.49219, 1.25)
+texture = ExtResource("6_783id")
