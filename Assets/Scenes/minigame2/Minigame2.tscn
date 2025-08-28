@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds3gjk5gq3n1x"]
+
+[ext_resource type="PackedScene" uid="uid://cp2yfxubcj7mi" path="res://Assets/Scenes/minigame2/minigame2background.tscn" id="1_vuexv"]
+[ext_resource type="PackedScene" uid="uid://cilere32v252r" path="res://Assets/Scenes/minigame2/minigame2player.tscn" id="2_5qla4"]
+[ext_resource type="Script" uid="uid://dmxep5tpu1nci" path="res://Assets/Scenes/minigame2/minigame2_code/minigame2_spawner.gd" id="3_bld5l"]
+[ext_resource type="PackedScene" uid="uid://bef8j4p3ga0e3" path="res://Assets/Scenes/minigame2/minigame2obstacle.tscn" id="4_nfvou"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_vuexv")]
+
+[node name="Player" parent="." instance=ExtResource("2_5qla4")]
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("3_bld5l")
+obstacle_scene = ExtResource("4_nfvou")
