@@ -87,3 +87,6 @@ ui_path = NodePath("../CanvasLayer/OperatingSystem")
 
 [node name="OperatingSystem" parent="CanvasLayer" instance=ExtResource("4_2qpql")]
 visible = false
+player_path = NodePath("../../Player")
+
+[connection signal="focus_entered" from="CanvasLayer/OperatingSystem" to="CanvasLayer/OperatingSystem" method="_on_focus_entered"]
