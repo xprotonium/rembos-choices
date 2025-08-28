@@ -15,8 +15,8 @@ func _process(delta: float) -> void:
 
 func _on_player_enter(body: Node):
 	if body is CharacterBody2D:
-		bg1.position.x += 640
+		bg1.position.x += 320 * 2
 
 func _on_player_exit(body: Node):
 	if body is CharacterBody2D:
-		bg2.position.x += 640
+		bg2.position.x += 320 * 2
