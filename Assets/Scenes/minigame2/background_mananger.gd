@@ -19,4 +19,4 @@ func _on_player_enter(body: Node):
 
 func _on_player_exit(body: Node):
 	if body is CharacterBody2D:
-		bg2.position.x += 320 * 2
+		bg2.position.x += 640
