@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cw0fkf1qvd47t"]
+[gd_scene load_steps=8 format=4 uid="uid://dm6aartxlg8uf"]
 
 [ext_resource type="PackedScene" uid="uid://dlhwxlikqirl0" path="res://Assets/Scenes/Player/player.tscn" id="1_kwblh"]
 [ext_resource type="Texture2D" uid="uid://b57421o2app5a" path="res://Assets/Sprites/House/house_tileset.png" id="2_wkehv"]
 [ext_resource type="PackedScene" uid="uid://cbbkwd6d6arfs" path="res://Assets/Scenes/ProximityButton/ProximityButton.tscn" id="3_ygaiq"]
 [ext_resource type="PackedScene" uid="uid://nhtu0dgdsol8" path="res://Assets/Scenes/Operating System/Operating System.tscn" id="4_2qpql"]
+[ext_resource type="PackedScene" uid="uid://m1qq7dwen37l" path="res://Assets/Scenes/Dialog system/dialog_box.tscn" id="5_gjahs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygaiq"]
 texture = ExtResource("2_wkehv")
@@ -155,5 +156,8 @@ ui_path = NodePath("../CanvasLayer/OperatingSystem")
 [node name="OperatingSystem" parent="CanvasLayer" instance=ExtResource("4_2qpql")]
 visible = false
 player_path = NodePath("../../Player")
+
+[node name="Dialog box" parent="CanvasLayer" instance=ExtResource("5_gjahs")]
+visible = false
 
 [connection signal="focus_entered" from="CanvasLayer/OperatingSystem" to="CanvasLayer/OperatingSystem" method="_on_focus_entered"]
