@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfsvfud04mf6"
-path="res://.godot/imported/house_tileset.png-e4b25dede3fee0a1c44499b36ed6896a.ctex"
+uid="uid://byuubj6imgxyi"
+path="res://.godot/imported/sigmantosh_menu.png-dc0f8d3393df37d3462557db1518dcce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/House/house_tileset.png"
-dest_files=["res://.godot/imported/house_tileset.png-e4b25dede3fee0a1c44499b36ed6896a.ctex"]
+source_file="res://Assets/Sprites/UI Sprites/OS/sigmantosh_menu.png"
+dest_files=["res://.godot/imported/sigmantosh_menu.png-dc0f8d3393df37d3462557db1518dcce.ctex"]
 
 [params]
 
