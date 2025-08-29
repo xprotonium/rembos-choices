@@ -4,7 +4,13 @@ extends CharacterBody2D
 @export var gravity: float = 900.0
 
 func _physics_process(delta):
+	
 	if Input.is_action_just_pressed("ui_accept"):
 		velocity.y = jump_force
+	
 	velocity.y += gravity * delta
+	
 	move_and_slide()
+	
+	var screen_size = get_viewport_rect().size
+	position.y = clamp(position.y, -82, screen_size.y)
