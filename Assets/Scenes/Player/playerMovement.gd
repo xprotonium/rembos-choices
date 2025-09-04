@@ -30,5 +30,5 @@ func _physics_process(_delta):
 		get_input()
 		move_and_slide()
 		
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	player_animation_manager()
