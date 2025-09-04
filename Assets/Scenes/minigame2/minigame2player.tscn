@@ -1,15 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://cilere32v252r"]
+[gd_scene load_steps=7 format=3 uid="uid://cilere32v252r"]
 
 [ext_resource type="Script" uid="uid://c8011hh4xii50" path="res://Assets/Scenes/minigame2/minigame2_code/minigame2_player.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://bxluj64aw0bxr" path="res://Assets/Scenes/minigame2/minigame2_sprites/player.png" id="2_v6fml"]
+[ext_resource type="Texture2D" uid="uid://cv3e25781eqdx" path="res://Assets/Scenes/minigame2/minigame2_sprites/wobot_animation.png" id="2_1s152"]
+
+[sub_resource type="Animation" id="Animation_kp33x"]
+resource_name = "C57_run"
+length = 0.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_5jjep"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mo5n3"]
+_data = {
+&"C57_run": SubResource("Animation_kp33x"),
+&"RESET": SubResource("Animation_5jjep")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1s152"]
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_v6fml")
+texture = ExtResource("2_1s152")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_mo5n3")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1s152")

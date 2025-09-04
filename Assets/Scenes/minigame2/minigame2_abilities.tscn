@@ -8,16 +8,14 @@ radius = 26.1725
 
 [node name="Ability_bubble" type="Area2D"]
 z_index = 3
-position = Vector2(340, 139)
 script = ExtResource("1_acikp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-68.5, -69)
+position = Vector2(-0.499992, 0)
 scale = Vector2(0.315, 0.31)
 texture = ExtResource("2_mpfq4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-68, -69)
 shape = SubResource("CircleShape2D_qv0oj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

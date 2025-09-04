@@ -1,17 +1,28 @@
 extends Node2D
 
 @export var obstacle_scene: PackedScene
+@export var ability_scene: PackedScene
 @export var spawn_interval: float = 2.0
 
+var spawn_timer: Timer
+
 func _ready():
-	var timer = Timer.new()
-	timer.wait_time = spawn_interval
-	timer.autostart = true
-	timer.timeout.connect(_on_timer_timeout)
-	add_child(timer)
+	spawn_timer = Timer.new()
+	spawn_timer.wait_time = spawn_interval
+	spawn_timer.autostart = true
+	spawn_timer.timeout.connect(_on_timer_timeout)
+	add_child(spawn_timer)
 
 func _on_timer_timeout():
-	if obstacle_scene:
-		var obs = obstacle_scene.instantiate()
-		obs.position = Vector2(800, randf_range(100, 400))
-		get_parent().add_child(obs)
+	var scene_to_spawn = obstacle_scene
+	var scene_to_spawn2 = ability_scene
+	var spawn_y = randf_range(0, -150)
+	var spawn_x = randf_range(0, 950)
+	
+	var instance = scene_to_spawn.instantiate()
+	instance.position = Vector2(spawn_x, spawn_y)
+	get_parent().add_child(instance)
+	
+	var instance2 = scene_to_spawn2.instantiate()
+	instance2.position = Vector2(spawn_x, spawn_y)
+	get_parent().add_child(instance2)
