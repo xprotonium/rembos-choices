@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 # player variables
-@export var speed = 50
+@export var speed = 65
 @export var g = 900
-@export var jump_force = 200
+@export var jump_force = 225
 
 # get the animation player
 @onready var player_animation = $Sprite2D/AnimationPlayer
