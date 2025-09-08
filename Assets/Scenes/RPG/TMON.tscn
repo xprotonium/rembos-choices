@@ -8,6 +8,7 @@
 texture = ExtResource("1_7x44g")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -33,6 +34,7 @@ texture_region_size = Vector2i(8, 8)
 
 [sub_resource type="TileSet" id="TileSet_u7mre"]
 tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6g8ln")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64sg8"]
@@ -48,6 +50,7 @@ tile_map_data = PackedByteArray("AAD4/wMAAAAAAAAAAAD5/wMAAAAAAAAAAAD6/wMAAAAAAAA
 tile_set = SubResource("TileSet_u7mre")
 
 [node name="Player" type="Node2D" parent="."]
+position = Vector2(0, -15)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Player"]
 script = ExtResource("2_u7mre")
