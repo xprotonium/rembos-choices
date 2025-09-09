@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://wcpnatgtgx2r"]
+
+[ext_resource type="Script" uid="uid://iaiw8dtpr83h" path="res://Assets/Scenes/RPG/tmon_player.gd" id="1_erd82"]
+[ext_resource type="Texture2D" uid="uid://cvyr2bp1dpanu" path="res://Assets/Sprites/TMON/knight-animations.png" id="2_a3qsl"]
+[ext_resource type="Texture2D" uid="uid://i0lfmvygo3wj" path="res://Assets/Sprites/TMON/Weapons/weapon_1.png" id="3_a3qsl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64sg8"]
+size = Vector2(8, 8)
+
+[node name="Player" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_erd82")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_64sg8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_a3qsl")
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D/Sprite2D"]
+
+[node name="Weapon" type="Node2D" parent="CharacterBody2D"]
+position = Vector2(4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Weapon"]
+position = Vector2(-1, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_a3qsl")
+offset = Vector2(2, -2)

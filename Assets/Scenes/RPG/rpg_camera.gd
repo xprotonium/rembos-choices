@@ -40,7 +40,7 @@ func on_barrier_triggered(body: Node2D, kind: String, barrier: Area2D):
 		
 	if kind == "entrance":
 		target_position.x += screen_size.x
-		body.position.x += 15
+		body.position.x += 16
 	elif kind == "exit":
 		target_position.x -= screen_size.x
-		body.position.x -= 15
+		body.position.x -= 16
