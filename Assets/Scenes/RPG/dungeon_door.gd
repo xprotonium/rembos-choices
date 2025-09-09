@@ -54,7 +54,7 @@ func _on_player_exit(body: Node):
 # once the player is in the area,
 # check whether the player has pressed the desired input button
 func _process(_delta):
-	if player_in_area && Input.is_action_just_pressed("interact") && not is_door_locked:
+	if player_in_area and Input.is_action_just_pressed("interact") and not is_door_locked:
 		print("woohoo")
 		
 func door_lock_manager():
