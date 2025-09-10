@@ -205,5 +205,6 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[connection signal="pressed" from="MarginContainer2/BoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PanelContainer/SigmantoshButton" to="." method="_on_sigmantosh_button_pressed"]
 [connection signal="pressed" from="SigmantoshMenu/PanelContainer2/ExitButton" to="." method="_on_exit_button_pressed"]
