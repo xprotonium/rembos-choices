@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="Rembo's Choices"
-<<<<<<< HEAD
-run/main_scene="uid://dm6aartxlg8uf"
-=======
 run/main_scene="uid://cw0fkf1qvd47t"
->>>>>>> main
 config/features=PackedStringArray("4.4", "Forward Plus")
-run/max_fps=30
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [display]
@@ -63,9 +59,14 @@ interact={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 ]
 }
-fastforward={
+jump={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+]
+}
+attack={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"location":0,"echo":false,"script":null)
 ]
 }
 
@@ -73,4 +74,3 @@ fastforward={
 
 textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.259294, 0.259294, 0.259294, 1)
-2d/snap/snap_2d_transforms_to_pixel=true
