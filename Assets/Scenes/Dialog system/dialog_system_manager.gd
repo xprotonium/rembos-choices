@@ -25,17 +25,23 @@ func _process(delta: float) -> void:
 	if self.visible == true:
 		player.allow_movement = false 
 		
-	if Input.is_action_just_pressed("fastforward"):
+	if Input.is_action_just_pressed("interact"):
 		current_index += 1
 		if current_index < json_as_dict.size():
 			name_label.text = json_as_dict[current_index]["name"]
 			dialog_label.text = json_as_dict[current_index]["text"]
-			dialog_label.visible_ratio = 0 #pain inducer 9000 (its a reset mechanism)
+			dialog_label.visible_ratio = 0 #pain inducer 9000 (its a reset mechanism)h
 			
-		else:
-			# you can use your own final voiceline or speaker suit yourself
+		elif current_index == json_as_dict.size():
 			name_label.text  = ""
-			dialog_label.text = "All dialog finished!"
+			dialog_label.text = "All dialog finished!"# you can use your own final voiceline or speaker suit yourself
+			player.allow_movement = true 
+			
+		else :
+			player.allow_movement = true
+			self.visible = false
+			current_index = -1
+			
 			
 	# customize how fast you want the text to appear by changing value multiplied by delta
 	if dialog_label.visible_ratio < 1:
