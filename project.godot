@@ -11,7 +11,11 @@ config_version=5
 [application]
 
 config/name="Rembo's Choices"
+<<<<<<< HEAD
 run/main_scene="uid://dm6aartxlg8uf"
+=======
+run/main_scene="uid://cw0fkf1qvd47t"
+>>>>>>> main
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=30
 config/icon="res://icon.svg"
