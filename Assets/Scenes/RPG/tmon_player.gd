@@ -6,6 +6,9 @@ extends CharacterBody2D
 @export var jump_force = 200
 @export var friction = 0.1
 
+# player sprite
+@onready var sprite = $Sprite2D
+
 # player weapon
 @onready var weapon = $WeaponHolder/Weapon
 var can_attack: bool = true
@@ -19,23 +22,28 @@ func get_input():
 
 	if Input.is_action_pressed("left"):
 		input_direction -= 1
-		player_animation.play("walk_left")
+		player_animation.play("walk")
+		sprite.scale.x = -1
 		prev_direction = "left"
 	if Input.is_action_pressed("right"):
 		input_direction += 1
-		player_animation.play("walk_right")
+		player_animation.play("walk")
+		sprite.scale.x = 1
 		prev_direction = "right"
 		
 	if input_direction != 0:
 		velocity.x = input_direction * speed
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
-		player_animation.play("idle_" + prev_direction)
+		if prev_direction == "right":
+			sprite.scale.x = 1
+		else:
+			sprite.scale.x = -1
+		player_animation.play("idle")
 
 func check_attack():
 	if can_attack and Input.is_action_just_pressed("attack"):
 		can_attack = false
-		player_animation.play("sword_attack")
 		weapon._attack()
 		
 		await get_tree().create_timer(weapon.cooldown).timeout

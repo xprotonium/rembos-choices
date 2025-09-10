@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wcpnatgtgx2r"]
+[gd_scene load_steps=12 format=3 uid="uid://wcpnatgtgx2r"]
 
 [ext_resource type="Script" uid="uid://iaiw8dtpr83h" path="res://Assets/Scenes/RPG/tmon_player.gd" id="1_erd82"]
 [ext_resource type="Texture2D" uid="uid://cvyr2bp1dpanu" path="res://Assets/Sprites/TMON/knight-animations.png" id="2_a3qsl"]
@@ -34,30 +34,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(4, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../WeaponHolder/Weapon:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../WeaponHolder/Weapon:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_bx2wo"]
 resource_name = "idle_left"
@@ -89,8 +65,56 @@ tracks/1/keys = {
 "values": [Vector2(4, 0), Vector2(4, 0), Vector2(4, 1), Vector2(4, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_41bjg"]
+resource_name = "walk_left"
+length = 0.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_68lp6"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../WeaponHolder:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.124, 0.125, 0.249, 0.25, 0.374, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, -1), Vector2(4, -1), Vector2(4, 0), Vector2(4, 0), Vector2(3, 0), Vector2(3, 0), Vector2(4, 0), Vector2(4, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_i6mn4"]
-resource_name = "idle_right"
+resource_name = "idle"
 length = 0.5
 loop_mode = 1
 step = 0.25
@@ -119,80 +143,13 @@ tracks/1/keys = {
 "values": [Vector2(4, 0), Vector2(4, 0), Vector2(4, 1), Vector2(4, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_41bjg"]
-resource_name = "walk_left"
-length = 0.5
-loop_mode = 1
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 15]
-}
-
-[sub_resource type="Animation" id="Animation_68lp6"]
-resource_name = "walk_right"
-length = 0.5
-loop_mode = 1
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
-}
-
-[sub_resource type="Animation" id="Animation_wqahh"]
-resource_name = "attack_right"
-length = 0.3
-loop_mode = 2
-step = 0.075
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../WeaponHolder/Weapon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0749685, 0.153846, 0.299857),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(4.47035e-08, -3), Vector2(5, 2), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../WeaponHolder/Weapon:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0749685, 0.153846, 0.299857),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -1.5708, 1.5708, 0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_41bjg"]
 _data = {
 &"RESET": SubResource("Animation_w38f5"),
-&"attack_right": SubResource("Animation_wqahh"),
+&"idle": SubResource("Animation_i6mn4"),
 &"idle_left": SubResource("Animation_bx2wo"),
-&"idle_right": SubResource("Animation_i6mn4"),
-&"walk_left": SubResource("Animation_41bjg"),
-&"walk_right": SubResource("Animation_68lp6")
+&"walk": SubResource("Animation_68lp6"),
+&"walk_left": SubResource("Animation_41bjg")
 }
 
 [node name="Player" type="Node2D"]

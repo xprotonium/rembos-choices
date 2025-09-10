@@ -16,6 +16,9 @@ class_name Weapon
 # weapon collision shape, to set collision shape size
 @onready var collision_shape = $Area2D/CollisionShape2D
 
+# weapon animation player
+@onready var weapon_animations = $WeaponAnimations
+
 func _ready() -> void:
 	# disable the hitbox initially
 	hitbox.monitoring = false
@@ -25,6 +28,7 @@ func _ready() -> void:
 	collision_shape.shape.radius = reach
 
 func _attack():
+	weapon_animations.play("attack")
 	hitbox.monitoring = true
 	print(hitbox.monitoring)
 	await get_tree().create_timer(cooldown).timeout
