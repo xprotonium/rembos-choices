@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cilere32v252r"]
+[gd_scene load_steps=7 format=3 uid="uid://cilere32v252r"]
 
 [ext_resource type="Script" uid="uid://c8011hh4xii50" path="res://Assets/Scenes/minigame2/minigame2_code/minigame2_player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cv3e25781eqdx" path="res://Assets/Scenes/minigame2/minigame2_sprites/wobot_animation.png" id="2_1s152"]
@@ -45,9 +45,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1s152"]
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp33x"]
-size = Vector2(14, 15)
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1")
 
@@ -62,11 +59,3 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1s152")
-
-[node name="obsatcledetector" type="Area2D" parent="."]
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="obsatcledetector"]
-shape = SubResource("RectangleShape2D_kp33x")
-
-[connection signal="body_entered" from="obsatcledetector" to="." method="_on_obsatcledetector_body_entered"]

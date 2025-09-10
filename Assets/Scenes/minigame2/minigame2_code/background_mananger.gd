@@ -6,12 +6,20 @@ extends Node2D
 
 var scroll_speed = 4
 
+var game_time: float = 0.0
+var max_scroll_speed: float = 10.0
+var acceleration: float = 0.05
+
 func _ready() -> void:
 	player_detector.body_entered.connect(_on_player_enter)
 	player_detector.body_exited.connect(_on_player_exit)
 
 func _process(delta: float) -> void:
-	self.position.x += -1 * scroll_speed
+	
+	game_time += delta
+	var current_speed = min(scroll_speed + (acceleration * game_time), max_scroll_speed)
+	
+	self.position.x += -1 * current_speed
 
 func _on_player_enter(body: Node):
 	if body is CharacterBody2D:
@@ -20,3 +28,7 @@ func _on_player_enter(body: Node):
 func _on_player_exit(body: Node):
 	if body is CharacterBody2D:
 		bg2.position.x += 640
+
+func stop_scrolling():
+	set_process(false)
+	print("Background scrolling stopped")
