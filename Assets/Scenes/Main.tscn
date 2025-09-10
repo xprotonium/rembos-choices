@@ -151,10 +151,6 @@ position = Vector2(232, 183)
 radius = 24.0
 ui_path = NodePath("../CanvasLayer/OperatingSystem")
 
-[node name="ProximityButton2" parent="." instance=ExtResource("3_ygaiq")]
-position = Vector2(271, 144)
-ui_path = NodePath("../CanvasLayer/Dialog box")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="OperatingSystem" parent="CanvasLayer" instance=ExtResource("4_2qpql")]
