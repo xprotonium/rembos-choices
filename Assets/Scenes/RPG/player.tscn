@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://wcpnatgtgx2r"]
+[gd_scene load_steps=16 format=3 uid="uid://wcpnatgtgx2r"]
 
 [ext_resource type="Script" uid="uid://iaiw8dtpr83h" path="res://Assets/Scenes/RPG/tmon_player.gd" id="1_erd82"]
 [ext_resource type="Texture2D" uid="uid://cvyr2bp1dpanu" path="res://Assets/Sprites/TMON/knight-animations.png" id="2_a3qsl"]
 [ext_resource type="PackedScene" uid="uid://b4sdoa6rbhl5o" path="res://Assets/Scenes/RPG/weapon.tscn" id="3_68lp6"]
 [ext_resource type="Script" uid="uid://f5l7k32lfx8d" path="res://Assets/Scenes/RPG/weapon_holder.gd" id="3_wqahh"]
+[ext_resource type="Script" uid="uid://dhw2vmkyrc4kx" path="res://Assets/Scenes/RPG/Resources/weapon_data.gd" id="6_i6mn4"]
+[ext_resource type="Script" uid="uid://mapwwf2xjxh2" path="res://Assets/Scenes/RPG/inventory.gd" id="7_41bjg"]
+[ext_resource type="Texture2D" uid="uid://i0lfmvygo3wj" path="res://Assets/Sprites/TMON/Weapons/weapon_1.png" id="7_bx2wo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64sg8"]
 size = Vector2(8, 8)
@@ -33,84 +36,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(4, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_bx2wo"]
-resource_name = "idle_left"
-length = 0.5
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../WeaponHolder:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2499, 0.25, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(4, 0), Vector2(4, 0), Vector2(4, 1), Vector2(4, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_41bjg"]
-resource_name = "walk_left"
-length = 0.5
-loop_mode = 1
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 15]
-}
-
-[sub_resource type="Animation" id="Animation_68lp6"]
-resource_name = "walk"
-length = 0.5
-loop_mode = 1
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../WeaponHolder:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.124, 0.125, 0.249, 0.25, 0.374, 0.375, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(4, -1), Vector2(4, -1), Vector2(4, 0), Vector2(4, 0), Vector2(3, 0), Vector2(3, 0), Vector2(4, 0), Vector2(4, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_i6mn4"]
@@ -143,6 +68,84 @@ tracks/1/keys = {
 "values": [Vector2(4, 0), Vector2(4, 0), Vector2(4, 1), Vector2(4, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_bx2wo"]
+resource_name = "idle_left"
+length = 0.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../WeaponHolder:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2499, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 0), Vector2(4, 0), Vector2(4, 1), Vector2(4, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_68lp6"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../WeaponHolder:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.124, 0.125, 0.249, 0.25, 0.374, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, -1), Vector2(4, -1), Vector2(4, 0), Vector2(4, 0), Vector2(3, 0), Vector2(3, 0), Vector2(4, 0), Vector2(4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_41bjg"]
+resource_name = "walk_left"
+length = 0.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_41bjg"]
 _data = {
 &"RESET": SubResource("Animation_w38f5"),
@@ -151,6 +154,16 @@ _data = {
 &"walk": SubResource("Animation_68lp6"),
 &"walk_left": SubResource("Animation_41bjg")
 }
+
+[sub_resource type="Resource" id="Resource_m7gto"]
+resource_local_to_scene = true
+script = ExtResource("6_i6mn4")
+name = "Old Sword"
+description = ""
+sprite = ExtResource("7_bx2wo")
+damage = 5
+reach = 6
+cooldown = 0.3
 
 [node name="Player" type="Node2D"]
 
@@ -178,3 +191,7 @@ script = ExtResource("3_wqahh")
 player_path = NodePath("..")
 
 [node name="Weapon" parent="CharacterBody2D/WeaponHolder" instance=ExtResource("3_68lp6")]
+weapon = SubResource("Resource_m7gto")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("7_41bjg")

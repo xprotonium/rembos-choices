@@ -2,13 +2,8 @@ extends Node2D
 class_name Weapon
 
 # weapon appearance
-@export var weapon_sprite: Texture2D
-@onready var sprite2d = $Sprite2D
-
-# weapon stats
-@export var damage: int
-@export var reach: int
-@export var cooldown: float
+@export var weapon: WeaponData
+var cooldown: float
 
 # weapon hitbox
 @onready var hitbox = $Area2D
@@ -22,10 +17,10 @@ class_name Weapon
 func _ready() -> void:
 	# disable the hitbox initially
 	hitbox.monitoring = false
-	# change the weapon sprite
-	sprite2d.texture = weapon_sprite
 	# apply the actual reach value of the weapona
-	collision_shape.shape.radius = reach
+	collision_shape.shape.radius = weapon.reach
+	
+	cooldown = weapon.cooldown
 
 func _attack():
 	weapon_animations.play("attack")

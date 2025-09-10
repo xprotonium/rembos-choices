@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var jump_force = 200
 @export var friction = 0.1
 
+var cooldown: float 
+
 # player sprite
 @onready var sprite = $Sprite2D
 
