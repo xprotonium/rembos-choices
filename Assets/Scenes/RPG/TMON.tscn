@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=4 uid="uid://bptp47sxhl1by"]
+[gd_scene load_steps=14 format=4 uid="uid://bptp47sxhl1by"]
 
 [ext_resource type="Texture2D" uid="uid://cb4uho52dc3ag" path="res://Assets/Sprites/TMON/dungeon-tiles.png" id="1_7x44g"]
 [ext_resource type="PackedScene" uid="uid://wcpnatgtgx2r" path="res://Assets/Scenes/RPG/player.tscn" id="3_j6wjy"]
 [ext_resource type="Script" uid="uid://cp57gvyixacje" path="res://Assets/Scenes/RPG/rpg_camera.gd" id="4_j6wjy"]
+[ext_resource type="Script" uid="uid://dhw2vmkyrc4kx" path="res://Assets/Scenes/RPG/Resources/weapon_data.gd" id="4_s8fsj"]
 [ext_resource type="PackedScene" uid="uid://v0tujy3ygl84" path="res://Assets/Scenes/RPG/dungeon_door.tscn" id="5_64sg8"]
+[ext_resource type="PackedScene" uid="uid://c40llh3ou34ol" path="res://Assets/Scenes/RPG/TMON_UI.tscn" id="5_hgxli"]
+[ext_resource type="Texture2D" uid="uid://i0lfmvygo3wj" path="res://Assets/Sprites/TMON/Weapons/weapon_1.png" id="5_x78g1"]
+[ext_resource type="PackedScene" uid="uid://ooykpde8u4eu" path="res://Assets/Scenes/RPG/PickUp.tscn" id="8_x78g1"]
+[ext_resource type="Texture2D" uid="uid://buasckwrb2et5" path="res://Assets/Sprites/TMON/health_potion.png" id="9_m2uhk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6g8ln"]
 texture = ExtResource("1_7x44g")
@@ -33,6 +38,16 @@ tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6g8ln")
 
+[sub_resource type="Resource" id="Resource_m7gto"]
+resource_local_to_scene = true
+script = ExtResource("4_s8fsj")
+name = "Old Sword"
+description = ""
+sprite = ExtResource("5_x78g1")
+damage = 5
+reach = 6
+cooldown = 0.3
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6wjy"]
 size = Vector2(4, 56)
 
@@ -47,6 +62,12 @@ position = Vector2(374, 20)
 
 [node name="Player" parent="." instance=ExtResource("3_j6wjy")]
 position = Vector2(-43, 16)
+
+[node name="CharacterBody2D" parent="Player" index="0" node_paths=PackedStringArray("hp_bar")]
+hp_bar = NodePath("../../TMON_UI/Control/MarginContainer/Panel/TextureProgressBar")
+
+[node name="Weapon" parent="Player/CharacterBody2D/WeaponHolder" index="0"]
+weapon = SubResource("Resource_m7gto")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.865, 2.865)
@@ -96,3 +117,18 @@ position = Vector2(282, -4)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SectionBarriers/Section4Exit"]
 shape = SubResource("RectangleShape2D_j6wjy")
 debug_color = Color(1, 0, 0.0898184, 0.42)
+
+[node name="TMON_UI" parent="." instance=ExtResource("5_hgxli")]
+player_path = NodePath("../Player/CharacterBody2D")
+
+[node name="MarginContainer" parent="TMON_UI/Control" index="0"]
+layout_mode = 0
+
+[node name="Health_Pickup" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("8_x78g1")]
+position = Vector2(125, 18)
+pick_up_sprite = ExtResource("9_m2uhk")
+hp_bar = NodePath("../TMON_UI/Control/MarginContainer/Panel/TextureProgressBar")
+player_path = NodePath("../Player/CharacterBody2D")
+
+[editable path="Player"]
+[editable path="TMON_UI"]

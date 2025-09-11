@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ooykpde8u4eu"]
+
+[ext_resource type="Script" uid="uid://cjpg6actbuo7s" path="res://Assets/Scenes/RPG/pick_up.gd" id="1_0copt"]
+[ext_resource type="Texture2D" uid="uid://buasckwrb2et5" path="res://Assets/Sprites/TMON/health_potion.png" id="2_6b548"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6b548"]
+radius = 4.0
+
+[node name="Health_Pickup" type="Node2D"]
+script = ExtResource("1_0copt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6b548")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6b548")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,10 +1,16 @@
 extends CharacterBody2D
 
+# player stats
+@export var max_hp = 100
+@export var hp = 100
+
 # player movement variables
 @export var speed = 50
 @export var g = 900
 @export var jump_force = 200
 @export var friction = 0.1
+
+@export var hp_bar: TextureProgressBar 
 
 var cooldown: float 
 
@@ -50,6 +56,11 @@ func check_attack():
 		
 		await get_tree().create_timer(weapon.cooldown).timeout
 		can_attack = true
+		
+func take_dmg(dmg: int):
+	hp -= dmg
+	hp_bar.value -= dmg
+	
 
 func _physics_process(delta: float) -> void:
 	# get the input direction and apply it
@@ -64,3 +75,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= jump_force
 		
 	check_attack()
+	
+	if Input.is_action_just_pressed("interact"):
+		take_dmg(5)
