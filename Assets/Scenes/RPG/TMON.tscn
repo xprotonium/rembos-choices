@@ -63,8 +63,9 @@ position = Vector2(374, 20)
 [node name="Player" parent="." instance=ExtResource("3_j6wjy")]
 position = Vector2(-43, 16)
 
-[node name="CharacterBody2D" parent="Player" index="0" node_paths=PackedStringArray("hp_bar")]
+[node name="CharacterBody2D" parent="Player" index="0" node_paths=PackedStringArray("hp_bar", "hp_text")]
 hp_bar = NodePath("../../TMON_UI/Control/MarginContainer/Panel/TextureProgressBar")
+hp_text = NodePath("../../TMON_UI/Control/MarginContainer/Panel/Label")
 
 [node name="Weapon" parent="Player/CharacterBody2D/WeaponHolder" index="0"]
 weapon = SubResource("Resource_m7gto")
@@ -120,9 +121,6 @@ debug_color = Color(1, 0, 0.0898184, 0.42)
 
 [node name="TMON_UI" parent="." instance=ExtResource("5_hgxli")]
 player_path = NodePath("../Player/CharacterBody2D")
-
-[node name="MarginContainer" parent="TMON_UI/Control" index="0"]
-layout_mode = 0
 
 [node name="Health_Pickup" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("8_x78g1")]
 position = Vector2(125, 18)

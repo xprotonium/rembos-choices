@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c40llh3ou34ol"]
+[gd_scene load_steps=6 format=3 uid="uid://c40llh3ou34ol"]
 
 [ext_resource type="Texture2D" uid="uid://d30vi4w3pmx8g" path="res://Assets/Sprites/TMON/hp_bar.png" id="1_w4wh2"]
 [ext_resource type="Script" uid="uid://bjja0ffdx58r1" path="res://Assets/Scenes/RPG/UI_manager.gd" id="1_wt0ql"]
+[ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="2_tih12"]
 [ext_resource type="Texture2D" uid="uid://16rcnnbbuyer" path="res://Assets/Sprites/TMON/hp.png" id="2_wt0ql"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tih12"]
@@ -20,6 +21,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 0
 offset_right = 80.0
 offset_bottom = 20.0
 theme_override_constants/margin_left = 4
@@ -30,6 +32,23 @@ theme_override_constants/margin_bottom = 4
 [node name="Panel" type="Panel" parent="Control/MarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tih12")
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -5.0
+offset_right = 17.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_tih12")
+theme_override_font_sizes/font_size = 8
+text = "HP NUMBER"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Control/MarginContainer/Panel"]
 layout_mode = 1

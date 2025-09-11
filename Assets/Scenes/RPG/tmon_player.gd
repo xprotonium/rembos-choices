@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var friction = 0.1
 
 @export var hp_bar: TextureProgressBar 
+@export var hp_text: Label
 
 var cooldown: float 
 
@@ -60,6 +61,7 @@ func check_attack():
 func take_dmg(dmg: int):
 	hp -= dmg
 	hp_bar.value -= dmg
+	hp_text.text = str(hp)
 	
 
 func _physics_process(delta: float) -> void:
