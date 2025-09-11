@@ -60,7 +60,8 @@ func check_attack():
 		
 func take_dmg(dmg: int):
 	hp -= dmg
-	hp_bar.value -= dmg
+	hp = max(hp, 0)
+	hp_bar.value = hp
 	hp_text.text = str(hp)
 	
 

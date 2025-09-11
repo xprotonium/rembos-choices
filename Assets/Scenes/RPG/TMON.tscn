@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://v0tujy3ygl84" path="res://Assets/Scenes/RPG/dungeon_door.tscn" id="5_64sg8"]
 [ext_resource type="PackedScene" uid="uid://c40llh3ou34ol" path="res://Assets/Scenes/RPG/TMON_UI.tscn" id="5_hgxli"]
 [ext_resource type="Texture2D" uid="uid://i0lfmvygo3wj" path="res://Assets/Sprites/TMON/Weapons/weapon_1.png" id="5_x78g1"]
-[ext_resource type="PackedScene" uid="uid://ooykpde8u4eu" path="res://Assets/Scenes/RPG/PickUp.tscn" id="8_x78g1"]
+[ext_resource type="PackedScene" uid="uid://ooykpde8u4eu" path="res://Assets/Scenes/RPG/HealthPickUp.tscn" id="8_x78g1"]
 [ext_resource type="Texture2D" uid="uid://buasckwrb2et5" path="res://Assets/Sprites/TMON/health_potion.png" id="9_m2uhk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6g8ln"]
@@ -122,10 +122,11 @@ debug_color = Color(1, 0, 0.0898184, 0.42)
 [node name="TMON_UI" parent="." instance=ExtResource("5_hgxli")]
 player_path = NodePath("../Player/CharacterBody2D")
 
-[node name="Health_Pickup" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("8_x78g1")]
+[node name="Health_Pickup" parent="." node_paths=PackedStringArray("hp_bar", "hp_bar_text") instance=ExtResource("8_x78g1")]
 position = Vector2(125, 18)
 pick_up_sprite = ExtResource("9_m2uhk")
 hp_bar = NodePath("../TMON_UI/Control/MarginContainer/Panel/TextureProgressBar")
+hp_bar_text = NodePath("../TMON_UI/Control/MarginContainer/Panel/Label")
 player_path = NodePath("../Player/CharacterBody2D")
 
 [editable path="Player"]
