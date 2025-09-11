@@ -7,8 +7,8 @@ extends Node2D
 var scroll_speed = 4
 
 var game_time: float = 0.0
-var max_scroll_speed: float = 10.0
-var acceleration: float = 0.05
+var max_scroll_speed: float = 100.0
+var acceleration: float = 0.33
 
 func _ready() -> void:
 	player_detector.body_entered.connect(_on_player_enter)
