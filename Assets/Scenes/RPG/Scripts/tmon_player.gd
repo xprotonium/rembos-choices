@@ -17,6 +17,9 @@ var can_attack: bool = true
 var prev_direction = "right"
 @export var inventory := {}
 
+func _ready() -> void:
+	GameManager.player = self
+
 func get_input():
 	var input_direction = 0
 	if Input.is_action_pressed("left"):

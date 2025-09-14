@@ -19,6 +19,9 @@ var has_entered = false
 
 # Camera variables
 var screen_size = Vector2(320, 180) / zoom
+
+# changes based on if the player moves backward, forward, up, down
+var current_section: int = 0
 var target_position: Vector2
 @export var speed = 6
 
@@ -35,12 +38,16 @@ func _process(delta: float) -> void:
 
 func on_barrier_triggered(body: Node2D, kind: String, barrier: Area2D):
 	# check if it is the player
-	if not (body is CharacterBody2D):
+	if not GameManager.player:
 		return
 		
 	if kind == "entrance":
 		target_position.x += screen_size.x
 		body.position.x += 16
+		current_section += 1
 	elif kind == "exit":
 		target_position.x -= screen_size.x
 		body.position.x -= 16
+		current_section -= 1
+		
+	GameManager.current_section = current_section
