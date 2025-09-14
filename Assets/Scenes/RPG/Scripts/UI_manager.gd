@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var item_sprite = $Control/PickUpInfo/HBoxContainer/TextureRect
 @onready var item_description = $Control/PickUpInfo/HBoxContainer/Label
 
+@export var pickup_sound: AudioStreamPlayer
+
 # get the player hp
 @export var player_path: NodePath
 var player: CharacterBody2D
@@ -18,9 +20,12 @@ func _ready() -> void:
 	pickup_ui.visible = false
 
 func _show_pickup_info(texture: Texture2D, description: String):
+	get_tree().paused = true
+	pickup_sound.play()
 	pickup_ui.visible = true
 	item_sprite.texture = texture
 	item_description.text = description
 
 func _on_button_pressed() -> void:
 	pickup_ui.visible = false
+	get_tree().paused = false

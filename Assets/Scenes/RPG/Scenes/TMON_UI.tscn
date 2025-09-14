@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c40llh3ou34ol"]
+[gd_scene load_steps=13 format=3 uid="uid://c40llh3ou34ol"]
 
 [ext_resource type="Texture2D" uid="uid://d30vi4w3pmx8g" path="res://Assets/Sprites/TMON/hp_bar.png" id="1_w4wh2"]
 [ext_resource type="Script" uid="uid://bjja0ffdx58r1" path="res://Assets/Scenes/RPG/Scripts/UI_manager.gd" id="1_wt0ql"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bwcl53dvbfend" path="res://Assets/Sprites/TMON/PickUpInfoBG.png" id="5_555fx"]
 [ext_resource type="Texture2D" uid="uid://i0lfmvygo3wj" path="res://Assets/Sprites/TMON/Weapons/weapon_1.png" id="6_isxts"]
 [ext_resource type="Texture2D" uid="uid://cco7cg17iqymk" path="res://Assets/Sprites/TMON/TMON_UI/PickUpClose.png" id="7_2ic0u"]
+[ext_resource type="AudioStream" uid="uid://f170qq0m4vyb" path="res://Assets/Music/TMON/PICKUP_WEAPON_NORMAL.mp3" id="8_ux1cv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tih12"]
 
@@ -23,8 +24,9 @@ font_size = 8
 shadow_size = 8
 shadow_color = Color(0, 0, 0, 0.133333)
 
-[node name="TMON_UI" type="CanvasLayer"]
+[node name="TMON_UI" type="CanvasLayer" node_paths=PackedStringArray("pickup_sound")]
 script = ExtResource("1_wt0ql")
+pickup_sound = NodePath("Control/PickUpSound")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -80,6 +82,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PickUpInfo" type="Panel" parent="Control"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -165,5 +168,9 @@ icon = ExtResource("7_2ic0u")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="PickUpSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("8_ux1cv")
+volume_db = 8.0
 
 [connection signal="pressed" from="Control/PickUpInfo/Button" to="." method="_on_button_pressed"]
