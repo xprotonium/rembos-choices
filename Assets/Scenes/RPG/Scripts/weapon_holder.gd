@@ -1,7 +1,5 @@
 extends Node2D
 
-# weapon holder needs to hold all information about the different weapons
-
 # change the position of the weapon holder 
 # based on the direction the player is facing
 
@@ -12,7 +10,7 @@ var player: CharacterBody2D
 func _ready() -> void:
 	player = get_node(player_path)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.prev_direction == "left":
 		scale.x = -1
 		position.x = -4

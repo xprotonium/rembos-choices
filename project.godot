@@ -24,6 +24,10 @@ window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+Player="player group"
+
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true

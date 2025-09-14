@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bbyuslmyjysyt"]
+
+[ext_resource type="Script" uid="uid://bft35sqx48juk" path="res://Assets/Scenes/RPG/Resources/ItemData/item_data.gd" id="1_f2bw8"]
+
+[resource]
+script = ExtResource("1_f2bw8")
+item_name = ""
+item_description = ""

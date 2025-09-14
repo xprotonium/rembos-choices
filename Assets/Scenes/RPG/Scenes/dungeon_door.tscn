@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ci3yb2i52ybp7" path="res://Assets/Sprites/TMON/dungeon_door_locked.png" id="2_du8tt"]
 [ext_resource type="Texture2D" uid="uid://cmyi3dsd7a2f3" path="res://Assets/Sprites/TMON/TMON_UI/UI_locked_door.png" id="2_eqtme"]
 [ext_resource type="Texture2D" uid="uid://dru4iibwbjuw4" path="res://Assets/Sprites/TMON/TMON_UI/UI_unlocked_door.png" id="3_du8tt"]
-[ext_resource type="Script" uid="uid://brn5q0h2idm1c" path="res://Assets/Scenes/RPG/dungeon_door.gd" id="4_1diu0"]
+[ext_resource type="Script" uid="uid://brn5q0h2idm1c" path="res://Assets/Scenes/RPG/Scripts/dungeon_door.gd" id="4_1diu0"]
 [ext_resource type="Texture2D" uid="uid://bvfa0sy2se88a" path="res://Assets/Sprites/TMON/dungeon_door_unlocked.png" id="6_ytjho"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1diu0"]

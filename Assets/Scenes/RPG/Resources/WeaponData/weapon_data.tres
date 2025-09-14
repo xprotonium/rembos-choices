@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://nquuxad8ct3j"]
+
+[ext_resource type="Script" uid="uid://bc5trdwlc8baq" path="res://Assets/Scenes/RPG/Resources/WeaponData/weapon_data.gd" id="1_khiod"]
+
+[resource]
+script = ExtResource("1_khiod")
+damage = 0
+reach = 0
+cooldown = 0.0
+item_name = ""
+item_description = ""

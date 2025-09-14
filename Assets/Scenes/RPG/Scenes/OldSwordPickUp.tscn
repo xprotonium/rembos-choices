@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://wjadj6glyk6v"]
+
+[ext_resource type="Script" uid="uid://cuvpuxcltp78a" path="res://Assets/Scenes/RPG/Scripts/old_sword_pick_up.gd" id="1_3pqfq"]
+[ext_resource type="Texture2D" uid="uid://dw6pgn4stiges" path="res://Assets/Sprites/UI Sprites/E_Key.png" id="2_apg2s"]
+[ext_resource type="Texture2D" uid="uid://djlyimscedkg4" path="res://Assets/Sprites/TMON/sword_in_pedestal.png" id="2_m11ff"]
+[ext_resource type="Texture2D" uid="uid://dwfyfqruo33wv" path="res://Assets/Sprites/TMON/pedestal.png" id="3_exfdo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6qul"]
+radius = 8.0
+
+[node name="OldSwordPickup" type="Node2D"]
+script = ExtResource("1_3pqfq")
+sword_in_pedestal = ExtResource("2_m11ff")
+pedestal = ExtResource("3_exfdo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m11ff")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_f6qul")
+
+[node name="InteractSprite" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_apg2s")
