@@ -1,7 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://wg6eg3drude6"]
+[gd_scene load_steps=43 format=3 uid="uid://wg6eg3drude6"]
 
 [ext_resource type="Texture2D" uid="uid://r5pesqsnmk80" path="res://Assets/Sprites/TMON/slime-animations.png" id="1_65e02"]
 [ext_resource type="Script" uid="uid://uc6jv5ajx7sm" path="res://Assets/Scenes/RPG/Scripts/slime.gd" id="1_g25fa"]
+[ext_resource type="AudioStream" uid="uid://3l34j3qc2dws" path="res://Assets/Music/TMON/ATTACK_HIT.mp3" id="3_dkcmy"]
+[ext_resource type="AudioStream" uid="uid://blf7ijjk2sd6t" path="res://Assets/Music/TMON/ENEMY_DIE.mp3" id="3_fnd82"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g25fa"]
 atlas = ExtResource("1_65e02")
@@ -312,6 +314,14 @@ debug_color = Color(0.668911, 0, 0.205349, 0.42)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackRange"]
 shape = SubResource("CircleShape2D_g25fa")
 debug_color = Color(0.778276, 0.133625, 1, 0.42)
+
+[node name="GotHit" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("3_dkcmy")
+volume_db = 1.5
+
+[node name="Death" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("3_fnd82")
+volume_db = 1.5
 
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CharacterBody2D/AttackRange" to="CharacterBody2D" method="_on_attack_range_body_entered"]

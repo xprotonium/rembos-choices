@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bptp47sxhl1by"]
+[gd_scene load_steps=18 format=4 uid="uid://bptp47sxhl1by"]
 
 [ext_resource type="Texture2D" uid="uid://cb4uho52dc3ag" path="res://Assets/Sprites/TMON/dungeon-tiles.png" id="1_7x44g"]
 [ext_resource type="Script" uid="uid://b3ni2ehkw58it" path="res://Assets/Scenes/RPG/Scripts/game_manager.gd" id="1_qwdsn"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b4sdoa6rbhl5o" path="res://Assets/Scenes/RPG/Resources/Weapons/OldSword/old_sword.tscn" id="7_e6atn"]
 [ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="9_43nc1"]
 [ext_resource type="AudioStream" uid="uid://pcxoycgfje3r" path="res://Assets/Music/TMON/2. Brave Descent.mp3" id="10_e6atn"]
+[ext_resource type="AudioStream" uid="uid://c1cma444jini5" path="res://Assets/Music/TMON/PLAYER_DEATH.mp3" id="11_b1813"]
 [ext_resource type="PackedScene" uid="uid://wg6eg3drude6" path="res://Assets/Scenes/RPG/Scenes/Slime.tscn" id="12_sdo3r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6g8ln"]
@@ -52,6 +53,7 @@ script = ExtResource("1_qwdsn")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_e6atn")
+volume_db = -10.0
 autoplay = true
 parameters/looping = false
 
@@ -87,6 +89,9 @@ position = Vector2(-43, 16)
 [node name="CharacterBody2D" parent="Player" index="0" node_paths=PackedStringArray("hp_bar", "hp_text")]
 hp_bar = NodePath("../../TMON_UI/Control/MarginContainer/HP/TextureProgressBar")
 hp_text = NodePath("../../TMON_UI/Control/MarginContainer/HP/Label")
+
+[node name="DEATH" type="AudioStreamPlayer" parent="Player/CharacterBody2D" index="5"]
+stream = ExtResource("11_b1813")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.857, 2.813)
@@ -148,7 +153,7 @@ text = "Take up the blade, O lost one."
 horizontal_alignment = 1
 
 [node name="Slime" parent="." groups=["Enemy"] instance=ExtResource("12_sdo3r")]
-position = Vector2(247, 22)
+position = Vector2(226, 22)
 
 [node name="CharacterBody2D" parent="Slime" index="0"]
 section_id = 2

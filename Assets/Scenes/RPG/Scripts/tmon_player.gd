@@ -12,6 +12,8 @@ extends CharacterBody2D
 var cooldown: float 
 @onready var sprite = $Sprite2D
 @onready var weapon: Node = null
+@onready var hurt_audio = $HURT
+@onready var death_audio = $DEATH
 var can_attack: bool = true
 @onready var player_animation = $PlayerAnimations
 var prev_direction = "right"
@@ -50,10 +52,14 @@ func check_attack():
 		can_attack = true
 
 func take_dmg(dmg: int):
+	if hp == 0:
+		death_audio.play()
+		queue_free()
 	hp -= dmg
 	hp = max(hp, 0)
 	hp_bar.value = hp
 	hp_text.text = str(hp)
+	hurt_audio.play()
 
 func equip_weapon(item_name: String) -> void:
 	if not inventory.has(item_name):
@@ -72,5 +78,3 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y -= jump_force
 	check_attack()
-	if Input.is_action_just_pressed("interact"):
-		take_dmg(5)

@@ -11,6 +11,10 @@ enum State { IDLE, CHASE, ATTACK, HURT, DEAD }
 @export var attack_damage: int = 10
 @export var knockback_strength: float = 100
 
+# enemy sounds
+@onready var got_hit_audio = $GotHit
+@onready var death_audio = $Death
+
 var state: State = State.IDLE
 var hp: int
 var spawn_position: Vector2
@@ -33,6 +37,12 @@ func _physics_process(delta: float) -> void:
 	if state == State.DEAD:
 		return
 
+	# --- Section check ---
+	if GameManager.current_section != section_id:
+		_reset_enemy()
+		return
+	# ---------------------
+
 	if knockback_timer > 0:
 		velocity = knockback_velocity
 		knockback_timer -= delta
@@ -42,10 +52,7 @@ func _physics_process(delta: float) -> void:
 
 		match state:
 			State.IDLE:
-				if GameManager.current_section == section_id:
-					state = State.CHASE
-				else:
-					_reset_enemy()
+				state = State.CHASE
 
 			State.CHASE:
 				if GameManager.player:
@@ -84,6 +91,7 @@ func _take_damage(amount: int, from_position: Vector2) -> void:
 	if hp > 0:
 		state = State.HURT
 		sprite.play("hurt")
+		got_hit_audio.play()
 		var direction = (global_position - from_position).normalized()
 		knockback_velocity = Vector2(direction.x * knockback_strength, -knockback_strength / 2)
 		knockback_timer = 0.2
@@ -102,6 +110,7 @@ func _die() -> void:
 	state = State.DEAD
 	velocity = Vector2.ZERO
 	sprite.play("death")
+	death_audio.play()
 
 func _attack() -> void:
 	attack_range.monitoring = true

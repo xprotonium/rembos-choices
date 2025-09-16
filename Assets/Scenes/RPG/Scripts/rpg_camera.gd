@@ -37,10 +37,9 @@ func _process(delta: float) -> void:
 	position = position.lerp(target_position, speed * delta)
 
 func on_barrier_triggered(body: Node2D, kind: String, barrier: Area2D):
-	# check if it is the player
-	if not GameManager.player:
+	if body != GameManager.player:
 		return
-		
+	
 	if kind == "entrance":
 		target_position.x += screen_size.x
 		body.position.x += 16
