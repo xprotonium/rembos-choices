@@ -61,6 +61,16 @@ func game_over():
 	print("PLAYER: Game over triggered!")
 	set_physics_process(false)
 	
+	# Stop score tracking - UPDATED
+	var score_system = get_node("../ScoreSystem")
+	if score_system:
+		if score_system.has_method("stop_scoring"):
+			score_system.stop_scoring()
+		else:
+			print("ScoreSystem exists but doesn't have stop_scoring method")
+	else:
+		print("ScoreSystem node not found!")
+	
 	var spawner = get_node("../Spawner")
 	if spawner and spawner.has_method("stop_spawning"):
 		spawner.stop_spawning()

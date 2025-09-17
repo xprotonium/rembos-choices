@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed: float = 300.0
+@export var speed: float = 600.0
 @export var remove_x: float = -500.0
 
 func _physics_process(delta):

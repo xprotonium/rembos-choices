@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://cgamtghrxdag4" path="res://Assets/Scenes/minigame2/minigame2_code/score_system.gd" id="10_yg417"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kt1fq"]
-size = Vector2(122.8, 72)
+size = Vector2(122.4, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p4m2c"]
 size = Vector2(317, 20)
@@ -40,8 +40,7 @@ texture = ExtResource("2_783id")
 [node name="Area2D" type="Area2D" parent="Background/BG2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/BG2/Area2D"]
-position = Vector2(34.2, 7.7486e-07)
-scale = Vector2(1, 1)
+position = Vector2(38.8, 7.7486e-07)
 shape = SubResource("RectangleShape2D_kt1fq")
 
 [node name="Player" parent="." instance=ExtResource("2_5qla4")]

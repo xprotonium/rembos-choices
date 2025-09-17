@@ -8,7 +8,7 @@ var scroll_speed = 4
 
 var game_time: float = 0.0
 var max_scroll_speed: float = 100.0
-var acceleration: float = 0.33
+var acceleration: float = 0.2
 
 func _ready() -> void:
 	player_detector.body_entered.connect(_on_player_enter)

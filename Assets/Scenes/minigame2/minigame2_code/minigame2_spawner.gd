@@ -34,19 +34,19 @@ func _on_timer_timeout():
 	if obstacle_scene:
 		# First obstacle
 		var obs1 = obstacle_scene.instantiate()
-		obs1.position = Vector2(600, randf_range(-150, 0))  # ← KEEP ORIGINAL POSITION
+		obs1.position = Vector2(600, randf_range(-100, 0))  # ← KEEP ORIGINAL POSITION
 		get_parent().add_child(obs1)
 		
 		# SLOWER speed increase over time
 		if obs1.has_method("set_speed"):
-			var base_speed = 250.0  # ← SLOWER START (250 instead of 300)
-			var increased_speed = base_speed + (game_time * 5)  # ← SLOWER INCREASE (+5 instead of +10)
-			obs1.set_speed(min(increased_speed, 450.0))  # ← LOWER MAX (450 instead of 600)
+			var base_speed = 500.0  # ← SLOWER START (250 instead of 300)
+			var increased_speed = base_speed + (game_time * 10)  # ← SLOWER INCREASE (+5 instead of +10)
+			obs1.set_speed(min(increased_speed, 900.0))  # ← LOWER MAX (450 instead of 600)
 		
 		# 40% CHANCE FOR SECOND OBSTACLE
 		if randf() < 0.3:
 			var obs2 = obstacle_scene.instantiate()
-			obs2.position = Vector2(600, randf_range(-150, 0))  # ← KEEP ORIGINAL POSITION
+			obs2.position = Vector2(600, randf_range(-100, 0))  # ← KEEP ORIGINAL POSITION
 			
 			# MINIMUM 75 PIXEL GAP (was 50)
 			while abs(obs2.position.y - obs1.position.y) < 75:  # ← CHANGED TO 75
@@ -56,16 +56,16 @@ func _on_timer_timeout():
 			
 			# SLOWER speed for second obstacle too
 			if obs2.has_method("set_speed"):
-				var base_speed = 250.0  # ← SLOWER START
-				var increased_speed = base_speed + (game_time * 5)  # ← SLOWER INCREASE
-				obs2.set_speed(min(increased_speed, 450.0))  # ← LOWER MAX
+				var base_speed = 500.0  # ← SLOWER START
+				var increased_speed = base_speed + (game_time * 10)  # ← SLOWER INCREASE
+				obs2.set_speed(min(increased_speed, 900.0))  # ← LOWER MAX
 			
 			print("DOUBLE OBSTACLES SPAWNED! Gap: ", abs(obs2.position.y - obs1.position.y))
 	
 	# SPAWN ABILITY (30% chance)
 	if ability_scene and randf() < 0.3:
 		var ability = ability_scene.instantiate()
-		ability.position = Vector2(1000, randf_range(-100, -50))  # ← KEEP ORIGINAL POSITION
+		ability.position = Vector2(1000, randf_range(-80, 80))  # ← KEEP ORIGINAL POSITION
 		get_parent().add_child(ability)
 
 func stop_spawning():
