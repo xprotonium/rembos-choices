@@ -30,13 +30,11 @@ func _ready():
 	
 func _on_player_enter(body: Node):
 	if body is CharacterBody2D:
-		print("Player entered the area")
 		texture.visible = true
 		player_in_area = true
 
 func _on_player_exit(body: Node):
 	if body is CharacterBody2D:
-		print("Player exited the area")
 		texture.visible = false
 		player_in_area = false
 
