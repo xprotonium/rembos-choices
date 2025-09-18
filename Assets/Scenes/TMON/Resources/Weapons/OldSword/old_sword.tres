@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://cgc5e3ha4l6qg"]
+
+[ext_resource type="Texture2D" uid="uid://i0lfmvygo3wj" path="res://Assets/Sprites/TMON/Weapons/weapon_1.png" id="1_ed0fn"]
+[ext_resource type="Script" uid="uid://bc5trdwlc8baq" path="res://Assets/Scenes/TMON/Resources/WeaponData/weapon_data.gd" id="1_mvgq7"]
+
+[resource]
+script = ExtResource("1_mvgq7")
+weapon_sprite = ExtResource("1_ed0fn")
+damage = 2
+reach = 4
+cooldown = 0.3
+item_name = "Old Sword"
+item_description = "A worn blade, found in a dungeon long forgotten. It is said to have once belonged to a knight who, ages past, lost his purpose"
+item_icon = ExtResource("1_ed0fn")
+metadata/_custom_type_script = "uid://bc5trdwlc8baq"

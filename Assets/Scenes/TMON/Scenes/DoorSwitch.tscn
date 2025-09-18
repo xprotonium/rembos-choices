@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj5sbyieks52c"]
+
+[ext_resource type="Script" uid="uid://c1ppvebgcb5h3" path="res://Assets/Scenes/TMON/Scenes/door_switch.gd" id="1_3y3uy"]
+[ext_resource type="Texture2D" uid="uid://cdv1tbkwaoeme" path="res://Assets/Sprites/TMON/door_switch_red.png" id="2_y04v5"]
+[ext_resource type="Texture2D" uid="uid://d26vaaat47p3" path="res://Assets/Sprites/TMON/door_switch_green.png" id="3_tcrff"]
+[ext_resource type="AudioStream" uid="uid://pvc0j6rx5kk7" path="res://Assets/Music/TMON/SWITCHED_UNLOCKED.mp3" id="4_y04v5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dugs5"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g57a4"]
+size = Vector2(8, 3)
+
+[node name="DoorSwitch" type="Node2D"]
+script = ExtResource("1_3y3uy")
+sprite_locked = ExtResource("2_y04v5")
+sprite_unlocked = ExtResource("3_tcrff")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y04v5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_dugs5")
+debug_color = Color(0.848812, 0.000917372, 0.902807, 0.42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_g57a4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_y04v5")
