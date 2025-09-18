@@ -3,6 +3,7 @@ extends Node2D
 @onready var timer: Timer = $QTETimer
 @onready var e_container = $PerfectTimingUI/ContainerE
 @onready var q_container = $PerfectTimingUI/ContainerQ
+@export var enemy: Node2D
 
 var expected_key: String = ""
 var qte_active: bool = false
@@ -40,6 +41,7 @@ func _unhandled_input(event: InputEvent):
 	# Correct key pressed
 	if event.is_action_pressed(expected_key):
 		print("nice")
+		enemy._take_dmg(10)
 		_end_qte()
 	# Wrong QTE key pressed
 	elif event.is_action_pressed("qte_e") or event.is_action_pressed("qte_q"):

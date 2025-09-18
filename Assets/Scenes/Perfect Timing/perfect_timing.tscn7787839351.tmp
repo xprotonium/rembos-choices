@@ -1,13 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnl4s3itceymn"]
+[gd_scene load_steps=16 format=3 uid="uid://bnl4s3itceymn"]
 
 [ext_resource type="Script" uid="uid://dc7jm5pm0bsi0" path="res://Assets/Scenes/Perfect Timing/QTEcode.gd" id="1_f86a5"]
-[ext_resource type="Texture2D" uid="uid://kjtia3p4eb7p" path="res://Assets/Sprites/Perfect Timing Sprites/space_bg.png" id="2_f86a5"]
+[ext_resource type="Texture2D" uid="uid://bhfmenyr6bjtn" path="res://Assets/Sprites/Perfect Timing Sprites/space_bg.png" id="2_f86a5"]
 [ext_resource type="Script" uid="uid://cepmq5oiv51p" path="res://Assets/Scenes/Perfect Timing/QTE.gd" id="2_mujjv"]
-[ext_resource type="Texture2D" uid="uid://vjgp67qe1xol" path="res://Assets/Sprites/Perfect Timing Sprites/E Button-Sheet.png" id="3_hytj5"]
+[ext_resource type="Texture2D" uid="uid://cndfkf72bnd3m" path="res://Assets/Sprites/Perfect Timing Sprites/astro idle.png" id="3_06ik3"]
+[ext_resource type="Texture2D" uid="uid://bbxst87l4jg3u" path="res://Assets/Sprites/Perfect Timing Sprites/E Button-Sheet.png" id="3_hytj5"]
 [ext_resource type="Script" uid="uid://c68ao0jmwx5ii" path="res://Assets/Scenes/Perfect Timing/enemy.gd" id="3_ujxrh"]
-[ext_resource type="Texture2D" uid="uid://cb2455r0r7y7j" path="res://Assets/Sprites/Perfect Timing Sprites/player.png" id="3_xi4ry"]
-[ext_resource type="Texture2D" uid="uid://cqfuyftnjlnql" path="res://Assets/Sprites/Perfect Timing Sprites/Q Button-Sheet.png" id="5_06ik3"]
-[ext_resource type="Texture2D" uid="uid://dxqlqpx0re0x1" path="res://Assets/Sprites/Perfect Timing Sprites/corrupt_astro.png" id="5_xbidm"]
+[ext_resource type="Texture2D" uid="uid://cskx5qbb3au3u" path="res://Assets/Sprites/Perfect Timing Sprites/Q Button-Sheet.png" id="5_06ik3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f86a5"]
 bg_color = Color(0.888908, 0.4357, 0.521568, 1)
@@ -60,46 +59,25 @@ _data = {
 atlas = ExtResource("5_06ik3")
 region = Rect2(0, 0, 16, 16)
 
-[node name="PerfectTiming" type="Node2D" node_paths=PackedStringArray("enemy")]
+[node name="PerfectTiming" type="Node2D"]
 script = ExtResource("1_f86a5")
-enemy = NodePath("Enemy")
 metadata/_edit_use_anchors_ = true
+
+[node name="QTETimer" type="Timer" parent="."]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_f86a5")
 
-[node name="QTETimer" type="Timer" parent="."]
-
-[node name="Player" type="Node2D" parent="."]
-position = Vector2(160, 90)
-scale = Vector2(2.5, 2.5)
-
-[node name="player_sprite" type="Sprite2D" parent="Player"]
-position = Vector2(-41.6, 16)
-scale = Vector2(2, 2)
-texture = ExtResource("3_xi4ry")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Player"]
-offset_left = -23.6
-offset_top = 21.2
-offset_right = 24.4
-offset_bottom = 32.2
-
-[node name="player_hp" type="ProgressBar" parent="Player/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 5
-
-[node name="Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hp_bar")]
+[node name="Enemy" type="Node2D" parent="."]
 position = Vector2(175, 13)
 script = ExtResource("3_ujxrh")
-hp_bar = NodePath("VBoxContainer/ProgressBar")
 
-[node name="enemy_sprite" type="Sprite2D" parent="Enemy"]
-position = Vector2(78, 45)
-scale = Vector2(4.3125, 3.46875)
-texture = ExtResource("5_xbidm")
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+position = Vector2(47, 61)
+scale = Vector2(4.375, 4.125)
+texture = ExtResource("3_06ik3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Enemy"]
 anchors_preset = 8
@@ -107,17 +85,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = 4.0
-offset_right = 48.0
-offset_bottom = 37.0
+offset_left = -31.0
+offset_top = -4.0
+offset_right = 95.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="Enemy/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_f86a5")
-value = 100.0
+value = 67.0
 
 [node name="PerfectTimingUI" type="Control" parent="."]
 layout_mode = 3
@@ -134,10 +112,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 264.0
-offset_top = 127.0
-offset_right = 304.0
-offset_bottom = 167.0
+offset_left = 255.0
+offset_top = 44.0
+offset_right = 295.0
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_f86a5")
@@ -162,10 +140,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 11.0
-offset_top = 11.0
-offset_right = 51.0
-offset_bottom = 51.0
+offset_left = 26.0
+offset_top = 120.0
+offset_right = 66.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ujxrh")
