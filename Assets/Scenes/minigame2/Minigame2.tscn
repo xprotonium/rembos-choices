@@ -41,7 +41,6 @@ texture = ExtResource("2_783id")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/BG2/Area2D"]
 position = Vector2(34.2, 7.7486e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kt1fq")
 
 [node name="Player" parent="." instance=ExtResource("2_5qla4")]
