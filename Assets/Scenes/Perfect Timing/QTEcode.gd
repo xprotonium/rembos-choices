@@ -4,6 +4,8 @@ extends Node2D
 @onready var e_container = $PerfectTimingUI/ContainerE
 @onready var q_container = $PerfectTimingUI/ContainerQ
 @export var enemy: Node2D
+@export var player: Node2D
+@export var death_screen: Control
 
 var expected_key: String = ""
 var qte_active: bool = false
@@ -12,6 +14,11 @@ func _ready():
 	randomize()
 	timer.timeout.connect(_on_qte_failed)
 	start_qte()
+	
+func _process(delta: float) -> void:
+	if player.hp == 0 or enemy.hp == 0:
+		death_screen.visible = true
+		get_tree().paused = true
 
 func start_qte():
 	if qte_active:
@@ -46,6 +53,7 @@ func _unhandled_input(event: InputEvent):
 	# Wrong QTE key pressed
 	elif event.is_action_pressed("qte_e") or event.is_action_pressed("qte_q"):
 		print("dummy")
+		player._take_dmg(50)
 		_end_qte()
 
 func _on_qte_failed():

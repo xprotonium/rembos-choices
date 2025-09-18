@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://chil5qh65j443"]
+
+[ext_resource type="Script" uid="uid://b550agiex33wc" path="res://Assets/Scenes/Perfect Timing/death_screen.gd" id="1_5ctq5"]
+[ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="1_sh6dd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ctq5"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="DeathScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ctq5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ctq5")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -29.0
+offset_right = 28.5
+offset_bottom = -6.66667
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_sh6dd")
+text = "You Died"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -11.8333
+offset_right = 42.0
+offset_bottom = 28.1667
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Respawn" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_sh6dd")
+theme_override_font_sizes/font_size = 12
+text = "Respawn"
+
+[node name="Quit" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_sh6dd")
+theme_override_font_sizes/font_size = 12
+text = "Quit
+"
+
+[connection signal="pressed" from="Panel/HBoxContainer/Respawn" to="." method="_on_respawn_pressed"]
