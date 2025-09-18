@@ -34,8 +34,9 @@ func on_barrier_triggered(body: Node2D, kind: String, barrier: Area2D):
 		horizontal_section -= 1
 
 	GameManager.horizontal_section = horizontal_section
-
+	print(str(horizontal_section) + "," + str(vertical_section))
 func move_vertical_section(direction: int) -> void:
 	vertical_section += direction
 	GameManager.vertical_section = vertical_section
 	target_position.y = vertical_section * screen_size.y
+	print(str(horizontal_section) + "," + str(vertical_section))

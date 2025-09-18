@@ -91,3 +91,10 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y -= jump_force
 	check_attack()
+
+
+
+
+func _on_spikes_body_entered(body: Node2D) -> void:
+	if body == GameManager.player:
+		GameManager.player.take_dmg(GameManager.player.hp)
