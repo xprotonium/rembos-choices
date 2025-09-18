@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var g = 900
 @export var default_jump: float = 170
 @export var jump_force = 170
-@export var friction = 0.1
+@export var friction = 0.3
 @export var hp_bar: TextureProgressBar 
 @export var hp_text: Label
 

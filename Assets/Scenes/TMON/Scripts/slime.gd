@@ -32,6 +32,7 @@ var attack_in_progress: bool = false
 var attack_animation_played: bool = false
 
 func _ready() -> void:
+	print(vertical_section_id, horizontal_section_id)
 	add_to_group("Enemy")
 	hp = max_hp
 	spawn_position = global_position
