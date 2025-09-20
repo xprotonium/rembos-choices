@@ -108,7 +108,7 @@ script = ExtResource("1_qwdsn")
 stream = ExtResource("10_e6atn")
 volume_db = -10.0
 autoplay = true
-parameters/looping = false
+parameters/looping = true
 
 [node name="TMON_UI" parent="." instance=ExtResource("5_hgxli")]
 visible = false
