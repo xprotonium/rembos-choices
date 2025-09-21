@@ -23,6 +23,7 @@ var is_door_locked: bool = true
 @export var camera: Camera2D
 @export_enum("up", "down") var door_direction: String = "down"
 
+
 func _ready():
 	texture.visible = false
 	var circle := collision_shape.shape as CircleShape2D
@@ -30,6 +31,7 @@ func _ready():
 		circle.radius = radius
 	area2D.body_entered.connect(_on_player_enter)
 	area2D.body_exited.connect(_on_player_exit)
+
 
 func _process(_delta: float) -> void:
 	door_lock_manager()
@@ -44,15 +46,18 @@ func _process(_delta: float) -> void:
 			"down":
 				camera.move_vertical_section(1)
 
+
 func _on_player_enter(body: Node):
 	if body is CharacterBody2D:
 		texture.visible = true
 		player_in_area = true
 
+
 func _on_player_exit(body: Node):
 	if body is CharacterBody2D:
 		texture.visible = false
 		player_in_area = false
+
 
 func door_lock_manager():
 	if is_door_locked:
