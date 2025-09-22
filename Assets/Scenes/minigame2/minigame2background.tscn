@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp2yfxubcj7mi"]
+
+[ext_resource type="Texture2D" uid="uid://culd3efwnp6kh" path="res://Assets/Scenes/minigame2/minigame2_sprites/minigame2_background.png" id="1_j5dhx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5dhx"]
+size = Vector2(136.4, 72)
+
+[node name="Background" type="Node2D"]
+
+[node name="Background1" type="Node2D" parent="."]
+
+[node name="BG1" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_j5dhx")
+
+[node name="BG2" type="Sprite2D" parent="."]
+position = Vector2(320, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_j5dhx")
+
+[node name="Area2D" type="Area2D" parent="BG2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG2/Area2D"]
+position = Vector2(-4.2, 0)
+shape = SubResource("RectangleShape2D_j5dhx")
