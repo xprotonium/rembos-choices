@@ -106,9 +106,9 @@ script = ExtResource("1_qwdsn")
 
 [node name="BgOST" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_e6atn")
-volume_db = -10.0
+volume_db = -5.0
 autoplay = true
-parameters/looping = false
+parameters/looping = true
 
 [node name="TMON_UI" parent="." instance=ExtResource("5_hgxli")]
 visible = false
@@ -349,21 +349,22 @@ theme_override_font_sizes/font_size = 4
 text = "Press X to attack"
 horizontal_alignment = 1
 
-[node name="Slime" parent="." groups=["Enemy"] instance=ExtResource("12_sdo3r")]
-position = Vector2(226, 22)
+[node name="Slime" parent="." instance=ExtResource("12_sdo3r")]
+position = Vector2(223, 22)
+
+[node name="CharacterBody2D" parent="Slime" index="0"]
+horizontal_section_id = 2
 
 [node name="Slime2" parent="." instance=ExtResource("12_sdo3r")]
 position = Vector2(15, 85)
 
 [node name="CharacterBody2D" parent="Slime2" index="0"]
-horizontal_section_id = 0
 vertical_section_id = 1
 
 [node name="Slime3" parent="." instance=ExtResource("12_sdo3r")]
 position = Vector2(1, 85)
 
 [node name="CharacterBody2D" parent="Slime3" index="0"]
-horizontal_section_id = 0
 vertical_section_id = 1
 
 [connection signal="body_entered" from="Platforms/Spikes" to="Player/CharacterBody2D" method="_on_spikes_body_entered"]

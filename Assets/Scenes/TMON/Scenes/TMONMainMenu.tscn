@@ -1,0 +1,120 @@
+[gd_scene load_steps=10 format=3 uid="uid://dhmog8jt2yag1"]
+
+[ext_resource type="Texture2D" uid="uid://dn7mvcyqjgx4p" path="res://Assets/Sprites/TMON/mainmenubg.png" id="1_jf64n"]
+[ext_resource type="Script" uid="uid://b1pn32y8fi6qe" path="res://Assets/Scenes/TMON/Scenes/main_menu.gd" id="2_6p7sj"]
+[ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="2_b31xg"]
+[ext_resource type="Texture2D" uid="uid://ca15df44dh1w1" path="res://Assets/Sprites/TMON/button.png" id="3_6p7sj"]
+[ext_resource type="Texture2D" uid="uid://dxqwesx3431hs" path="res://Assets/Sprites/TMON/button_red.png" id="4_qmfaq"]
+[ext_resource type="Texture2D" uid="uid://c4uhc2d4blymk" path="res://Assets/Sprites/TMON/selection_cursor.png" id="6_qmfaq"]
+[ext_resource type="AudioStream" uid="uid://c2s1kfll86f68" path="res://Assets/Music/TMON/1. Main Menu.mp3" id="7_leubc"]
+[ext_resource type="FontFile" uid="uid://dl453dyba5g8t" path="res://Assets/Fonts/alagard.ttf" id="7_w0ji6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_leubc"]
+
+[node name="TmonMenu" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_jf64n")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_6p7sj")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.0
+offset_right = 34.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_leubc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MainMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.262745, 0, 0.376471, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.262745, 0, 0.376471, 1)
+theme_override_fonts/font = ExtResource("2_b31xg")
+text = "Play"
+icon = ExtResource("3_6p7sj")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Quit" type="Button" parent="MainMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_b31xg")
+text = "Quit"
+icon = ExtResource("4_qmfaq")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="SelectionCursor" type="TextureRect" parent="MainMenu"]
+layout_mode = 2
+offset_left = -40.0
+offset_top = 15.0
+offset_right = -36.0
+offset_bottom = 23.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(2, 4)
+texture = ExtResource("6_qmfaq")
+
+[node name="SelectionCursor2" type="TextureRect" parent="MainMenu"]
+layout_mode = 2
+offset_left = 36.0
+offset_top = 15.0
+offset_right = 40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(2, 4)
+texture = ExtResource("6_qmfaq")
+flip_h = true
+
+[node name="Label" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -71.0
+offset_right = 81.0
+offset_bottom = -48.6667
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.34902)
+theme_override_fonts/font = ExtResource("7_w0ji6")
+text = "The Myth Of Nothing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_leubc")
+autoplay = true
+
+[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/Play" to="MainMenu" method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenu/PanelContainer/VBoxContainer/Quit" to="MainMenu" method="_on_quit_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="MainMenu" method="_on_audio_stream_player_finished"]

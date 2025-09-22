@@ -16,6 +16,9 @@ func _ready() -> void:
 		barrier.connect("body_entered", Callable(self, "on_barrier_triggered").bind("entrance", barrier))
 	for barrier in get_tree().get_nodes_in_group("ExitBarriers"):
 		barrier.connect("body_entered", Callable(self, "on_barrier_triggered").bind("exit", barrier))
+		
+	GameManager.horizontal_section = horizontal_section
+	GameManager.vertical_section = vertical_section
 
 func _process(delta: float) -> void:
 	position = position.lerp(target_position, speed * delta)

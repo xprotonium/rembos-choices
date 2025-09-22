@@ -61,6 +61,7 @@ func _show_death_screen():
 
 func _on_respawn_button_pressed() -> void:
 	get_tree().paused = false
+	print("player died!")
 	get_tree().reload_current_scene()
 
 
