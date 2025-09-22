@@ -30,3 +30,15 @@ func _on_sigmantosh_button_pressed() -> void:
 		sigmantosh_menu.visible = true
 	else:
 		sigmantosh_menu.visible = false
+
+
+func _on_tmon_pressed() -> void:
+	get_tree().change_scene_to_file("res://Assets/Scenes/TMON/Scenes/TMONMainMenu.tscn")
+
+
+func _on_c_57_pressed() -> void:
+	get_tree().change_scene_to_file("res://Assets/Scenes/minigame2/Minigame2.tscn")
+
+
+func _on_perfect_timing_pressed() -> void:
+	get_tree().change_scene_to_file("res://Assets/Scenes/Perfect Timing/perfect_timing.tscn")

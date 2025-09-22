@@ -38,7 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.0980392)
+color = Color(0, 0, 0, 0.207843)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -62,39 +62,39 @@ theme_override_constants/margin_top = 4
 layout_mode = 2
 vertical = true
 
-[node name="Button" type="Button" parent="MarginContainer2/BoxContainer"]
+[node name="TMON" type="Button" parent="MarginContainer2/BoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/icon_max_width = 32
 theme_override_fonts/font = ExtResource("4_uuocp")
 theme_override_font_sizes/font_size = 8
-text = "rpg game"
+text = "TMON"
 icon = ExtResource("3_tyi15")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="Button2" type="Button" parent="MarginContainer2/BoxContainer"]
+[node name="C57" type="Button" parent="MarginContainer2/BoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/icon_max_width = 32
 theme_override_fonts/font = ExtResource("4_uuocp")
 theme_override_font_sizes/font_size = 8
-text = "rpg game"
+text = "C57"
 icon = ExtResource("3_tyi15")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="Button3" type="Button" parent="MarginContainer2/BoxContainer"]
+[node name="Perfect Timing" type="Button" parent="MarginContainer2/BoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/icon_max_width = 32
 theme_override_fonts/font = ExtResource("4_uuocp")
 theme_override_font_sizes/font_size = 8
-text = "rpg game"
+text = "Perfect Timing"
 icon = ExtResource("3_tyi15")
 flat = true
 icon_alignment = 1
@@ -205,6 +205,8 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="MarginContainer2/BoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/BoxContainer/TMON" to="." method="_on_tmon_pressed"]
+[connection signal="pressed" from="MarginContainer2/BoxContainer/C57" to="." method="_on_c_57_pressed"]
+[connection signal="pressed" from="MarginContainer2/BoxContainer/Perfect Timing" to="." method="_on_perfect_timing_pressed"]
 [connection signal="pressed" from="PanelContainer/SigmantoshButton" to="." method="_on_sigmantosh_button_pressed"]
 [connection signal="pressed" from="SigmantoshMenu/PanelContainer2/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -11,8 +11,8 @@ enum State { IDLE, CHASE, ATTACK, HURT, DEAD }
 @export var knockback_strength: float = 100
 @export var attack_range_radius: float = 2.5
 @export var attack_duration: float = 0.5
-@export var horizontal_section_id: int = 0
-@export var vertical_section_id: int = 0
+@export var horizontal_section_id: int
+@export var vertical_section_id: int
 
 @onready var got_hit_audio = $GotHit
 @onready var death_audio = $Death
@@ -32,7 +32,6 @@ var attack_in_progress: bool = false
 var attack_animation_played: bool = false
 
 func _ready() -> void:
-	print(vertical_section_id, horizontal_section_id)
 	add_to_group("Enemy")
 	hp = max_hp
 	spawn_position = global_position
