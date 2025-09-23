@@ -1,6 +1,7 @@
 extends Control
 
 @onready var sigmantosh_menu = $SigmantoshMenu
+@onready var mail_app = $MailApp
 # since the player is an instanced node, we need the node path
 # then use it as root node
 @export var player_path: NodePath
@@ -42,3 +43,7 @@ func _on_c_57_pressed() -> void:
 
 func _on_perfect_timing_pressed() -> void:
 	get_tree().change_scene_to_file("res://Assets/Scenes/Perfect Timing/perfect_timing.tscn")
+
+
+func _on_mail_pressed() -> void:
+	mail_app.visible = true
