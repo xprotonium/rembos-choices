@@ -63,9 +63,9 @@ func _on_timer_timeout():
 			print("DOUBLE OBSTACLES SPAWNED! Gap: ", abs(obs2.position.y - obs1.position.y))
 	
 	# SPAWN ABILITY (30% chance)
-	if ability_scene and randf() < 0.3:
+	if ability_scene and randf() < 0.5:
 		var ability = ability_scene.instantiate()
-		ability.position = Vector2(1000, randf_range(-80, 80))  # ← KEEP ORIGINAL POSITION
+		ability.position = Vector2(1000, randf_range(-80, 50))  # ← KEEP ORIGINAL POSITION
 		get_parent().add_child(ability)
 
 func stop_spawning():
