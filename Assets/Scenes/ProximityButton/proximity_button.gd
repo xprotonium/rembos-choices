@@ -43,3 +43,4 @@ func _on_player_exit(body: Node):
 func _process(_delta):
 	if player_in_area && Input.is_action_just_pressed("interact"):
 		ui.visible = true
+		ui.update_ui()

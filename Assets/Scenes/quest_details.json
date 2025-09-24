@@ -1,0 +1,33 @@
+{
+	"INTRO": {
+		"title": "Rembo's Choices",
+		"objective": "",
+		"description": "Rembo has choices to make"
+	},
+	"GO_TO_LAPTOP": {
+		"title": "A Loud Alarm",
+		"objective": "Open the laptop",
+		"description": "You heard a loud sound coming from your laptop... maybe you should go check it out."
+	},
+	"OPEN_MAIL_APP": {
+		"title": "Open Mail",
+		"objective": "Open the mail app",
+		"description": "Check your inbox for new messages."
+	},
+	"PLAY_RPG": {
+		"title": "Launch the RPG",
+		"description": "Time to relax with your favorite RPG game."
+	},
+	"PLAY_C57": {
+		"title": "Play C57",
+		"description": "Open the C57 client and start a match."
+	},
+	"PLAY_PERFECT_TIMING": {
+		"title": "Perfect Timing",
+		"description": "Test your reflexes in Perfect Timing."
+	},
+	"DONE": {
+		"title": "All Done!",
+		"description": "You’ve completed all the tasks for now."
+	}
+}
