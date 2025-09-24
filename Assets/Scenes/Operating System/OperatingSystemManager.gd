@@ -59,6 +59,9 @@ func _on_perfect_timing_pressed() -> void:
 
 
 func _on_mail_pressed() -> void:
+	if MainGameManager.current_stage == MainGameManager.QuestStage.OPEN_MAIL_APP:
+		MainGameManager.advance_stage()
+		MainGameManager.update_quest_ui(MainGameManager.current_stage)
 	mail_app.visible = true
 
 

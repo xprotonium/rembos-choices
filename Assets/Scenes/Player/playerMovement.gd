@@ -39,4 +39,5 @@ func _physics_process(_delta):
 		move_and_slide()
 
 func _process(_delta: float) -> void:
-	player_animation_manager()
+	if allow_movement:
+		player_animation_manager()

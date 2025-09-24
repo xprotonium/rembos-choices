@@ -18,6 +18,7 @@ signal quest_stage_changed(new_stage)
 var quest_details: Dictionary = {}
 
 # PLAYER STATS
+@export var player: CharacterBody2D
 var energy: int = 10
 var max_energy: int = 10
 var hunger: int = 10
@@ -60,12 +61,15 @@ func _ready():
 	# Initial UI
 	update_stats_ui()
 	update_quest_ui(current_stage)
+	
+	play_intro_cutscene()
 
 # QUEST PROGRESSION
 func advance_stage():
 	if current_stage < QuestStage.DONE:
 		current_stage += 1
 		emit_signal("quest_stage_changed", current_stage)
+		update_quest_ui(current_stage)
 
 # TIMERS
 func setup_timers():
@@ -120,25 +124,65 @@ func update_stats_ui():
 
 # Fixed update_quest_ui: explicit typing for 'q'
 func update_quest_ui(stage) -> void:
-	if not pause_menu_quest_title or not pause_menu_quest_description:
+	var scene_root = get_tree().current_scene
+	if not scene_root:
 		return
 
-	# Convert stage to an integer index (signal may pass int/Variant)
+	# Find pause menu dynamically
+	var pause_menu = scene_root.get_node_or_null("CanvasLayer/MainHud/PauseMenu")
+	if not pause_menu:
+		print("Pause menu not found in current scene")
+		return
+
+	# Now look inside pause_menu RELATIVE to it
+	var title: RichTextLabel = pause_menu.get_node_or_null("PauseMenuRightPanel/QuestTitle")
+	var desc: RichTextLabel = pause_menu.get_node_or_null("PauseMenuRightPanel/QuestDescription")
+
+	if not title or not desc:
+		print("QuestTitle or QuestDescription not found under PauseMenu")
+		return
+
+	# Convert stage to an integer index
 	var stage_index: int = int(stage)
 	var stage_names: Array = QuestStage.keys()
-	# bounds safety
+
 	if stage_index < 0 or stage_index >= stage_names.size():
-		pause_menu_quest_title.text = "Unknown Quest"
-		pause_menu_quest_description.text = ""
+		title.text = "Unknown Quest"
+		desc.text = ""
 		return
 
-	# Explicitly cast to String
 	var stage_name: String = String(stage_names[stage_index])
-
 	if quest_details.has(stage_name) and typeof(quest_details[stage_name]) == TYPE_DICTIONARY:
 		var q: Dictionary = quest_details[stage_name]
-		pause_menu_quest_title.text = q.get("title", "")
-		pause_menu_quest_description.text = q.get("description", "")
+		title.text = q.get("title", "")
+		desc.text = q.get("description", "")
+		print("Updated quest UI ->", q)
 	else:
-		pause_menu_quest_title.text = "Unknown Quest"
-		pause_menu_quest_description.text = ""
+		title.text = "Unknown Quest"
+		desc.text = ""
+
+
+# CUTSCENES
+func play_intro_cutscene():
+	var scene_root = get_tree().current_scene
+
+	# Disable player movement if available
+	if player:
+		player.allow_movement = false
+
+	if scene_root and scene_root.has_node("AnimationPlayer"):
+		var anim_player: AnimationPlayer = scene_root.get_node("AnimationPlayer")
+		anim_player.play("intro")
+
+		# Re-enable movement and advance quest stage when cutscene finishes
+		anim_player.animation_finished.connect(
+			func(anim_name):
+				if anim_name == "intro":
+					if player:
+						player.allow_movement = true
+					advance_stage()
+		)
+	else:
+		print("No AnimationPlayer found in current scene!")
+		if player:
+			player.allow_movement = true

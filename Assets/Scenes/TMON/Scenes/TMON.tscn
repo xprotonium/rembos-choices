@@ -350,7 +350,7 @@ text = "Press X to attack"
 horizontal_alignment = 1
 
 [node name="Slime" parent="." instance=ExtResource("12_sdo3r")]
-position = Vector2(223, 22)
+position = Vector2(228, 26)
 
 [node name="CharacterBody2D" parent="Slime" index="0"]
 horizontal_section_id = 2
