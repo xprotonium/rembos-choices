@@ -1,0 +1,160 @@
+[gd_scene load_steps=23 format=3 uid="uid://baasgytk0urf0"]
+
+[ext_resource type="Texture2D" uid="uid://eotthj2vhl6m" path="res://Assets/Sprites/Perfect Timing Sprites/PT_background_and_decorations/mars_bg.png" id="1_kq6r2"]
+[ext_resource type="Script" uid="uid://5wdksppolhdw" path="res://Assets/Scenes/Perfect Timing/PT_player_movment.gd" id="2_gn15c"]
+[ext_resource type="Texture2D" uid="uid://du8u88fiiipeh" path="res://Assets/Sprites/Perfect Timing Sprites/PT_background_and_decorations/platform.png" id="2_k0wwx"]
+[ext_resource type="Script" uid="uid://lgldmi03mmq6" path="res://Assets/Scenes/Perfect Timing/switch.gd" id="3_kq6r2"]
+[ext_resource type="Texture2D" uid="uid://cfjj5n5rrvgh5" path="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/button_red.png" id="4_c231l"]
+[ext_resource type="Texture2D" uid="uid://bod8mwnd78q0" path="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/button_green.png" id="5_kq6r2"]
+[ext_resource type="Texture2D" uid="uid://b7ij5h3c5yyqb" path="res://Assets/Sprites/Perfect Timing Sprites/PT_character_sprites/astro_idle.png" id="7_c231l"]
+[ext_resource type="Texture2D" uid="uid://ckulf5capc86f" path="res://Assets/Sprites/Perfect Timing Sprites/PT_background_and_decorations/gate_spritesheet.png" id="8_c231l"]
+[ext_resource type="PackedScene" uid="uid://cbbkwd6d6arfs" path="res://Assets/Scenes/ProximityButton/ProximityButton.tscn" id="9_05f50"]
+[ext_resource type="PackedScene" uid="uid://bnl4s3itceymn" path="res://Assets/Scenes/Perfect Timing/perfect_timing.tscn" id="10_4bkes"]
+[ext_resource type="Texture2D" uid="uid://dru4iibwbjuw4" path="res://Assets/Sprites/TMON/TMON_UI/UI_unlocked_door.png" id="10_mym4h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05f50"]
+atlas = ExtResource("8_c231l")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mym4h"]
+atlas = ExtResource("8_c231l")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bkes"]
+atlas = ExtResource("8_c231l")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvhg3"]
+atlas = ExtResource("8_c231l")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8epk7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05f50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mym4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bkes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvhg3")
+}],
+"loop": false,
+"name": &"gate_opening",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0syi"]
+size = Vector2(320, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn15c"]
+size = Vector2(4, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_042fj"]
+size = Vector2(0.799995, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05f50"]
+size = Vector2(16, 2.40001)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mym4h"]
+radius = 7.61052
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd4o8"]
+size = Vector2(28, 32)
+
+[node name="PerfectTimingPuzzle" type="Node2D"]
+
+[node name="GateTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="PuzzleBG" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_kq6r2")
+
+[node name="gate_animation" type="AnimatedSprite2D" parent="PuzzleBG"]
+position = Vector2(-15.6, 10.4)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_8epk7")
+animation = &"gate_opening"
+frame = 3
+frame_progress = 1.0
+
+[node name="Ground" type="StaticBody2D" parent="PuzzleBG"]
+position = Vector2(-3.2, 29.6)
+scale = Vector2(0.4, 0.4)
+
+[node name="groundCollision" type="CollisionShape2D" parent="PuzzleBG/Ground"]
+position = Vector2(8, -4)
+shape = SubResource("RectangleShape2D_e0syi")
+
+[node name="RightWall" type="StaticBody2D" parent="PuzzleBG"]
+position = Vector2(70, -4.8)
+scale = Vector2(0.4, 0.4)
+
+[node name="RightCollision" type="CollisionShape2D" parent="PuzzleBG/RightWall"]
+position = Vector2(-13, 12)
+shape = SubResource("RectangleShape2D_gn15c")
+
+[node name="LeftWall" type="StaticBody2D" parent="PuzzleBG"]
+
+[node name="LeftCollision" type="CollisionShape2D" parent="PuzzleBG/LeftWall"]
+position = Vector2(-64.4, -0.8)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_042fj")
+
+[node name="Platform" type="StaticBody2D" parent="PuzzleBG"]
+position = Vector2(29.6, 0)
+
+[node name="PlatformSprite" type="Sprite2D" parent="PuzzleBG/Platform"]
+texture = ExtResource("2_k0wwx")
+
+[node name="PlatformCollision" type="CollisionShape2D" parent="PuzzleBG/Platform"]
+position = Vector2(0, 3.99999)
+shape = SubResource("RectangleShape2D_05f50")
+
+[node name="Button" type="StaticBody2D" parent="PuzzleBG"]
+position = Vector2(49.2, -10)
+script = ExtResource("3_kq6r2")
+button_red = ExtResource("4_c231l")
+button_green = ExtResource("5_kq6r2")
+
+[node name="ButtonSprite" type="Sprite2D" parent="PuzzleBG/Button"]
+texture = ExtResource("4_c231l")
+
+[node name="ButtonPlatform" type="CollisionShape2D" parent="PuzzleBG/Button"]
+position = Vector2(0, 3.99999)
+shape = SubResource("RectangleShape2D_05f50")
+
+[node name="ButtonArea" type="Area2D" parent="PuzzleBG/Button"]
+
+[node name="ButtonAOE" type="CollisionShape2D" parent="PuzzleBG/Button/ButtonArea"]
+shape = SubResource("CircleShape2D_mym4h")
+debug_color = Color(0, 0.643326, 0.302065, 0.42)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(157, 124)
+script = ExtResource("2_gn15c")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+scale = Vector2(2, 2)
+texture = ExtResource("7_c231l")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_vd4o8")
+
+[node name="ProximityButton" parent="." instance=ExtResource("9_05f50")]
+position = Vector2(121, 120)
+perfect_timing = ExtResource("10_4bkes")
+
+[node name="TextureRect" parent="ProximityButton" index="1"]
+texture = ExtResource("10_mym4h")
+
+[connection signal="body_entered" from="PuzzleBG/Button/ButtonArea" to="PuzzleBG/Button" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="PuzzleBG/Button/ButtonArea" to="PuzzleBG/Button" method="_on_area_2d_body_exited"]
+
+[editable path="ProximityButton"]

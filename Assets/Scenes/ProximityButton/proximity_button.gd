@@ -5,10 +5,10 @@ extends Node2D
 @export var radius: float = 32.0
 @onready var area2D: Area2D = $Area2D
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var gate: AnimatedSprite2D = $"../PuzzleBG/gate_animation"
 var player_in_area = false
 
-@export var ui_path: NodePath
-var ui: Control
+@export var perfect_timing: PackedScene
 
 # TextureRect for displaying the button the user has to click
 @onready var texture: TextureRect = $TextureRect
@@ -25,12 +25,10 @@ func _ready():
 	area2D.body_entered.connect(_on_player_enter)
 	area2D.body_exited.connect(_on_player_exit)
 	
-	# get the ui path
-	ui = get_node(ui_path)
-	
 func _on_player_enter(body: Node):
 	if body is CharacterBody2D:
-		texture.visible = true
+		if gate.visible == true:
+			texture.visible = true
 		player_in_area = true
 
 func _on_player_exit(body: Node):
@@ -42,4 +40,4 @@ func _on_player_exit(body: Node):
 # check whether the player has pressed the desired input button
 func _process(_delta):
 	if player_in_area && Input.is_action_just_pressed("interact"):
-		ui.visible = true
+		get_tree().change_scene_to_packed(perfect_timing)

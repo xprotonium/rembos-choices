@@ -1,25 +1,25 @@
 [gd_scene load_steps=22 format=3 uid="uid://bnl4s3itceymn"]
 
 [ext_resource type="Script" uid="uid://dc7jm5pm0bsi0" path="res://Assets/Scenes/Perfect Timing/QTEcode.gd" id="1_f86a5"]
-[ext_resource type="Texture2D" uid="uid://kjtia3p4eb7p" path="res://Assets/Sprites/Perfect Timing Sprites/space_bg.png" id="2_f86a5"]
 [ext_resource type="Script" uid="uid://cepmq5oiv51p" path="res://Assets/Scenes/Perfect Timing/QTE.gd" id="2_mujjv"]
-[ext_resource type="Texture2D" uid="uid://vjgp67qe1xol" path="res://Assets/Sprites/Perfect Timing Sprites/E Button-Sheet.png" id="3_hytj5"]
+[ext_resource type="Texture2D" uid="uid://kjtia3p4eb7p" path="res://Assets/Sprites/Perfect Timing Sprites/PT_background_and_decorations/space_bg.png" id="2_nw1pb"]
 [ext_resource type="Script" uid="uid://cyuxx2cn4cu4r" path="res://Assets/Scenes/Perfect Timing/player.gd" id="3_nw1pb"]
 [ext_resource type="Script" uid="uid://c68ao0jmwx5ii" path="res://Assets/Scenes/Perfect Timing/enemy.gd" id="3_ujxrh"]
-[ext_resource type="Texture2D" uid="uid://cb2455r0r7y7j" path="res://Assets/Sprites/Perfect Timing Sprites/player.png" id="3_xi4ry"]
+[ext_resource type="Texture2D" uid="uid://c8edv7k37l8bl" path="res://Assets/Sprites/Perfect Timing Sprites/PT_character_sprites/astro_in_battle.png" id="4_aam3y"]
 [ext_resource type="Texture2D" uid="uid://d30vi4w3pmx8g" path="res://Assets/Sprites/TMON/hp_bar.png" id="4_fkeo1"]
-[ext_resource type="Texture2D" uid="uid://cqfuyftnjlnql" path="res://Assets/Sprites/Perfect Timing Sprites/Q Button-Sheet.png" id="5_06ik3"]
 [ext_resource type="Texture2D" uid="uid://16rcnnbbuyer" path="res://Assets/Sprites/TMON/hp.png" id="5_8fboc"]
-[ext_resource type="Texture2D" uid="uid://dxqlqpx0re0x1" path="res://Assets/Sprites/Perfect Timing Sprites/corrupt_astro.png" id="5_xbidm"]
 [ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="6_nw1pb"]
+[ext_resource type="Texture2D" uid="uid://dxqlqpx0re0x1" path="res://Assets/Sprites/Perfect Timing Sprites/PT_character_sprites/corrupt_astro.png" id="9_shtrl"]
+[ext_resource type="Texture2D" uid="uid://vjgp67qe1xol" path="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/E Button-Sheet.png" id="11_0flcs"]
 [ext_resource type="PackedScene" uid="uid://chil5qh65j443" path="res://Assets/Scenes/Perfect Timing/death_screen.tscn" id="12_8fboc"]
+[ext_resource type="Texture2D" uid="uid://cqfuyftnjlnql" path="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/Q Button-Sheet.png" id="12_rqwj8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aam3y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f86a5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_06ik3"]
-atlas = ExtResource("3_hytj5")
+[sub_resource type="AtlasTexture" id="AtlasTexture_d18dy"]
+atlas = ExtResource("11_0flcs")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="Animation" id="Animation_f86a5"]
@@ -61,7 +61,7 @@ _data = {
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ujxrh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f86a5"]
-atlas = ExtResource("5_06ik3")
+atlas = ExtResource("12_rqwj8")
 region = Rect2(0, 0, 16, 16)
 
 [node name="PerfectTiming" type="Node2D" node_paths=PackedStringArray("enemy", "player", "death_screen")]
@@ -74,7 +74,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("2_f86a5")
+texture = ExtResource("2_nw1pb")
 
 [node name="QTETimer" type="Timer" parent="."]
 
@@ -88,7 +88,7 @@ hp_label = NodePath("HPBar2/MarginCounter/Label")
 [node name="player_sprite" type="Sprite2D" parent="Player"]
 position = Vector2(-41.6, 16)
 scale = Vector2(2, 2)
-texture = ExtResource("3_xi4ry")
+texture = ExtResource("4_aam3y")
 
 [node name="HPBar2" type="Panel" parent="Player"]
 anchors_preset = 8
@@ -107,8 +107,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_aam3y")
 
 [node name="MarginCounter" type="MarginContainer" parent="Player/HPBar2"]
 layout_mode = 2
-offset_right = 80.0
-offset_bottom = 20.0
+offset_left = -3.9889
+offset_top = 0.997225
+offset_right = 76.0111
+offset_bottom = 20.9972
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -137,7 +139,7 @@ hp_label = NodePath("HPBar/MarginCounter/Label")
 [node name="enemy_sprite" type="Sprite2D" parent="Enemy"]
 position = Vector2(78, 45)
 scale = Vector2(4.3125, 3.46875)
-texture = ExtResource("5_xbidm")
+texture = ExtResource("9_shtrl")
 
 [node name="HPBar" type="Panel" parent="Enemy"]
 anchors_preset = 8
@@ -206,7 +208,7 @@ button_ani_player = NodePath("E_buttonQTE/AnimationPlayer")
 
 [node name="E_buttonQTE" type="TextureRect" parent="PerfectTimingUI/ContainerE"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_06ik3")
+texture = SubResource("AtlasTexture_d18dy")
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PerfectTimingUI/ContainerE/E_buttonQTE"]

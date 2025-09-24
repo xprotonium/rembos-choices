@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kjtia3p4eb7p"
-path="res://.godot/imported/space_bg.png-4f3d729df74ff1fe2d6d0eabda704559.ctex"
+uid="uid://cfjj5n5rrvgh5"
+path="res://.godot/imported/button_red.png-ef9a93e5084e0f31d5db443be1278326.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Perfect Timing Sprites/space_bg.png"
-dest_files=["res://.godot/imported/space_bg.png-4f3d729df74ff1fe2d6d0eabda704559.ctex"]
+source_file="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/button_red.png"
+dest_files=["res://.godot/imported/button_red.png-ef9a93e5084e0f31d5db443be1278326.ctex"]
 
 [params]
 

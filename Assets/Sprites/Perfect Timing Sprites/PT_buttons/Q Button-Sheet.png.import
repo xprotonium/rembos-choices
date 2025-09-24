@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vjgp67qe1xol"
-path="res://.godot/imported/E Button-Sheet.png-05b316edfcc85bf523f1f2042252a8fd.ctex"
+uid="uid://cqfuyftnjlnql"
+path="res://.godot/imported/Q Button-Sheet.png-cb0aa0c02692076db28ea89939139f82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Perfect Timing Sprites/E Button-Sheet.png"
-dest_files=["res://.godot/imported/E Button-Sheet.png-05b316edfcc85bf523f1f2042252a8fd.ctex"]
+source_file="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/Q Button-Sheet.png"
+dest_files=["res://.godot/imported/Q Button-Sheet.png-cb0aa0c02692076db28ea89939139f82.ctex"]
 
 [params]
 
