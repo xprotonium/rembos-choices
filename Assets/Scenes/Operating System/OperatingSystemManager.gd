@@ -13,7 +13,7 @@ func _ready() -> void:
 	var player_scene = get_node(player_path)
 	player = player_scene.get_node("CharacterBody2D") as CharacterBody2D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if self.visible:
 		player.allow_movement = false
 

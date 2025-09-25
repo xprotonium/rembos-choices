@@ -243,7 +243,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_xi4ry")
 }
 
-[node name="DeathScreen" parent="." instance=ExtResource("12_8fboc")]
+[node name="DeathScreen" parent="." node_paths=PackedStringArray("player", "enemy") instance=ExtResource("12_8fboc")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -254,6 +254,8 @@ offset_left = 160.0
 offset_top = 90.0
 offset_right = 160.0
 offset_bottom = 90.0
+player = NodePath("../Player")
+enemy = NodePath("../Enemy")
 
 [connection signal="pressed" from="DeathScreen/Panel/HBoxContainer/Quit" to="DeathScreen" method="_on_quit_pressed"]
 
