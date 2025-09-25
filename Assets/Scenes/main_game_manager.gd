@@ -18,7 +18,7 @@ signal quest_stage_changed(new_stage)
 var quest_details: Dictionary = {}
 
 # PLAYER STATS
-@export var player: CharacterBody2D
+var player: CharacterBody2D
 var energy: int = 10
 var max_energy: int = 10
 var hunger: int = 10
@@ -29,14 +29,17 @@ var hunger_timer: Timer
 
 signal stats_updated
 
-@export var energy_bar: TextureProgressBar
-@export var hunger_bar: TextureProgressBar
+var energy_bar: TextureProgressBar
+var hunger_bar: TextureProgressBar
 
 # Pause Menu Quest Details
-@export var pause_menu_quest_title: RichTextLabel
-@export var pause_menu_quest_description: RichTextLabel
+var pause_menu_quest_title: RichTextLabel
+var pause_menu_quest_description: RichTextLabel
 
-# LIFECYCLE
+# intro cutscene played or not
+var intro_played = false
+
+# -------------------- LIFECYCLE --------------------
 func _ready():
 	# Load quest details JSON
 	var quest_detail_file = FileAccess.open("res://Assets/Scenes/quest_details.json", FileAccess.READ)
@@ -55,32 +58,40 @@ func _ready():
 	
 	# Setup systems
 	setup_timers()
-	stats_updated.connect(update_stats_ui)
-	quest_stage_changed.connect(update_quest_ui)
+
+	# Safe signal connections
+	if not stats_updated.is_connected(update_stats_ui):
+		stats_updated.connect(update_stats_ui)
+	if not quest_stage_changed.is_connected(update_quest_ui):
+		quest_stage_changed.connect(update_quest_ui)
 
 	# Initial UI
 	update_stats_ui()
 	update_quest_ui(current_stage)
 	
-	play_intro_cutscene()
+	if not intro_played:
+		play_intro_cutscene()
 
-# QUEST PROGRESSION
+# -------------------- QUEST PROGRESSION --------------------
 func advance_stage():
 	if current_stage < QuestStage.DONE:
+		print("Advancing stage from", current_stage)
 		current_stage += 1
 		emit_signal("quest_stage_changed", current_stage)
 		update_quest_ui(current_stage)
 
-# TIMERS
+# -------------------- TIMERS --------------------
 func setup_timers():
 	energy_timer = Timer.new()
 	energy_timer.wait_time = 60.0
+	energy_timer.one_shot = false
 	energy_timer.timeout.connect(_on_energy_timer_timeout)
 	add_child(energy_timer)
 	energy_timer.start()
 	
 	hunger_timer = Timer.new()
 	hunger_timer.wait_time = 30.0
+	hunger_timer.one_shot = false
 	hunger_timer.timeout.connect(_on_hunger_timer_timeout)
 	add_child(hunger_timer)
 	hunger_timer.start()
@@ -93,9 +104,8 @@ func _on_hunger_timer_timeout():
 	hunger = min(max_hunger, hunger - 1)
 	emit_signal("stats_updated")
 
-# STATS FUNCTIONS
+# -------------------- STATS FUNCTIONS --------------------
 func sleep():
-	# restores energy to full
 	energy = max_energy
 	emit_signal("stats_updated")
 
@@ -111,7 +121,7 @@ func restart_game():
 	hunger_timer.start()
 	emit_signal("stats_updated")
 
-# UI UPDATE
+# -------------------- UI UPDATE --------------------
 func update_stats_ui():
 	if not energy_bar or not hunger_bar:
 		return
@@ -122,7 +132,6 @@ func update_stats_ui():
 	hunger_bar.max_value = max_hunger
 	hunger_bar.value = hunger
 
-# Fixed update_quest_ui: explicit typing for 'q'
 func update_quest_ui(stage) -> void:
 	var scene_root = get_tree().current_scene
 	if not scene_root:
@@ -134,10 +143,8 @@ func update_quest_ui(stage) -> void:
 		print("Pause menu not found in current scene")
 		return
 
-	# Now look inside pause_menu RELATIVE to it
 	var title: RichTextLabel = pause_menu.get_node_or_null("PauseMenuRightPanel/QuestTitle")
 	var desc: RichTextLabel = pause_menu.get_node_or_null("PauseMenuRightPanel/QuestDescription")
-
 	if not title or not desc:
 		print("QuestTitle or QuestDescription not found under PauseMenu")
 		return
@@ -161,28 +168,40 @@ func update_quest_ui(stage) -> void:
 		title.text = "Unknown Quest"
 		desc.text = ""
 
+	if stage_index > 0:
+		var main_hud = scene_root.get_node_or_null("CanvasLayer/MainHud")
+		if main_hud:
+			var quest_popup = main_hud.get_node_or_null("QuestPopUp")
+			if quest_popup and quest_details.has(stage_name):
+				var q: Dictionary = quest_details[stage_name]
+				if quest_popup.has_method("show_popup"):
+					quest_popup.show_popup(q.get("objective", ""))
 
-# CUTSCENES
+# -------------------- CUTSCENES --------------------
 func play_intro_cutscene():
 	var scene_root = get_tree().current_scene
 
-	# Disable player movement if available
 	if player:
 		player.allow_movement = false
 
 	if scene_root and scene_root.has_node("AnimationPlayer"):
 		var anim_player: AnimationPlayer = scene_root.get_node("AnimationPlayer")
+		
+		var callback: Callable = Callable(self, "_on_intro_animation_finished")
+		if not anim_player.animation_finished.is_connected(callback):
+			anim_player.animation_finished.connect(callback)
+		
 		anim_player.play("intro")
-
-		# Re-enable movement and advance quest stage when cutscene finishes
-		anim_player.animation_finished.connect(
-			func(anim_name):
-				if anim_name == "intro":
-					if player:
-						player.allow_movement = true
-					advance_stage()
-		)
+		intro_played = true
+		
 	else:
 		print("No AnimationPlayer found in current scene!")
 		if player:
 			player.allow_movement = true
+
+func _on_intro_animation_finished(anim_name: String) -> void:
+	if anim_name != "intro":
+		return
+	if player:
+		player.allow_movement = true
+	advance_stage()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c74vrswfijli1"]
+[gd_scene load_steps=21 format=3 uid="uid://c74vrswfijli1"]
 
 [ext_resource type="Texture2D" uid="uid://cvnuus2jo2pcu" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_BEHIND.png" id="1_0fg6w"]
 [ext_resource type="Script" uid="uid://eldfxjndpkvi" path="res://Assets/Scenes/MainHUD/pause_menu.gd" id="1_7phoq"]
@@ -13,8 +13,49 @@
 [ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="10_q8c3w"]
 [ext_resource type="Texture2D" uid="uid://cb15c0nn4kuqp" path="res://Assets/Sprites/UI Sprites/MAIN_PAUSE_QUEST_PANEL.png" id="11_7phoq"]
 [ext_resource type="Texture2D" uid="uid://b7lvhlhide174" path="res://Assets/Sprites/UI Sprites/MAIN_PAUSE_BUTTON.png" id="11_q8c3w"]
+[ext_resource type="Script" uid="uid://dsapty43cfdd6" path="res://Assets/Scenes/MainHUD/quest_update_pop_up.gd" id="14_0vkw0"]
+[ext_resource type="Texture2D" uid="uid://daqsmhb18m6yj" path="res://Assets/Sprites/UI Sprites/MAIN_QUEST_POPUP_PANEL.png" id="14_77bhk"]
+[ext_resource type="Texture2D" uid="uid://dgvpa4rmpyb7n" path="res://Assets/Sprites/UI Sprites/Alert_Icon.png" id="15_0vkw0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fg6w"]
+
+[sub_resource type="Animation" id="Animation_h83nt"]
+resource_name = "quest_popup"
+length = 6.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QuestPopUp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 5.25, 6),
+"transitions": PackedFloat32Array(0.112657, 0.0769471, 0.148651, 0.0441941),
+"update": 0,
+"values": [Vector2(200, -40), Vector2(200, 0), Vector2(200, 0), Vector2(200, -40)]
+}
+
+[sub_resource type="Animation" id="Animation_ddpdj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QuestPopUp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, -40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v31o2"]
+_data = {
+&"RESET": SubResource("Animation_ddpdj"),
+&"quest_popup": SubResource("Animation_h83nt")
+}
 
 [node name="MainHud" type="Control"]
 process_mode = 3
@@ -312,6 +353,65 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("10_q8c3w")
 theme_override_font_sizes/normal_font_size = 8
 text = "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
+
+[node name="QuestPopUp" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = -40.0
+grow_horizontal = 0
+script = ExtResource("14_0vkw0")
+
+[node name="TextureRect" type="TextureRect" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_77bhk")
+
+[node name="TextureRect2" type="TextureRect" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = 10.0
+grow_vertical = 2
+texture = ExtResource("15_0vkw0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -10.0
+offset_right = -2.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.152941, 0.152941, 0.152941, 1)
+theme_override_fonts/normal_font = ExtResource("10_q8c3w")
+theme_override_font_sizes/normal_font_size = 8
+text = "Quest Objective"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="QuestPopUp"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_v31o2")
+}
 
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]

@@ -15,15 +15,18 @@
 		"description": "Check your inbox for new messages."
 	},
 	"PLAY_RPG": {
-		"title": "Launch the RPG",
-		"description": "Time to relax with your favorite RPG game."
+		"title": "The First Step",
+		"objective": "Play TMON",
+		"description": "An Esports Team called The Posture Killers invited you to the team! Time to start grinding."
 	},
 	"PLAY_C57": {
 		"title": "Play C57",
+		"objective": "Play C57",
 		"description": "Open the C57 client and start a match."
 	},
 	"PLAY_PERFECT_TIMING": {
 		"title": "Perfect Timing",
+		"objective": "Play C57",
 		"description": "Test your reflexes in Perfect Timing."
 	},
 	"DONE": {

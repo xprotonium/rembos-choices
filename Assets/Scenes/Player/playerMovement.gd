@@ -7,6 +7,9 @@ var prev_direction = "down"
 
 @onready var game_manager = get_node("/root/MainGameManager")
 
+func _ready() -> void:
+	game_manager.player = self
+
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 
