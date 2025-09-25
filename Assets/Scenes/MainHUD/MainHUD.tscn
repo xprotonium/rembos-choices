@@ -19,6 +19,21 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fg6w"]
 
+[sub_resource type="Animation" id="Animation_ddpdj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QuestPopUp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, -40)]
+}
+
 [sub_resource type="Animation" id="Animation_h83nt"]
 resource_name = "quest_popup"
 length = 6.0
@@ -34,21 +49,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.112657, 0.0769471, 0.148651, 0.0441941),
 "update": 0,
 "values": [Vector2(200, -40), Vector2(200, 0), Vector2(200, 0), Vector2(200, -40)]
-}
-
-[sub_resource type="Animation" id="Animation_ddpdj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("QuestPopUp:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(200, -40)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v31o2"]

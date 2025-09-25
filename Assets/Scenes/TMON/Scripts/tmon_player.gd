@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var hp = 100
 @export var default_speed: float = 50
 @export var speed = 50
-@export var g = 900
+@export var g = 600
 @export var default_jump: float = 170
 @export var jump_force = 170
 @export var friction = 0.3

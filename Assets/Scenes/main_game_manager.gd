@@ -18,7 +18,9 @@ signal quest_stage_changed(new_stage)
 var quest_details: Dictionary = {}
 
 # PLAYER STATS
-var player: CharacterBody2D
+var player: CharacterBody2D = null
+var player_position: Vector2 = Vector2.ZERO  # persisted position across scenes
+
 var energy: int = 10
 var max_energy: int = 10
 var hunger: int = 10
@@ -32,7 +34,7 @@ signal stats_updated
 var energy_bar: TextureProgressBar
 var hunger_bar: TextureProgressBar
 
-# Pause Menu Quest Details
+# Pause Menu Quest Details (we fetch dynamically in update_quest_ui)
 var pause_menu_quest_title: RichTextLabel
 var pause_menu_quest_description: RichTextLabel
 
@@ -65,12 +67,32 @@ func _ready():
 	if not quest_stage_changed.is_connected(update_quest_ui):
 		quest_stage_changed.connect(update_quest_ui)
 
-	# Initial UI
-	update_stats_ui()
+	# Initial UI — run deferred so UI manager (which sets bars) can bind in the same frame
+	call_deferred("update_stats_ui")
+	call_deferred("_deferred_update_quest_ui")
+
+
+func _deferred_update_quest_ui() -> void:
 	update_quest_ui(current_stage)
-	
+
+func set_player(p: CharacterBody2D) -> void:
+	player = p
+	# restore position if a saved position exists
+	if player and player_position != Vector2.ZERO:
+		player.global_position = player_position
+		print("MainGameManager: restored player position to ", player_position)
+
 	if not intro_played:
-		play_intro_cutscene()
+		call_deferred("play_intro_cutscene")
+
+
+# Call this before changing scenes to save current player position
+func save_player_position() -> void:
+	if player:
+		player_position = player.global_position
+		print("MainGameManager: saved player position ", player_position)
+	else:
+		print("MainGameManager: save_player_position called but player is null")
 
 # -------------------- QUEST PROGRESSION --------------------
 func advance_stage():
@@ -123,6 +145,7 @@ func restart_game():
 
 # -------------------- UI UPDATE --------------------
 func update_stats_ui():
+	# If UI hasn't bound the bars yet this will silently return
 	if not energy_bar or not hunger_bar:
 		return
 
@@ -131,16 +154,22 @@ func update_stats_ui():
 	
 	hunger_bar.max_value = max_hunger
 	hunger_bar.value = hunger
+	print("MainGameManager: hunger =", hunger)
 
+func setup_ui(hunger: TextureProgressBar, energy: TextureProgressBar) -> void:
+	hunger_bar = hunger
+	energy_bar = energy
+	update_stats_ui()
+
+# -------------------- QUEST UI --------------------
 func update_quest_ui(stage) -> void:
 	var scene_root = get_tree().current_scene
 	if not scene_root:
 		return
 
-	# Find pause menu dynamically
+	# Find pause menu dynamically (safer across scene loads)
 	var pause_menu = scene_root.get_node_or_null("CanvasLayer/MainHud/PauseMenu")
 	if not pause_menu:
-		print("Pause menu not found in current scene")
 		return
 
 	var title: RichTextLabel = pause_menu.get_node_or_null("PauseMenuRightPanel/QuestTitle")
@@ -182,7 +211,7 @@ func play_intro_cutscene():
 	var scene_root = get_tree().current_scene
 
 	if player:
-		player.allow_movement = false
+		player.set_allow_movement(false)
 
 	if scene_root and scene_root.has_node("AnimationPlayer"):
 		var anim_player: AnimationPlayer = scene_root.get_node("AnimationPlayer")
@@ -193,15 +222,10 @@ func play_intro_cutscene():
 		
 		anim_player.play("intro")
 		intro_played = true
-		
-	else:
-		print("No AnimationPlayer found in current scene!")
-		if player:
-			player.allow_movement = true
+
 
 func _on_intro_animation_finished(anim_name: String) -> void:
 	if anim_name != "intro":
 		return
-	if player:
-		player.allow_movement = true
+	player.set_allow_movement(true)
 	advance_stage()

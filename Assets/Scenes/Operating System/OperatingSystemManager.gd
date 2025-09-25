@@ -11,10 +11,6 @@ extends Control
 @export var player_path: NodePath
 var player: CharacterBody2D
 
-# game manager to lock the minigames unless the player is at
-# a certain level of game progress
-@export var game_manager: Node
-
 func _ready() -> void:
 	
 	# we use the path to get the root node
@@ -23,7 +19,7 @@ func _ready() -> void:
 	var player_scene = get_node(player_path)
 	player = player_scene.get_node("CharacterBody2D") as CharacterBody2D
 	
-	game_manager.quest_stage_changed.connect(update_ui)
+	MainGameManager.quest_stage_changed.connect(update_ui)
 	
 	# set the button state depending on the quest progression
 	update_ui()
@@ -52,14 +48,17 @@ func _on_sigmantosh_button_pressed() -> void:
 
 
 func _on_tmon_pressed() -> void:
+	MainGameManager.player_position = player.global_position
 	get_tree().change_scene_to_file("res://Assets/Scenes/TMON/Scenes/TMONMainMenu.tscn")
 
 
 func _on_c_57_pressed() -> void:
+	MainGameManager.player_position = player.global_position
 	get_tree().change_scene_to_file("res://Assets/Scenes/minigame2/Minigame2.tscn")
 
 
 func _on_perfect_timing_pressed() -> void:
+	MainGameManager.player_position = player.global_position
 	get_tree().change_scene_to_file("res://Assets/Scenes/Perfect Timing/perfect_timing.tscn")
 
 
@@ -71,7 +70,6 @@ func _on_mail_pressed() -> void:
 
 
 func update_ui(_new_stage = null):
-	print(MainGameManager.current_stage)
 	if tmon:
 		tmon.disabled = MainGameManager.current_stage < MainGameManager.QuestStage.PLAY_RPG
 
