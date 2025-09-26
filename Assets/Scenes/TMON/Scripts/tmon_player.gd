@@ -91,7 +91,9 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y -= jump_force
 	check_attack()
-
+	
+	if MainGameManager.energy < 5:
+		jump_force = 100
 
 
 

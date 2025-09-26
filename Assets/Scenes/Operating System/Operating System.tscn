@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://nhtu0dgdsol8"]
+[gd_scene load_steps=18 format=3 uid="uid://nhtu0dgdsol8"]
 
 [ext_resource type="Texture2D" uid="uid://bxynjgfio7x2u" path="res://Assets/Sprites/UI Sprites/OS/Wallpaper.png" id="1_rgwv3"]
 [ext_resource type="Script" uid="uid://bv7it4liunuw1" path="res://Assets/Scenes/Operating System/OperatingSystemManager.gd" id="1_u2712"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bg2g0yl36j5yb" path="res://Assets/Sprites/UI Sprites/OS/rpg_game_icon.png" id="3_tyi15"]
 [ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="4_uuocp"]
 [ext_resource type="Texture2D" uid="uid://di3kdllvhv6bm" path="res://Assets/Sprites/UI Sprites/OS/mail_icon.png" id="5_5b0e8"]
+[ext_resource type="Texture2D" uid="uid://3kf810mlbuc4" path="res://Assets/Sprites/UI Sprites/OS/minigame2_gameicon.png" id="5_aw78r"]
 [ext_resource type="Texture2D" uid="uid://pt2ff800dy7p" path="res://Assets/Sprites/UI Sprites/OS/pt_game_icon.png" id="5_esjw0"]
 [ext_resource type="Texture2D" uid="uid://7g6ygteifbgn" path="res://Assets/Sprites/UI Sprites/OS/taskbar.png" id="5_tyi15"]
 [ext_resource type="Texture2D" uid="uid://dc4s0scyu738d" path="res://Assets/Sprites/UI Sprites/OS/sigmantosh_icon.png" id="6_ygsep"]
@@ -83,7 +84,7 @@ theme_override_constants/icon_max_width = 32
 theme_override_fonts/font = ExtResource("4_uuocp")
 theme_override_font_sizes/font_size = 8
 text = "C57"
-icon = ExtResource("3_tyi15")
+icon = ExtResource("5_aw78r")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0

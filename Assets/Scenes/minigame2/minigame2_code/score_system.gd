@@ -11,6 +11,7 @@ var game_over_text: Label
 var can_restart: bool = false
 var start_canvas_layer: CanvasLayer
 var game_over_canvas_layer: CanvasLayer
+@export var win_text: Label
 
 func _ready():
 	# Load high score from file
@@ -123,6 +124,10 @@ func stop_scoring():
 	
 	# Show game over text and enable restart after 2 seconds
 	show_game_over_text()
+	
+	# check if the player can proceed to next minigame
+	if counter >= 1000:
+		MainGameManager.advance_stage()
 
 func show_game_over_text():
 	# Create "Press Space to Restart" text after 2 seconds
@@ -229,3 +234,7 @@ func save_high_score():
 		file.close()
 		print("Saved high score: ", high_score)
 		
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Assets/Scenes/Main.tscn")
