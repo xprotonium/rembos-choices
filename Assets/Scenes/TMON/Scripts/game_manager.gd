@@ -10,6 +10,7 @@ var vertical_section: int
 var player: CharacterBody2D = null
 var score: int = 0
 var console_open = false
+var game_finished = false
 
 func _ready() -> void:
 	horizontal_section = 0

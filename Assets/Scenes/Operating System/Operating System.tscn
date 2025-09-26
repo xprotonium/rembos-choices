@@ -1,13 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://nhtu0dgdsol8"]
+[gd_scene load_steps=18 format=3 uid="uid://nhtu0dgdsol8"]
 
 [ext_resource type="Texture2D" uid="uid://bxynjgfio7x2u" path="res://Assets/Sprites/UI Sprites/OS/Wallpaper.png" id="1_rgwv3"]
 [ext_resource type="Script" uid="uid://bv7it4liunuw1" path="res://Assets/Scenes/Operating System/OperatingSystemManager.gd" id="1_u2712"]
 [ext_resource type="Texture2D" uid="uid://dtkjma851w2wn" path="res://Assets/Sprites/UI Sprites/OS/X.png" id="2_u2712"]
 [ext_resource type="Texture2D" uid="uid://bg2g0yl36j5yb" path="res://Assets/Sprites/UI Sprites/OS/rpg_game_icon.png" id="3_tyi15"]
 [ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="4_uuocp"]
+[ext_resource type="Texture2D" uid="uid://di3kdllvhv6bm" path="res://Assets/Sprites/UI Sprites/OS/mail_icon.png" id="5_5b0e8"]
+[ext_resource type="Texture2D" uid="uid://3kf810mlbuc4" path="res://Assets/Sprites/UI Sprites/OS/minigame2_gameicon.png" id="5_aw78r"]
+[ext_resource type="Texture2D" uid="uid://pt2ff800dy7p" path="res://Assets/Sprites/UI Sprites/OS/pt_game_icon.png" id="5_esjw0"]
 [ext_resource type="Texture2D" uid="uid://7g6ygteifbgn" path="res://Assets/Sprites/UI Sprites/OS/taskbar.png" id="5_tyi15"]
 [ext_resource type="Texture2D" uid="uid://dc4s0scyu738d" path="res://Assets/Sprites/UI Sprites/OS/sigmantosh_icon.png" id="6_ygsep"]
 [ext_resource type="Texture2D" uid="uid://byuubj6imgxyi" path="res://Assets/Sprites/UI Sprites/OS/sigmantosh_menu.png" id="7_etimm"]
+[ext_resource type="PackedScene" uid="uid://bq0uba1tnltya" path="res://Assets/Scenes/Operating System/Mail/mail_app.tscn" id="9_4m4pt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5b0e8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esjw0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uuocp"]
 
@@ -40,29 +48,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.207843)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
-offset_right = 45.0
-offset_bottom = 32.0
+offset_right = 117.0
+offset_bottom = 148.0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 
-[node name="BoxContainer" type="BoxContainer" parent="MarginContainer2"]
+[node name="Panel" type="Panel" parent="MarginContainer2"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5b0e8")
+
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer2/Panel"]
+layout_mode = 2
+offset_right = 55.0
+offset_bottom = 144.0
 vertical = true
 
-[node name="TMON" type="Button" parent="MarginContainer2/BoxContainer"]
+[node name="TMON" type="Button" parent="MarginContainer2/Panel/BoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/icon_max_width = 32
@@ -73,33 +76,50 @@ icon = ExtResource("3_tyi15")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
-expand_icon = true
 
-[node name="C57" type="Button" parent="MarginContainer2/BoxContainer"]
+[node name="C57" type="Button" parent="MarginContainer2/Panel/BoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/icon_max_width = 32
 theme_override_fonts/font = ExtResource("4_uuocp")
 theme_override_font_sizes/font_size = 8
 text = "C57"
-icon = ExtResource("3_tyi15")
+icon = ExtResource("5_aw78r")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
-expand_icon = true
 
-[node name="Perfect Timing" type="Button" parent="MarginContainer2/BoxContainer"]
+[node name="Perfect Timing" type="Button" parent="MarginContainer2/Panel/BoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/icon_max_width = 32
 theme_override_fonts/font = ExtResource("4_uuocp")
 theme_override_font_sizes/font_size = 8
 text = "Perfect Timing"
-icon = ExtResource("3_tyi15")
+icon = ExtResource("5_esjw0")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
-expand_icon = true
+
+[node name="BoxContainer2" type="BoxContainer" parent="MarginContainer2/Panel"]
+layout_mode = 2
+offset_left = 56.0
+offset_right = 111.0
+offset_bottom = 144.0
+vertical = true
+
+[node name="Mail" type="Button" parent="MarginContainer2/Panel/BoxContainer2"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/icon_max_width = 32
+theme_override_fonts/font = ExtResource("4_uuocp")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_esjw0")
+text = "Mail"
+icon = ExtResource("5_5b0e8")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="Taskbar" type="TextureRect" parent="."]
 layout_mode = 1
@@ -115,7 +135,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_tyi15")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="SigmantoshButtonPanel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -125,7 +145,7 @@ offset_right = 32.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_uuocp")
 
-[node name="SigmantoshButton" type="Button" parent="PanelContainer"]
+[node name="SigmantoshButton" type="Button" parent="SigmantoshButtonPanel"]
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("6_ygsep")
@@ -205,8 +225,13 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="MarginContainer2/BoxContainer/TMON" to="." method="_on_tmon_pressed"]
-[connection signal="pressed" from="MarginContainer2/BoxContainer/C57" to="." method="_on_c_57_pressed"]
-[connection signal="pressed" from="MarginContainer2/BoxContainer/Perfect Timing" to="." method="_on_perfect_timing_pressed"]
-[connection signal="pressed" from="PanelContainer/SigmantoshButton" to="." method="_on_sigmantosh_button_pressed"]
+[node name="MailApp" parent="." instance=ExtResource("9_4m4pt")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer2/Panel/BoxContainer/TMON" to="." method="_on_tmon_pressed"]
+[connection signal="pressed" from="MarginContainer2/Panel/BoxContainer/C57" to="." method="_on_c_57_pressed"]
+[connection signal="pressed" from="MarginContainer2/Panel/BoxContainer/Perfect Timing" to="." method="_on_perfect_timing_pressed"]
+[connection signal="pressed" from="MarginContainer2/Panel/BoxContainer2/Mail" to="." method="_on_mail_pressed"]
+[connection signal="pressed" from="SigmantoshButtonPanel/SigmantoshButton" to="." method="_on_sigmantosh_button_pressed"]
 [connection signal="pressed" from="SigmantoshMenu/PanelContainer2/ExitButton" to="." method="_on_exit_button_pressed"]

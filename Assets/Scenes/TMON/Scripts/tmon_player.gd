@@ -4,12 +4,13 @@ extends CharacterBody2D
 @export var hp = 100
 @export var default_speed: float = 50
 @export var speed = 50
-@export var g = 900
+@export var g = 600
 @export var default_jump: float = 170
 @export var jump_force = 170
 @export var friction = 0.3
 @export var hp_bar: TextureProgressBar 
 @export var hp_text: Label
+var inverse_value = 1
 
 var cooldown: float 
 @onready var sprite = $Sprite2D
@@ -34,12 +35,12 @@ func get_input():
 	
 	var input_direction = 0
 	if Input.is_action_pressed("left"):
-		input_direction -= 1
+		input_direction -= 1 * inverse_value
 		player_animation.play("walk")
 		sprite.scale.x = -1
 		prev_direction = "left"
 	if Input.is_action_pressed("right"):
-		input_direction += 1
+		input_direction += 1 * inverse_value
 		player_animation.play("walk")
 		sprite.scale.x = 1
 		prev_direction = "right"
@@ -83,6 +84,12 @@ func equip_weapon(item_name: String) -> void:
 	var weapon_scene: PackedScene = load(weapon_path)
 	weapon = weapon_scene.instantiate()
 	$WeaponHolder.add_child(weapon)
+	
+func _process(delta: float) -> void:
+	if MainGameManager.energy < 5:
+		g = 900
+	if MainGameManager.energy <= 3:
+		inverse_value = -1
 
 func _physics_process(delta: float) -> void:
 	get_input()
@@ -91,7 +98,6 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y -= jump_force
 	check_attack()
-
 
 
 
