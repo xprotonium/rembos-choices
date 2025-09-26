@@ -129,6 +129,10 @@ func run_command(cmd: String) -> void:
 					console_history.append_text("\nJump force set to " + str(GameManager.player.jump_force))
 			else:
 				console_history.append_text("\nUsage: set_jump <value|default>")
+		"test_energy":
+			print(MainGameManager.energy)
+			MainGameManager.energy = 3
+			print(MainGameManager.energy)
 		"help":
 			console_history.append_text("\nAvailable commands:")
 			console_history.append_text("\n  die - Kill the player instantly")
@@ -136,6 +140,7 @@ func run_command(cmd: String) -> void:
 			console_history.append_text("\n  dmg <amount> - Deal damage to the player (default 10)")
 			console_history.append_text("\n  set_speed <value|default> - Change or reset player speed")
 			console_history.append_text("\n  set_jump <value|default> - Change or reset jump force")
+			console_history.append_text(("\n test_hunger: set the hunger to lower than 5"))
 			console_history.append_text("\n  help - Show this list of commands")
 		_:
 			console_history.append_text("\nUnknown command: " + cmd)
