@@ -24,7 +24,7 @@ func _ready() -> void:
 	# set the button state depending on the quest progression
 	update_ui()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if self.visible:
 		player.allow_movement = false
 	

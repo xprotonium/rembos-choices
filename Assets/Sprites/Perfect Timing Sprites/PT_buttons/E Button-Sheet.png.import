@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vjgp67qe1xol"
-path="res://.godot/imported/E Button-Sheet.png-05b316edfcc85bf523f1f2042252a8fd.ctex"
+path="res://.godot/imported/E Button-Sheet.png-bc27f053558a5e32b9a7ef3035e7924f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Perfect Timing Sprites/E Button-Sheet.png"
-dest_files=["res://.godot/imported/E Button-Sheet.png-05b316edfcc85bf523f1f2042252a8fd.ctex"]
+source_file="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/E Button-Sheet.png"
+dest_files=["res://.godot/imported/E Button-Sheet.png-bc27f053558a5e32b9a7ef3035e7924f.ctex"]
 
 [params]
 

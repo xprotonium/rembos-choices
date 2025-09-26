@@ -26,6 +26,7 @@ var max_energy: int = 10
 var hunger: int = 10
 var max_hunger: int = 10
 
+
 var energy_timer: Timer
 var hunger_timer: Timer
 
@@ -40,6 +41,9 @@ var pause_menu_quest_description: RichTextLabel
 
 # intro cutscene played or not
 var intro_played = false
+
+# Universal currency system for the whole game
+var gold = 0
 
 # -------------------- LIFECYCLE --------------------
 func _ready():
