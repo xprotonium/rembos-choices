@@ -48,7 +48,7 @@ func _on_timer_timeout():
 			var obs2 = obstacle_scene.instantiate()
 			obs2.position = Vector2(600, randf_range(-100, 0))  # ← KEEP ORIGINAL POSITION
 			
-			# MINIMUM 75 PIXEL GAP (was 50)
+		
 			while abs(obs2.position.y - obs1.position.y) < 75:  # ← CHANGED TO 75
 				obs2.position.y = randf_range(-150, 0)
 			
