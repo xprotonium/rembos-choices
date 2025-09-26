@@ -1,0 +1,417 @@
+[gd_scene load_steps=21 format=3 uid="uid://c74vrswfijli1"]
+
+[ext_resource type="Texture2D" uid="uid://cvnuus2jo2pcu" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_BEHIND.png" id="1_0fg6w"]
+[ext_resource type="Script" uid="uid://eldfxjndpkvi" path="res://Assets/Scenes/MainHUD/pause_menu.gd" id="1_7phoq"]
+[ext_resource type="Texture2D" uid="uid://dp1si7jtf3tsd" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_OVER.png" id="2_cecok"]
+[ext_resource type="Texture2D" uid="uid://bccsr4gh83rjx" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_PROGRESS.png" id="3_i3uc5"]
+[ext_resource type="Texture2D" uid="uid://dgckdplsu6tef" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_ICON.png" id="4_7evf4"]
+[ext_resource type="Texture2D" uid="uid://dkj30chrmutce" path="res://Assets/Sprites/UI Sprites/MAIN_HUNGER_BAR_BEHIND.png" id="5_q8c3w"]
+[ext_resource type="Texture2D" uid="uid://blch0n8mp0xot" path="res://Assets/Sprites/UI Sprites/MAIN_HUNGER_BAR.png" id="6_7phoq"]
+[ext_resource type="Texture2D" uid="uid://b7tqu1j24j2bc" path="res://Assets/Sprites/UI Sprites/MAIN_HUNGER_BAR_PROGRESS.png" id="7_gea1g"]
+[ext_resource type="Texture2D" uid="uid://c61hdyewkg0eg" path="res://Assets/Sprites/UI Sprites/MAIN_HUNGER_BAR_ICON.png" id="8_77bhk"]
+[ext_resource type="Texture2D" uid="uid://dqnodoktic7i3" path="res://Assets/Sprites/UI Sprites/MAIN_PAUSE_PANEL.png" id="9_7evf4"]
+[ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="10_q8c3w"]
+[ext_resource type="Texture2D" uid="uid://cb15c0nn4kuqp" path="res://Assets/Sprites/UI Sprites/MAIN_PAUSE_QUEST_PANEL.png" id="11_7phoq"]
+[ext_resource type="Texture2D" uid="uid://b7lvhlhide174" path="res://Assets/Sprites/UI Sprites/MAIN_PAUSE_BUTTON.png" id="11_q8c3w"]
+[ext_resource type="Script" uid="uid://dsapty43cfdd6" path="res://Assets/Scenes/MainHUD/quest_update_pop_up.gd" id="14_0vkw0"]
+[ext_resource type="Texture2D" uid="uid://daqsmhb18m6yj" path="res://Assets/Sprites/UI Sprites/MAIN_QUEST_POPUP_PANEL.png" id="14_77bhk"]
+[ext_resource type="Texture2D" uid="uid://dgvpa4rmpyb7n" path="res://Assets/Sprites/UI Sprites/Alert_Icon.png" id="15_0vkw0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fg6w"]
+
+[sub_resource type="Animation" id="Animation_ddpdj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QuestPopUp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, -40)]
+}
+
+[sub_resource type="Animation" id="Animation_h83nt"]
+resource_name = "quest_popup"
+length = 6.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QuestPopUp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 5.25, 6),
+"transitions": PackedFloat32Array(0.112657, 0.0769471, 0.148651, 0.0441941),
+"update": 0,
+"values": [Vector2(200, -40), Vector2(200, 0), Vector2(200, 0), Vector2(200, -40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v31o2"]
+_data = {
+&"RESET": SubResource("Animation_ddpdj"),
+&"quest_popup": SubResource("Animation_h83nt")
+}
+
+[node name="MainHud" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerStats" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 13.0
+offset_top = 4.0
+offset_right = 73.0
+offset_bottom = 44.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0fg6w")
+
+[node name="Energy" type="TextureProgressBar" parent="PlayerStats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+scale = Vector2(1.2576, 1.2576)
+size_flags_vertical = 3
+value = 67.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_0fg6w")
+texture_over = ExtResource("2_cecok")
+texture_progress = ExtResource("3_i3uc5")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerStats/Energy"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -9.54196
+offset_top = -9.59033
+offset_right = 30.458
+offset_bottom = 30.4097
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_7evf4")
+
+[node name="Hunger" type="TextureProgressBar" parent="PlayerStats"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = -12.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.2576, 1.2576)
+size_flags_vertical = 3
+value = 35.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_q8c3w")
+texture_over = ExtResource("6_7phoq")
+texture_progress = ExtResource("7_gea1g")
+
+[node name="TextureRect2" type="TextureRect" parent="PlayerStats/Hunger"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -8.7468
+offset_top = -9.59033
+offset_right = 31.2532
+offset_bottom = 30.4097
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_77bhk")
+
+[node name="PauseMenu" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7phoq")
+
+[node name="PauseMenuLeftPanel" type="Panel" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -90.0
+offset_right = 120.0
+offset_bottom = 90.0
+grow_vertical = 2
+
+[node name="PanelTexture" type="TextureRect" parent="PauseMenu/PauseMenuLeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_7evf4")
+
+[node name="Label" type="Label" parent="PauseMenu/PauseMenuLeftPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 22.3333
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.303233, 0.303233, 0.303233, 1)
+theme_override_fonts/font = ExtResource("10_q8c3w")
+text = "GAME PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="TextureButton" parent="PauseMenu/PauseMenuLeftPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -32.0
+offset_right = 30.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_q8c3w")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="PauseMenu/PauseMenuLeftPanel/ResumeButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.1667
+offset_right = 20.0
+offset_bottom = 11.1667
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_q8c3w")
+theme_override_font_sizes/font_size = 8
+text = "RESUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="PauseMenu/PauseMenuLeftPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -10.0
+offset_right = 30.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_q8c3w")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="PauseMenu/PauseMenuLeftPanel/SettingsButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.1667
+offset_right = 20.0
+offset_bottom = 11.1667
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_q8c3w")
+theme_override_font_sizes/font_size = 8
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="PauseMenu/PauseMenuLeftPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = 12.0
+offset_right = 30.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_q8c3w")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="PauseMenu/PauseMenuLeftPanel/QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.1667
+offset_right = 20.0
+offset_bottom = 11.1667
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_q8c3w")
+theme_override_font_sizes/font_size = 8
+text = "QUIT TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenuRightPanel" type="Panel" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_bottom = 100.0
+grow_horizontal = 0
+
+[node name="PanelTexture" type="TextureRect" parent="PauseMenu/PauseMenuRightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_7phoq")
+
+[node name="PanelTitleButton" type="Label" parent="PauseMenu/PauseMenuRightPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 22.3333
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.303233, 0.303233, 0.303233, 1)
+theme_override_fonts/font = ExtResource("10_q8c3w")
+text = "CURRENT QUEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTitle" type="RichTextLabel" parent="PauseMenu/PauseMenuRightPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 17.0
+offset_right = 56.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("10_q8c3w")
+theme_override_font_sizes/normal_font_size = 12
+text = "Quest Title"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="QuestDescription" type="RichTextLabel" parent="PauseMenu/PauseMenuRightPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -63.0
+offset_right = 56.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("10_q8c3w")
+theme_override_font_sizes/normal_font_size = 8
+text = "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
+
+[node name="QuestPopUp" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = -40.0
+grow_horizontal = 0
+script = ExtResource("14_0vkw0")
+
+[node name="TextureRect" type="TextureRect" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_77bhk")
+
+[node name="TextureRect2" type="TextureRect" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = 10.0
+grow_vertical = 2
+texture = ExtResource("15_0vkw0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -10.0
+offset_right = -2.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.152941, 0.152941, 0.152941, 1)
+theme_override_fonts/normal_font = ExtResource("10_q8c3w")
+theme_override_font_sizes/normal_font_size = 8
+text = "Quest Objective"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="QuestPopUp"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_v31o2")
+}
+
+[connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
