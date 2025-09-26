@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var jump_force: float = -200.0
+@export var jump_force: float = -225.0
 @export var gravity: float = 900.0
 @onready var player_animations = $Sprite2D/AnimationPlayer
 
