@@ -92,15 +92,14 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0.905882, 0, 1)
 text = "NEXT MINIGAME UNLOCKED"
 
-[node name="Button" type="Button" parent="UI"]
+[node name="Quit" type="Button" parent="UI"]
 offset_left = 210.0
 offset_top = 123.0
 offset_right = 249.0
 offset_bottom = 154.0
 text = "quit"
 
-[node name="score_system" type="Node" parent="." node_paths=PackedStringArray("win_text")]
+[node name="score_system" type="Node" parent="."]
 script = ExtResource("10_yg417")
-win_text = NodePath("../UI/WIN")
 
-[connection signal="pressed" from="UI/Button" to="score_system" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Quit" to="score_system" method="_on_button_pressed"]

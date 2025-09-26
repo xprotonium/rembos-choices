@@ -2,9 +2,11 @@ extends Node
 
 var counter: int = 0
 var high_score: int = 0
+var robot_coin: int = 0  
 var timer: Timer
 var label: Label
 var high_score_label: Label
+var robot_coin_label: Label  # NEW: Label for robot coin display
 var is_counting: bool = false
 var start_text: Label
 var game_over_text: Label
@@ -14,8 +16,9 @@ var game_over_canvas_layer: CanvasLayer
 @export var win_text: Label
 
 func _ready():
-	# Load high score from file
+	# Load high score and robot coin from file
 	load_high_score()
+	print(MainGameManager.gold)
 	
 	# Create the score display label
 	label = Label.new()
@@ -41,11 +44,24 @@ func _ready():
 	high_score_label.add_theme_constant_override("outline_size", 2)
 	high_score_label.add_theme_color_override("font_outline_color", Color.DARK_GREEN)
 	
+	# NEW: Create robot coin label
+	robot_coin_label = Label.new()
+	robot_coin_label.text = "G: " + str(robot_coin)
+	robot_coin_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	robot_coin_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	
+	# Style robot coin label
+	robot_coin_label.add_theme_font_size_override("font_size", 10)
+	robot_coin_label.add_theme_color_override("font_color", Color.GOLD)
+	robot_coin_label.add_theme_constant_override("outline_size", 2)
+	robot_coin_label.add_theme_color_override("font_outline_color", Color.DARK_GOLDENROD)
+	
 	# Add to CanvasLayer to ensure it's on top
 	var canvas_layer = CanvasLayer.new()
 	canvas_layer.layer = 100
 	canvas_layer.add_child(label)
 	canvas_layer.add_child(high_score_label)
+	canvas_layer.add_child(robot_coin_label)  # NEW: Add robot coin label
 	add_child(canvas_layer)
 	
 	# Create timer (but don't start it yet)
@@ -70,16 +86,19 @@ func _process(_delta):
 			restart_game()
 		else:
 			start_counting()
+
 	
 	# Check if game is over (player went too far left)
 	check_game_over()
 	
-	# NEW: Press 0 to reset high score to 0
+	# NEW: Press 0 to reset high score AND robot coin to 0
 	if Input.is_key_pressed(KEY_0):
 		high_score = 0
+		robot_coin = 0  # NEW: Also reset robot coin
 		high_score_label.text = "HIGH SCORE: 0"
+		robot_coin_label.text = "G: 0"  # NEW: Update robot coin display
 		save_high_score()
-		print("High score manually reset to 0")
+		print("High score and robot coin manually reset to 0")
 		
 func check_game_over():
 	# Simple player check - FIXED: Check if tree exists first
@@ -99,7 +118,7 @@ func check_game_over():
 
 func start_counting():
 	is_counting = true
-	counter = 0  # Reset counter each game
+	counter = 0  # Reset counter each game (robot_coin persists between games)
 	can_restart = false
 	
 	# Remove start text
@@ -112,6 +131,14 @@ func start_counting():
 func stop_scoring():
 	is_counting = false
 	timer.stop()
+	
+	# NEW: Calculate and add robot coins earned this game
+	var coins_earned = counter / 5000
+	if coins_earned > 0:
+		robot_coin += coins_earned
+		MainGameManager.gold += coins_earned
+		robot_coin_label.text = "G: " + str(robot_coin) 
+		print("Earned ", coins_earned, "G! Total G: ", robot_coin)
 	
 	# Check for new high score
 	if counter > high_score:
@@ -126,7 +153,7 @@ func stop_scoring():
 	show_game_over_text()
 	
 	# check if the player can proceed to next minigame
-	if counter >= 1000:
+	if counter >= 1000 and MainGameManager.current_stage == MainGameManager.QuestStage.PLAY_C57:
 		MainGameManager.advance_stage()
 
 func show_game_over_text():
@@ -190,6 +217,9 @@ func _update_label_positions():
 	
 	# Keep high score in bottom left corner
 	high_score_label.position = Vector2(10, viewport_size.y - 15)
+	
+	# NEW: Keep robot coin in bottom center
+	robot_coin_label.position = Vector2(viewport_size.x / 2 - 20, viewport_size.y - 15)
 
 func create_start_text():
 	# Create "Press Space to Start" text
@@ -217,6 +247,10 @@ func create_start_text():
 func get_score() -> int:
 	return counter
 
+# NEW: Get robot coin count
+func get_robot_coin() -> int:
+	return robot_coin
+
 func load_high_score():
 	var file = FileAccess.open("user://high_score.dat", FileAccess.READ)
 	if file:
@@ -233,7 +267,24 @@ func save_high_score():
 		file.store_32(high_score)
 		file.close()
 		print("Saved high score: ", high_score)
+
+
 		
+func add_score(amount: int):
+	if is_counting:
+		counter += amount
+		label.text = "SCORE: " + str(counter)
+		_update_label_positions()
+		print("Added ", amount, " points! Total: ", counter)
+		
+# Add this function to your score_system.gd
+func add_robot_coin(amount: int):
+	robot_coin += amount
+	robot_coin_label.text = "G: " + str(robot_coin)
+	MainGameManager.gold += amount
+	print("Added ", amount, "G! Total G: ", robot_coin)
+	
+	# Optional: You can also add a floating text effect from the score system if needed
 
 
 func _on_button_pressed() -> void:
