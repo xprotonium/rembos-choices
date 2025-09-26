@@ -5,13 +5,19 @@ extends Node
 var counter: int = 0
 
 var high_score: int = 0
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 var timer: Timer
 
 var label: Label
 
 var high_score_label: Label
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 var is_counting: bool = false
 
 var start_text: Label
@@ -29,11 +35,16 @@ var game_over_canvas_layer: CanvasLayer
 
 
 func _ready():
+<<<<<<< HEAD
 
 	# Load high score from file
 
 	load_high_score()
 
+=======
+	# Load high score from file
+	load_high_score()
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 	
 
 	# Create the score display label
@@ -83,7 +94,10 @@ func _ready():
 	high_score_label.add_theme_color_override("font_outline_color", Color.DARK_GREEN)
 
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 	# Add to CanvasLayer to ensure it's on top
 
 	var canvas_layer = CanvasLayer.new()
@@ -93,7 +107,10 @@ func _ready():
 	canvas_layer.add_child(label)
 
 	canvas_layer.add_child(high_score_label)
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 	add_child(canvas_layer)
 
 	
@@ -149,12 +166,17 @@ func _process(_delta):
 	check_game_over()
 
 	
+<<<<<<< HEAD
 
 	# NEW: Press 0 to reset high score to 0
 
+=======
+	# NEW: Press 0 to reset high score to 0
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 	if Input.is_key_pressed(KEY_0):
 
 		high_score = 0
+<<<<<<< HEAD
 
 		high_score_label.text = "HIGH SCORE: 0"
 
@@ -162,6 +184,11 @@ func _process(_delta):
 
 		print("High score manually reset to 0")
 
+=======
+		high_score_label.text = "HIGH SCORE: 0"
+		save_high_score()
+		print("High score manually reset to 0")
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 		
 
 func check_game_over():
@@ -199,9 +226,13 @@ func check_game_over():
 func start_counting():
 
 	is_counting = true
+<<<<<<< HEAD
 
 	counter = 0  # Reset counter each game
 
+=======
+	counter = 0  # Reset counter each game
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 	can_restart = false
 
 	
@@ -227,7 +258,10 @@ func stop_scoring():
 	timer.stop()
 
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 	# Check for new high score
 
 	if counter > high_score:
@@ -381,8 +415,11 @@ func _update_label_positions():
 	# Keep high score in bottom left corner
 
 	high_score_label.position = Vector2(10, viewport_size.y - 15)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 
 func create_start_text():
 
@@ -434,8 +471,11 @@ func get_score() -> int:
 
 	return counter
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 func load_high_score():
 
 	var file = FileAccess.open("user://high_score.dat", FileAccess.READ)
@@ -467,9 +507,13 @@ func save_high_score():
 		file.close()
 
 		print("Saved high score: ", high_score)
+<<<<<<< HEAD
 
 		
 
+=======
+		
+>>>>>>> ce2f17ed3362d1243f0fa7a78eaeb1c6d98b36e9
 
 
 func _on_button_pressed() -> void:
