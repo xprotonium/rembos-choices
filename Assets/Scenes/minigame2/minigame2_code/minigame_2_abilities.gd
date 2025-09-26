@@ -10,20 +10,20 @@ func _physics_process(delta):
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("Ability picked up! +99G!")
+		print("Ability picked up! +1G!")
 		
 		# Create floating text effect for G above the robot coin counter
-		create_floating_text("+99G")
+		create_floating_text("+1G")
 		
 		# Add 99G to the robot coin
 		var score_system = get_node("/root/ScoreSystem")
 		if score_system:
-			score_system.add_robot_coin(99)
+			score_system.add_robot_coin(1)
 		else:
 			# Alternative path if ScoreSystem is not at root
 			score_system = get_node("../score_system")
 			if score_system:
-				score_system.add_robot_coin(99)
+				score_system.add_robot_coin(1)
 			else:
 				print("ScoreSystem not found!")
 		
