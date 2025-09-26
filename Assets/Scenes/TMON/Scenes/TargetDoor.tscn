@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg3mxyh0okjpl"]
+
+[ext_resource type="Texture2D" uid="uid://bvfa0sy2se88a" path="res://Assets/Sprites/TMON/dungeon_door_unlocked.png" id="1_ofqsy"]
+
+[node name="TargetDoor" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ofqsy")

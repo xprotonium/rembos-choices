@@ -30,13 +30,11 @@ func _ready():
 	
 func _on_player_enter(body: Node):
 	if body is CharacterBody2D:
-		print("Player entered the area")
 		texture.visible = true
 		player_in_area = true
 
 func _on_player_exit(body: Node):
 	if body is CharacterBody2D:
-		print("Player exited the area")
 		texture.visible = false
 		player_in_area = false
 
@@ -44,4 +42,7 @@ func _on_player_exit(body: Node):
 # check whether the player has pressed the desired input button
 func _process(_delta):
 	if player_in_area && Input.is_action_just_pressed("interact"):
+		if MainGameManager.current_stage == MainGameManager.QuestStage.GO_TO_LAPTOP:
+			MainGameManager.advance_stage()
 		ui.visible = true
+		ui.update_ui()

@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsejvu73xch0y"]
+
+[ext_resource type="Texture2D" uid="uid://cqp32a06xq63j" path="res://Assets/Sprites/UI Sprites/OS/mail_item.png" id="1_0n6vc"]
+[ext_resource type="Script" uid="uid://bsr72snrqsm6j" path="res://Assets/Scenes/Operating System/Mail/mail_item.gd" id="1_uhm2e"]
+[ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="2_uhm2e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhm2e"]
+
+[node name="MailItem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_uhm2e")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -9.0
+offset_right = 32.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0n6vc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -6.0
+offset_right = 29.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_uhm2e")
+theme_override_font_sizes/normal_font_size = 4
+text = "BAD PERFORMANCE ON EXAMS!!!"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uhm2e")
+flat = true
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
