@@ -12,7 +12,7 @@ func _ready() -> void:
 	hp_bar.value = max_hp
 	hp_label.text = str(max_hp)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if hp == 0:
 		pass
 		

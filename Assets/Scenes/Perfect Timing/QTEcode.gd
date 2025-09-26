@@ -11,11 +11,12 @@ var expected_key: String = ""
 var qte_active: bool = false
 
 func _ready():
+	await get_tree().create_timer(3.0).timeout
 	randomize()
 	timer.timeout.connect(_on_qte_failed)
 	start_qte()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.hp == 0 or enemy.hp == 0:
 		death_screen.visible = true
 		get_tree().paused = true
@@ -59,6 +60,7 @@ func _unhandled_input(event: InputEvent):
 func _on_qte_failed():
 	if qte_active:
 		print("time dummy")
+		player._take_dmg(50)
 		_end_qte()
 
 func _end_qte():
