@@ -6,7 +6,7 @@ var robot_coin: int = 0
 var timer: Timer
 var label: Label
 var high_score_label: Label
-var robot_coin_label: Label  # NEW: Label for robot coin display
+var robot_coin_label: Label 
 var is_counting: bool = false
 var start_text: Label
 var game_over_text: Label
@@ -94,9 +94,9 @@ func _process(_delta):
 	# NEW: Press 0 to reset high score AND robot coin to 0
 	if Input.is_key_pressed(KEY_0):
 		high_score = 0
-		robot_coin = 0  # NEW: Also reset robot coin
+		robot_coin = 0  
 		high_score_label.text = "HIGH SCORE: 0"
-		robot_coin_label.text = "G: 0"  # NEW: Update robot coin display
+		robot_coin_label.text = "G: 0" 
 		save_high_score()
 		print("High score and robot coin manually reset to 0")
 		
@@ -118,7 +118,7 @@ func check_game_over():
 
 func start_counting():
 	is_counting = true
-	counter = 0  # Reset counter each game (robot_coin persists between games)
+	counter = 0  
 	can_restart = false
 	
 	# Remove start text
@@ -132,7 +132,6 @@ func stop_scoring():
 	is_counting = false
 	timer.stop()
 	
-	# NEW: Calculate and add robot coins earned this game
 	var coins_earned = counter / 5000
 	if coins_earned > 0:
 		robot_coin += coins_earned
@@ -153,11 +152,11 @@ func stop_scoring():
 	show_game_over_text()
 	
 	# check if the player can proceed to next minigame
-	if counter >= 1000 and MainGameManager.current_stage == MainGameManager.QuestStage.PLAY_C57:
+	if counter >= 10000 and MainGameManager.current_stage == MainGameManager.QuestStage.PLAY_C57:
 		MainGameManager.advance_stage()
 
 func show_game_over_text():
-	# Create "Press Space to Restart" text after 2 seconds
+	# Create "Press Space to Restart" text after 0.5 seconds
 	await get_tree().create_timer(0.5).timeout
 	
 	game_over_text = Label.new()
@@ -174,15 +173,42 @@ func show_game_over_text():
 	# Add to canvas with high layer to ensure it's visible
 	game_over_canvas_layer = CanvasLayer.new()
 	game_over_canvas_layer.layer = 102  # Highest layer
-	game_over_canvas_layer.add_child(game_over_text)
+	
+	# ADD THE CANVAS LAYER TO SCENE FIRST
 	add_child(game_over_canvas_layer)
+	
+	# THEN add the game over text to it
+	game_over_canvas_layer.add_child(game_over_text)
 	
 	# Center the text
 	var viewport_size = get_viewport().get_visible_rect().size
 	game_over_text.position = Vector2(viewport_size.x / 2 - 110, viewport_size.y / 2 - 40)
 	
+	if counter >= 10000:
+		show_unlock_text(viewport_size)
+	
 	can_restart = true
 	print("Ready for restart - Press Spacebar")
+
+func show_unlock_text(viewport_size: Vector2):
+	var unlock_text = Label.new()
+	unlock_text.text = "NEXT MINIGAME UNLOCKED!!"
+	unlock_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	unlock_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	
+	# Style with light green color
+	unlock_text.add_theme_font_size_override("font_size", 16)
+	unlock_text.add_theme_color_override("font_color", Color.LIGHT_GREEN)
+	unlock_text.add_theme_constant_override("outline_size", 4)
+	unlock_text.add_theme_color_override("font_outline_color", Color.DARK_GREEN)
+	
+	# Add to the same game over canvas layer (which is now in the scene)
+	game_over_canvas_layer.add_child(unlock_text)
+	
+	# Position slightly under the GAME OVER text
+	unlock_text.position = Vector2(viewport_size.x / 2 - 115, viewport_size.y / 2)
+	
+	print("Next minigame unlocked! Score: ", counter)
 
 func restart_game():
 	print("Restarting game by reloading scene...")
@@ -284,7 +310,6 @@ func add_robot_coin(amount: int):
 	MainGameManager.gold += amount
 	print("Added ", amount, "G! Total G: ", robot_coin)
 	
-	# Optional: You can also add a floating text effect from the score system if needed
 
 
 func _on_button_pressed() -> void:
