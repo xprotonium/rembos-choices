@@ -6,9 +6,13 @@ extends Node2D
 @export var enemy: Node2D
 @export var player: Node2D
 @export var death_screen: Control
+@onready var qte_effect = $QTEEffect
+@onready var energy:int = MainGameManager.energy
 
-var expected_key: String = ""
-var qte_active: bool = false
+
+var expected_key = ""
+var qte_active = false
+var min_energy = 5
 
 func _ready():
 	await get_tree().create_timer(3.0).timeout
@@ -34,11 +38,14 @@ func start_qte():
 	if expected_key == "qte_e":
 		e_container.show()
 		e_container.button_ani_player.play("QTE")
+		if energy > min_energy :
+			qte_effect.play()
 	else:
 		q_container.show()
 		q_container.button_ani_player.play("QTE")
+		if energy > min_energy :
+			qte_effect.play()
 
-	print("game start")
 	timer.start()
 	qte_active = true
 
@@ -48,18 +55,15 @@ func _unhandled_input(event: InputEvent):
 
 	# Correct key pressed
 	if event.is_action_pressed(expected_key):
-		print("nice")
 		enemy._take_dmg(10)
 		_end_qte()
 	# Wrong QTE key pressed
 	elif event.is_action_pressed("qte_e") or event.is_action_pressed("qte_q"):
-		print("dummy")
 		player._take_dmg(50)
 		_end_qte()
 
 func _on_qte_failed():
 	if qte_active:
-		print("time dummy")
 		player._take_dmg(50)
 		_end_qte()
 
