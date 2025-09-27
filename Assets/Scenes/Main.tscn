@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cw0fkf1qvd47t"]
+[gd_scene load_steps=21 format=4 uid="uid://cw0fkf1qvd47t"]
 
 [ext_resource type="PackedScene" uid="uid://dlhwxlikqirl0" path="res://Assets/Scenes/Player/player.tscn" id="1_kwblh"]
 [ext_resource type="Texture2D" uid="uid://b57421o2app5a" path="res://Assets/Sprites/House/house_tileset.png" id="2_wkehv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Assets/Scenes/UI_Manager.gd" id="7_fvpbu"]
 [ext_resource type="Texture2D" uid="uid://dw6pgn4stiges" path="res://Assets/Sprites/UI Sprites/E_Key.png" id="7_una2h"]
 [ext_resource type="Script" uid="uid://cuul4cpdkvuf1" path="res://Assets/Scenes/supermarket_manager.gd" id="8_una2h"]
+[ext_resource type="Script" uid="uid://cwoqp7gj531wp" path="res://Assets/Scenes/bed.gd" id="9_xycqk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygaiq"]
 texture = ExtResource("2_wkehv")
@@ -150,6 +151,9 @@ size = Vector2(16, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obb38"]
 size = Vector2(40, 22.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pypa"]
+size = Vector2(27, 40)
 
 [sub_resource type="Animation" id="Animation_fxu2d"]
 length = 0.001
@@ -457,6 +461,19 @@ debug_color = Color(0.458824, 0.592157, 0, 0.45098)
 
 [node name="Sprite2D" type="Sprite2D" parent="Supermarket"]
 position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_una2h")
+
+[node name="Sleep" type="Area2D" parent="."]
+position = Vector2(191, 118)
+script = ExtResource("9_xycqk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sleep"]
+position = Vector2(3.5, 10)
+shape = SubResource("RectangleShape2D_6pypa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sleep"]
+position = Vector2(2, 10)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_una2h")
 
