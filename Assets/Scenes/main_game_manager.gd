@@ -1,6 +1,6 @@
 extends Node
 
-# QUEST SYSTEM
+# Quest System
 enum QuestStage {
 	INTRO,
 	GO_TO_LAPTOP,
@@ -17,15 +17,16 @@ signal quest_stage_changed(new_stage)
 # Quest data loaded from JSON
 var quest_details: Dictionary = {}
 
-# PLAYER STATS
+# Player Stats
 var player: CharacterBody2D = null
-var player_position: Vector2 = Vector2.ZERO  # persisted position across scenes
+var player_position: Vector2 = Vector2.ZERO
 
 var energy: int = 10
 var max_energy: int = 10
 var hunger: int = 10
 var max_hunger: int = 10
 
+var gold = 0
 
 var energy_timer: Timer
 var hunger_timer: Timer
@@ -35,23 +36,23 @@ signal stats_updated
 var energy_bar: TextureProgressBar
 var hunger_bar: TextureProgressBar
 
-# Pause Menu Quest Details (we fetch dynamically in update_quest_ui)
+# Pause Menu Quest Details
 var pause_menu_quest_title: RichTextLabel
 var pause_menu_quest_description: RichTextLabel
 
 # intro cutscene played or not
 var intro_played = false
 
-# Universal currency system for the whole game
-var gold = 100
+
+
 
 # food system variables
 var food_capacity = 5
 var max_food_capacity = 6
 
 # -------------------- LIFECYCLE --------------------
+
 func _ready():
-	# Load quest details JSON
 	var quest_detail_file = FileAccess.open("res://Assets/Scenes/quest_details.json", FileAccess.READ)
 	if quest_detail_file == null:
 		print("Cannot open quest detail json")
@@ -65,19 +66,21 @@ func _ready():
 		print("Failed to parse quest detail json")
 		return
 	quest_details = parsed
-	
-	# Setup systems
+
 	setup_timers()
 
-	# Safe signal connections
 	if not stats_updated.is_connected(update_stats_ui):
 		stats_updated.connect(update_stats_ui)
 	if not quest_stage_changed.is_connected(update_quest_ui):
 		quest_stage_changed.connect(update_quest_ui)
 
-	# Initial UI — run deferred so UI manager (which sets bars) can bind in the same frame
 	call_deferred("update_stats_ui")
 	call_deferred("_deferred_update_quest_ui")
+	
+	if intro_played:
+		$AnimationPlayer.stop()
+		$AnimationPlayer.playback_active = false 
+		player.global_position = player_position
 
 
 func _deferred_update_quest_ui() -> void:
@@ -85,7 +88,6 @@ func _deferred_update_quest_ui() -> void:
 
 func set_player(p: CharacterBody2D) -> void:
 	player = p
-	# restore position if a saved position exists
 	if player and player_position != Vector2.ZERO:
 		player.global_position = player_position
 		print("MainGameManager: restored player position to ", player_position)
@@ -94,7 +96,7 @@ func set_player(p: CharacterBody2D) -> void:
 		call_deferred("play_intro_cutscene")
 
 
-# Call this before changing scenes to save current player position
+# IMPORTANT: Call this before changing scenes to save current player position!
 func save_player_position() -> void:
 	if player:
 		player_position = player.global_position
@@ -102,7 +104,6 @@ func save_player_position() -> void:
 	else:
 		print("MainGameManager: save_player_position called but player is null")
 
-# -------------------- QUEST PROGRESSION --------------------
 func advance_stage():
 	if current_stage < QuestStage.DONE:
 		print("Advancing stage from", current_stage)
@@ -110,7 +111,6 @@ func advance_stage():
 		emit_signal("quest_stage_changed", current_stage)
 		update_quest_ui(current_stage)
 
-# -------------------- TIMERS --------------------
 func setup_timers():
 	energy_timer = Timer.new()
 	energy_timer.wait_time = 60.0
@@ -134,7 +134,6 @@ func _on_hunger_timer_timeout():
 	hunger = min(max_hunger, hunger - 1)
 	emit_signal("stats_updated")
 
-# -------------------- STATS FUNCTIONS --------------------
 func sleep():
 	energy = max_energy
 	emit_signal("stats_updated")
@@ -151,9 +150,7 @@ func restart_game():
 	hunger_timer.start()
 	emit_signal("stats_updated")
 
-# -------------------- UI UPDATE --------------------
 func update_stats_ui():
-	# If UI hasn't bound the bars yet this will silently return
 	if not energy_bar or not hunger_bar:
 		return
 
@@ -169,13 +166,11 @@ func setup_ui(hunger: TextureProgressBar, energy: TextureProgressBar) -> void:
 	energy_bar = energy
 	update_stats_ui()
 
-# -------------------- QUEST UI --------------------
 func update_quest_ui(stage) -> void:
 	var scene_root = get_tree().current_scene
 	if not scene_root:
 		return
 
-	# Find pause menu dynamically (safer across scene loads)
 	var pause_menu = scene_root.get_node_or_null("CanvasLayer/MainHud/PauseMenu")
 	if not pause_menu:
 		return
@@ -214,7 +209,6 @@ func update_quest_ui(stage) -> void:
 				if quest_popup.has_method("show_popup"):
 					quest_popup.show_popup(q.get("objective", ""))
 
-# -------------------- CUTSCENES --------------------
 func play_intro_cutscene():
 	var scene_root = get_tree().current_scene
 
@@ -237,3 +231,69 @@ func _on_intro_animation_finished(anim_name: String) -> void:
 		return
 	player.set_allow_movement(true)
 	advance_stage()
+
+func save_game() -> void:
+	var save_data := {
+		"current_stage": current_stage,
+		"player_position": [player_position.x, player_position.y],
+		"energy": energy,
+		"hunger": hunger,
+		"gold": gold,  # <--- save gold too
+		"intro_played": intro_played
+	}
+
+	var file := FileAccess.open("user://savegame.json", FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(save_data))
+		file.close()
+		print("Game saved:", save_data)
+
+func load_game() -> void:
+	print("--- Attempting to load game ---")
+
+	if not FileAccess.file_exists("user://savegame.json"):
+		print("No save file found at user://savegame.json")
+		return
+
+	var file := FileAccess.open("user://savegame.json", FileAccess.READ)
+	if not file:
+		print("Failed to open save file")
+		return
+
+	var text := file.get_as_text()
+	file.close()
+	print("Save file loaded, parsing JSON...")
+
+	var data = JSON.parse_string(text)
+	if typeof(data) != TYPE_DICTIONARY:
+		print("Invalid save data, expected Dictionary but got:", typeof(data))
+		return
+
+	current_stage = data.get("current_stage", QuestStage.INTRO)
+	print("Restored current_stage:", current_stage)
+
+	var pos_data = data.get("player_position", null)
+	if pos_data and typeof(pos_data) == TYPE_ARRAY and pos_data.size() == 2:
+		player_position = Vector2(pos_data[0], pos_data[1])
+	else:
+		player_position = Vector2.ZERO
+	print("Restored player_position:", player_position)
+
+	energy = data.get("energy", max_energy)
+	print("Restored energy:", energy)
+
+	hunger = data.get("hunger", max_hunger)
+	print("Restored hunger:", hunger)
+
+	gold = data.get("gold", 0)
+	print("Restored gold:", gold)
+
+	intro_played = data.get("intro_played", false)
+	print("Restored intro_played:", intro_played)
+
+	emit_signal("stats_updated")
+	emit_signal("quest_stage_changed", current_stage)
+
+	if player:
+		player.global_position = player_position
+		print("Player position set to", player_position)
