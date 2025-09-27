@@ -134,8 +134,67 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_77bhk")
 
+[node name="QuestPopUp" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = -26.0
+grow_horizontal = 0
+script = ExtResource("14_0vkw0")
+
+[node name="TextureRect" type="TextureRect" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_77bhk")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -7.0
+offset_right = 29.0
+offset_bottom = 13.0
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("15_0vkw0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="QuestPopUp"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -10.0
+offset_right = -2.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.152941, 0.152941, 0.152941, 1)
+theme_override_fonts/normal_font = ExtResource("10_q8c3w")
+theme_override_font_sizes/normal_font_size = 8
+text = "Quest Objective"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="QuestPopUp"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_v31o2")
+}
+
 [node name="PauseMenu" type="Panel" parent="."]
-visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,7 +273,7 @@ text = "RESUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SettingsButton" type="TextureButton" parent="PauseMenu/PauseMenuLeftPanel"]
+[node name="SaveGameButton" type="TextureButton" parent="PauseMenu/PauseMenuLeftPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -230,7 +289,7 @@ grow_vertical = 2
 texture_normal = ExtResource("11_q8c3w")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="PauseMenu/PauseMenuLeftPanel/SettingsButton"]
+[node name="Label" type="Label" parent="PauseMenu/PauseMenuLeftPanel/SaveGameButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -246,7 +305,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_q8c3w")
 theme_override_font_sizes/font_size = 8
-text = "SETTINGS"
+text = "SAVE GAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -282,7 +341,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_q8c3w")
 theme_override_font_sizes/font_size = 8
-text = "QUIT TO MENU"
+text = "SAVE & QUIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -354,64 +413,43 @@ theme_override_fonts/normal_font = ExtResource("10_q8c3w")
 theme_override_font_sizes/normal_font_size = 8
 text = "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
 
-[node name="QuestPopUp" type="Panel" parent="."]
+[node name="SaveGameToast" type="Panel" parent="."]
+process_mode = 1
+visible = false
+z_index = 2
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -120.0
-offset_top = -26.0
-grow_horizontal = 0
-script = ExtResource("14_0vkw0")
-
-[node name="TextureRect" type="TextureRect" parent="QuestPopUp"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("14_77bhk")
-expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="QuestPopUp"]
+[node name="Label" type="Label" parent="SaveGameToast"]
+z_index = 1
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = -7.0
-offset_right = 29.0
-offset_bottom = 13.0
+offset_left = -25.0
+offset_top = -5.0
+offset_right = 25.0
+offset_bottom = 5.0
+grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("15_0vkw0")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="QuestPopUp"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -93.0
-offset_top = -10.0
-offset_right = -2.0
-offset_bottom = 10.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/default_color = Color(0.152941, 0.152941, 0.152941, 1)
-theme_override_fonts/normal_font = ExtResource("10_q8c3w")
-theme_override_font_sizes/normal_font_size = 8
-text = "Quest Objective"
+theme_override_fonts/font = ExtResource("10_q8c3w")
+theme_override_font_sizes/font_size = 8
+text = "Progress Saved"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="QuestPopUp"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_v31o2")
-}
-
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/SaveGameButton" to="PauseMenu" method="_on_save_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
