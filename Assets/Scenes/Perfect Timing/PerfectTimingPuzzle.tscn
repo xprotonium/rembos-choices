@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://baasgytk0urf0"]
+[gd_scene load_steps=24 format=3 uid="uid://baasgytk0urf0"]
 
 [ext_resource type="Texture2D" uid="uid://eotthj2vhl6m" path="res://Assets/Sprites/Perfect Timing Sprites/PT_background_and_decorations/mars_bg.png" id="1_kq6r2"]
 [ext_resource type="Script" uid="uid://5wdksppolhdw" path="res://Assets/Scenes/Perfect Timing/PT_player_movment.gd" id="2_gn15c"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ckulf5capc86f" path="res://Assets/Sprites/Perfect Timing Sprites/PT_background_and_decorations/gate_spritesheet.png" id="8_c231l"]
 [ext_resource type="PackedScene" uid="uid://bnl4s3itceymn" path="res://Assets/Scenes/Perfect Timing/perfect_timing.tscn" id="10_4bkes"]
 [ext_resource type="Script" uid="uid://bhhb66154u2ka" path="res://Assets/Scenes/Perfect Timing/gate_button.gd" id="11_4bkes"]
+[ext_resource type="AudioStream" uid="uid://bt76dgarb56x5" path="res://Assets/Music/Perfect Timing/Space Walk.mp3" id="11_dvhg3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05f50"]
 atlas = ExtResource("8_c231l")
@@ -157,6 +158,11 @@ position = Vector2(121, 120)
 
 [node name="GateCollision" type="CollisionShape2D" parent="GateButton/GateArea"]
 shape = SubResource("CircleShape2D_ufj5g")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_dvhg3")
+autoplay = true
+parameters/looping = false
 
 [connection signal="body_entered" from="PuzzleBG/Button/ButtonArea" to="PuzzleBG/Button" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="PuzzleBG/Button/ButtonArea" to="PuzzleBG/Button" method="_on_area_2d_body_exited"]
