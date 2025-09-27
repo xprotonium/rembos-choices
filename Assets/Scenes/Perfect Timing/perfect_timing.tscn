@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://bnl4s3itceymn"]
+[gd_scene load_steps=23 format=3 uid="uid://bnl4s3itceymn"]
 
 [ext_resource type="Script" uid="uid://dc7jm5pm0bsi0" path="res://Assets/Scenes/Perfect Timing/QTEcode.gd" id="1_f86a5"]
+[ext_resource type="AudioStream" uid="uid://cpke8ta18iy0f" path="res://Assets/Music/Perfect Timing/QTE_SFX.mp3" id="2_aam3y"]
 [ext_resource type="Script" uid="uid://cepmq5oiv51p" path="res://Assets/Scenes/Perfect Timing/QTE.gd" id="2_mujjv"]
 [ext_resource type="Texture2D" uid="uid://kjtia3p4eb7p" path="res://Assets/Sprites/Perfect Timing Sprites/PT_background_and_decorations/space_bg.png" id="2_nw1pb"]
 [ext_resource type="Script" uid="uid://cyuxx2cn4cu4r" path="res://Assets/Scenes/Perfect Timing/player.gd" id="3_nw1pb"]
@@ -70,6 +71,9 @@ enemy = NodePath("Enemy")
 player = NodePath("Player")
 death_screen = NodePath("DeathScreen")
 metadata/_edit_use_anchors_ = true
+
+[node name="QTEEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_aam3y")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(160, 90)

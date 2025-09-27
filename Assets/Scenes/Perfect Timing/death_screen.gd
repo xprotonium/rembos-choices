@@ -10,7 +10,9 @@ func _process(_delta: float) -> void:
 	if player.hp == 0:
 		battle_result.text = "YOU LOSE"
 	if enemy.hp == 0:
-		battle_result.text = "YOU WIN"
+		battle_result.text = "YOU WIN,+ 50 GOLD"
+		MainGameManager.adavance_stage()
+		MainGameManager.gold += 50
 		
 
 func _on_respawn_pressed() -> void:
