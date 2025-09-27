@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d61we651kjiu"]
 
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Hunger System/Backgrounds/placeholder bg.png" id="1_845xh"]
 [ext_resource type="Script" uid="uid://cj175g1f5mv5o" path="res://Assets/Scenes/Food system/supermarket.gd" id="1_kukdk"]
+[ext_resource type="Texture2D" uid="uid://bfi8vdngdqi3r" path="res://Assets/Sprites/Hunger System/Backgrounds/supermarket_background.png" id="2_kukdk"]
 [ext_resource type="Texture2D" uid="uid://47p4gkvsyvkk" path="res://Assets/Sprites/Hunger System/Food Sprites/apple.png" id="3_hn4r5"]
 [ext_resource type="Texture2D" uid="uid://bhvcfwx8ywsua" path="res://Assets/Sprites/Hunger System/Food Sprites/cereal.png" id="4_v3kye"]
 [ext_resource type="Texture2D" uid="uid://ihccgg4kcoo" path="res://Assets/Sprites/Hunger System/Food Sprites/chicken.png" id="5_nbph0"]
@@ -21,7 +21,7 @@ offset_bottom = 28.3333
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 320.0
 offset_bottom = 180.0
-texture = ExtResource("1_845xh")
+texture = ExtResource("2_kukdk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
