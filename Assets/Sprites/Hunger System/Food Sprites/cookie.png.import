@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgpkdkne7tngv"
-path="res://.godot/imported/pizza.png-d6f1bb919bb4f128be9e555b826a255d.ctex"
+uid="uid://dytj5v71dmjfp"
+path="res://.godot/imported/cookie.png-a0ac91606db44be429748a5258e48689.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Hunger System/Food Sprites/pizza.png"
-dest_files=["res://.godot/imported/pizza.png-d6f1bb919bb4f128be9e555b826a255d.ctex"]
+source_file="res://Assets/Sprites/Hunger System/Food Sprites/cookie.png"
+dest_files=["res://.godot/imported/cookie.png-a0ac91606db44be429748a5258e48689.ctex"]
 
 [params]
 
