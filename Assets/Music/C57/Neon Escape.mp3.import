@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bk8cgrofrvtig"
+path="res://.godot/imported/Neon Escape.mp3-bd4768c9db3aa49a9c378a937ee0178e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/C57/Neon Escape.mp3"
+dest_files=["res://.godot/imported/Neon Escape.mp3-bd4768c9db3aa49a9c378a937ee0178e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
