@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds3gjk5gq3n1x"]
+[gd_scene load_steps=13 format=3 uid="uid://ds3gjk5gq3n1x"]
 
 [ext_resource type="Script" uid="uid://bh5ukkpowmykp" path="res://Assets/Scenes/minigame2/minigame2_code/control_panel.gd" id="1_8l64y"]
 [ext_resource type="Script" uid="uid://c3frqlr2uusud" path="res://Assets/Scenes/minigame2/minigame2_code/background_mananger.gd" id="1_p4m2c"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bef8j4p3ga0e3" path="res://Assets/Scenes/minigame2/minigame2obstacle.tscn" id="6_8l64y"]
 [ext_resource type="PackedScene" uid="uid://d4bra0bs6lv6b" path="res://Assets/Scenes/minigame2/minigame2_abilities.tscn" id="7_cg50p"]
 [ext_resource type="Texture2D" uid="uid://3bhju3yrt4em" path="res://Assets/Scenes/minigame2/minigame2_sprites/minigame2_floor.png" id="8_8l64y"]
+[ext_resource type="AudioStream" uid="uid://bk8cgrofrvtig" path="res://Assets/Music/C57/Neon Escape.mp3" id="10_t7vnh"]
 [ext_resource type="Script" uid="uid://cgamtghrxdag4" path="res://Assets/Scenes/minigame2/minigame2_code/score_system.gd" id="10_yg417"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kt1fq"]
@@ -95,5 +96,10 @@ text = "Quit"
 
 [node name="score_system" type="Node" parent="."]
 script = ExtResource("10_yg417")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_t7vnh")
+autoplay = true
+parameters/looping = false
 
 [connection signal="pressed" from="UI/Quit" to="score_system" method="_on_button_pressed"]
