@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c74vrswfijli1"]
+[gd_scene load_steps=25 format=3 uid="uid://c74vrswfijli1"]
 
 [ext_resource type="Texture2D" uid="uid://cvnuus2jo2pcu" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_BEHIND.png" id="1_0fg6w"]
 [ext_resource type="Script" uid="uid://eldfxjndpkvi" path="res://Assets/Scenes/MainHUD/pause_menu.gd" id="1_7phoq"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://dsapty43cfdd6" path="res://Assets/Scenes/MainHUD/quest_update_pop_up.gd" id="14_0vkw0"]
 [ext_resource type="Texture2D" uid="uid://daqsmhb18m6yj" path="res://Assets/Sprites/UI Sprites/MAIN_QUEST_POPUP_PANEL.png" id="14_77bhk"]
 [ext_resource type="Texture2D" uid="uid://dgvpa4rmpyb7n" path="res://Assets/Sprites/UI Sprites/Alert_Icon.png" id="15_0vkw0"]
+[ext_resource type="Script" uid="uid://d2hwm46nsws7v" path="res://Assets/Scenes/MainHUD/g.gd" id="17_i70bl"]
 [ext_resource type="Texture2D" uid="uid://catpi152lhufv" path="res://Assets/Sprites/UI Sprites/G_background.png" id="17_l77hb"]
 [ext_resource type="Texture2D" uid="uid://dd7e7b6ba1pdo" path="res://Assets/Sprites/UI Sprites/G.png" id="17_nmo04"]
 
@@ -467,6 +468,7 @@ offset_right = -10.0
 offset_bottom = 27.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_i70bl")
+script = ExtResource("17_i70bl")
 
 [node name="TextureRect2" type="TextureRect" parent="G"]
 layout_mode = 1
