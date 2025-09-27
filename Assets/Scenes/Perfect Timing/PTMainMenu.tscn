@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b53ki6l6vl2mx"]
 
 [ext_resource type="Texture2D" uid="uid://7ko5h366ad5v" path="res://Assets/Sprites/Perfect Timing Sprites/PT_background_and_decorations/main_menu.png" id="1_3mq80"]
-[ext_resource type="Script" uid="uid://pgxcynohv1o7" path="res://Assets/Scenes/Perfect Timing/pt_main_menu.gd" id="1_8eunq"]
+[ext_resource type="Script" path="res://Assets/Scenes/Perfect Timing/pt_main_menu.gd" id="1_8eunq"]
 [ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="3_0kypn"]
 
 [node name="PtMainMenu" type="Control"]

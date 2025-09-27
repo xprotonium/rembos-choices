@@ -132,6 +132,7 @@ func _take_damage(amount: int, from_position: Vector2) -> void:
 		knockback_timer = 0.2
 	else:
 		_die()
+		MainGameManager.gold += 1
 
 func _reset_enemy() -> void:
 	hp = max_hp
