@@ -26,6 +26,7 @@ var max_energy: int = 10
 var hunger: int = 10
 var max_hunger: int = 10
 
+var gold = 0
 
 var energy_timer: Timer
 var hunger_timer: Timer
@@ -228,6 +229,7 @@ func save_game() -> void:
 		"player_position": [player_position.x, player_position.y],
 		"energy": energy,
 		"hunger": hunger,
+		"gold": gold,  # <--- save gold too
 		"intro_played": intro_played
 	}
 
@@ -258,11 +260,9 @@ func load_game() -> void:
 		print("Invalid save data, expected Dictionary but got:", typeof(data))
 		return
 
-	# Restore all the values (with debug logs)
 	current_stage = data.get("current_stage", QuestStage.INTRO)
 	print("Restored current_stage:", current_stage)
 
-	# Convert JSON array/string back into Vector2
 	var pos_data = data.get("player_position", null)
 	if pos_data and typeof(pos_data) == TYPE_ARRAY and pos_data.size() == 2:
 		player_position = Vector2(pos_data[0], pos_data[1])
@@ -276,14 +276,15 @@ func load_game() -> void:
 	hunger = data.get("hunger", max_hunger)
 	print("Restored hunger:", hunger)
 
+	gold = data.get("gold", 0)
+	print("Restored gold:", gold)
+
 	intro_played = data.get("intro_played", false)
 	print("Restored intro_played:", intro_played)
 
-	# Emit signals so UI/quests update
 	emit_signal("stats_updated")
 	emit_signal("quest_stage_changed", current_stage)
 
-	# Move player if available
 	if player:
 		player.global_position = player_position
 		print("Player position set to", player_position)
