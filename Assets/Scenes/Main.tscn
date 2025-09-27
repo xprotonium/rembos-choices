@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://qi8rt0q6mddn" path="res://Assets/Sprites/House/bedsheet.png" id="4_8bicx"]
 [ext_resource type="Texture2D" uid="uid://bk6oohoehj3ei" path="res://Assets/Sprites/House/laptop_screen_light.png" id="5_fxu2d"]
 [ext_resource type="PackedScene" uid="uid://c74vrswfijli1" path="res://Assets/Scenes/MainHUD/MainHUD.tscn" id="5_g2icf"]
-[ext_resource type="Script" path="res://Assets/Scenes/UI_Manager.gd" id="7_fvpbu"]
+[ext_resource type="Script" uid="uid://bx3abja85k3gn" path="res://Assets/Scenes/UI_Manager.gd" id="7_fvpbu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygaiq"]
 texture = ExtResource("2_wkehv")

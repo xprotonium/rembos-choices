@@ -43,11 +43,8 @@ var pause_menu_quest_description: RichTextLabel
 # intro cutscene played or not
 var intro_played = false
 
-
-
-
 # food system variables
-var food_capacity = 5
+var food_capacity = 0
 var max_food_capacity = 6
 
 # -------------------- LIFECYCLE --------------------
@@ -140,7 +137,7 @@ func sleep():
 
 func eat_food():
 	if hunger > 0:
-		hunger = max(0, hunger - 2)
+		hunger = min(max_hunger, hunger + 2)
 		emit_signal("stats_updated")
 
 func restart_game():
