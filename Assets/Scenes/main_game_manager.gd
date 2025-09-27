@@ -43,7 +43,11 @@ var pause_menu_quest_description: RichTextLabel
 var intro_played = false
 
 # Universal currency system for the whole game
-var gold = 0
+var gold = 100
+
+# food system variables
+var food_capacity = 5
+var max_food_capacity = 6
 
 # -------------------- LIFECYCLE --------------------
 func _ready():

@@ -1,10 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://d61we651kjiu"]
+[gd_scene load_steps=9 format=3 uid="uid://d61we651kjiu"]
 
 [ext_resource type="Texture2D" uid="uid://cgu0uhuax2x35" path="res://Assets/Sprites/Hunger System/Backgrounds/placeholder bg.png" id="1_845xh"]
+[ext_resource type="Script" uid="uid://cj175g1f5mv5o" path="res://Assets/Scenes/Food system/supermarket.gd" id="1_kukdk"]
+[ext_resource type="Texture2D" uid="uid://47p4gkvsyvkk" path="res://Assets/Sprites/Hunger System/Food Sprites/apple.png" id="3_hn4r5"]
+[ext_resource type="Texture2D" uid="uid://bhvcfwx8ywsua" path="res://Assets/Sprites/Hunger System/Food Sprites/cereal.png" id="4_v3kye"]
+[ext_resource type="Texture2D" uid="uid://ihccgg4kcoo" path="res://Assets/Sprites/Hunger System/Food Sprites/chicken.png" id="5_nbph0"]
+[ext_resource type="Texture2D" uid="uid://ce6vxvngl0wfb" path="res://Assets/Sprites/Hunger System/Food Sprites/cookie.png" id="6_l4p2c"]
+[ext_resource type="Texture2D" uid="uid://cdbjjb7hlnm8g" path="res://Assets/Sprites/Hunger System/Food Sprites/donut.png" id="7_cy7uv"]
+[ext_resource type="Texture2D" uid="uid://b2cs6tad1jrp4" path="res://Assets/Sprites/Hunger System/Food Sprites/pizza.png" id="8_ogj03"]
 
 [node name="Supermarket" type="Node2D"]
+script = ExtResource("1_kukdk")
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(160, 90)
-scale = Vector2(2.5, 2.5)
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
 texture = ExtResource("1_845xh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 75.0
+offset_top = 37.0
+offset_right = 131.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_hn4r5")
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("4_v3kye")
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_nbph0")
+
+[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_l4p2c")
+
+[node name="TextureRect5" type="TextureRect" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("7_cy7uv")
+
+[node name="TextureRect6" type="TextureRect" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("8_ogj03")
+
+[node name="BuyButton" type="Button" parent="."]
+offset_left = 138.0
+offset_top = 146.0
+offset_right = 178.0
+offset_bottom = 177.0
+text = "BUY"
