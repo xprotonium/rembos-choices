@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d61we651kjiu"]
+[gd_scene load_steps=12 format=3 uid="uid://0nsvr1xjnfw2"]
 
 [ext_resource type="Script" uid="uid://cj175g1f5mv5o" path="res://Assets/Scenes/Food system/supermarket.gd" id="1_kukdk"]
 [ext_resource type="Texture2D" uid="uid://bfi8vdngdqi3r" path="res://Assets/Sprites/Hunger System/Backgrounds/supermarket_background.png" id="2_kukdk"]
@@ -7,67 +7,164 @@
 [ext_resource type="Texture2D" uid="uid://ihccgg4kcoo" path="res://Assets/Sprites/Hunger System/Food Sprites/chicken.png" id="5_nbph0"]
 [ext_resource type="Texture2D" uid="uid://ce6vxvngl0wfb" path="res://Assets/Sprites/Hunger System/Food Sprites/cookie.png" id="6_l4p2c"]
 [ext_resource type="Texture2D" uid="uid://cdbjjb7hlnm8g" path="res://Assets/Sprites/Hunger System/Food Sprites/donut.png" id="7_cy7uv"]
-[ext_resource type="Texture2D" uid="uid://b2cs6tad1jrp4" path="res://Assets/Sprites/Hunger System/Food Sprites/pizza.png" id="8_ogj03"]
+[ext_resource type="Texture2D" uid="uid://5gasvpcnr01m" path="res://Assets/Sprites/Hunger System/Food Sprites/pizza.png" id="8_ogj03"]
+[ext_resource type="FontFile" uid="uid://3cjhdjlsgh5a" path="res://Assets/Fonts/munro/munro.ttf" id="9_hn4r5"]
+[ext_resource type="Texture2D" uid="uid://dqrvidxrv7145" path="res://Assets/Sprites/UI Sprites/OS/app_close.png" id="10_v3kye"]
 
-[node name="Supermarket" type="Node2D"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouywj"]
+
+[node name="Supermarket" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_kukdk")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 150.0
-offset_top = 6.0
-offset_right = 166.0
-offset_bottom = 28.3333
-
 [node name="Background" type="TextureRect" parent="."]
-offset_right = 320.0
-offset_bottom = 180.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_kukdk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="FoodDisplay" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ouywj")
+
+[node name="Apple" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 75.0
-offset_top = 37.0
-offset_right = 131.0
-offset_bottom = 77.0
+offset_left = -135.0
+offset_top = -65.0
+offset_right = -95.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
+texture_normal = ExtResource("3_hn4r5")
+stretch_mode = 0
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
-layout_mode = 2
-columns = 3
+[node name="Pizza" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 4.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("8_ogj03")
+stretch_mode = 0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_hn4r5")
+[node name="Donut" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0
+offset_top = -65.0
+offset_right = 106.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_cy7uv")
+stretch_mode = 0
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("4_v3kye")
+[node name="Cereal" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = 5.0
+offset_right = -96.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_v3kye")
+stretch_mode = 0
 
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("5_nbph0")
+[node name="Chicken" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = 5.0
+offset_right = 3.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_nbph0")
+stretch_mode = 0
 
-[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("6_l4p2c")
+[node name="Cookie" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = 4.0
+offset_right = 104.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_l4p2c")
+stretch_mode = 0
 
-[node name="TextureRect5" type="TextureRect" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("7_cy7uv")
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 21.0
+offset_bottom = -9.66667
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hn4r5")
+theme_override_font_sizes/font_size = 12
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TextureRect6" type="TextureRect" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-texture = ExtResource("8_ogj03")
+[node name="CloseButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+texture_normal = ExtResource("10_v3kye")
+stretch_mode = 0
 
-[node name="BuyButton" type="Button" parent="."]
-offset_left = 138.0
-offset_top = 146.0
-offset_right = 178.0
-offset_bottom = 177.0
-text = "BUY"
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,0 +1,149 @@
+[gd_scene load_steps=11 format=3 uid="uid://cepdl07yacgw5"]
+
+[ext_resource type="Script" uid="uid://dm5q5vgqql2hb" path="res://Assets/Scenes/Food system/fridge.gd" id="1_0xlod"]
+[ext_resource type="Texture2D" uid="uid://5nvrjv211ho5" path="res://Assets/Sprites/Hunger System/Backgrounds/fridge_background.png" id="2_v2jr4"]
+[ext_resource type="Texture2D" uid="uid://47p4gkvsyvkk" path="res://Assets/Sprites/Hunger System/Food Sprites/apple.png" id="3_tyqyo"]
+[ext_resource type="Texture2D" uid="uid://5gasvpcnr01m" path="res://Assets/Sprites/Hunger System/Food Sprites/pizza.png" id="4_lt2cs"]
+[ext_resource type="Texture2D" uid="uid://cdbjjb7hlnm8g" path="res://Assets/Sprites/Hunger System/Food Sprites/donut.png" id="5_x3qsy"]
+[ext_resource type="Texture2D" uid="uid://bhvcfwx8ywsua" path="res://Assets/Sprites/Hunger System/Food Sprites/cereal.png" id="6_b15kg"]
+[ext_resource type="Texture2D" uid="uid://ihccgg4kcoo" path="res://Assets/Sprites/Hunger System/Food Sprites/chicken.png" id="7_tip4w"]
+[ext_resource type="Texture2D" uid="uid://ce6vxvngl0wfb" path="res://Assets/Sprites/Hunger System/Food Sprites/cookie.png" id="8_1plk2"]
+[ext_resource type="Texture2D" uid="uid://dqrvidxrv7145" path="res://Assets/Sprites/UI Sprites/OS/app_close.png" id="9_v2jr4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mp6mx"]
+
+[node name="Fridge" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xlod")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_v2jr4")
+
+[node name="FoodDisplay" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mp6mx")
+
+[node name="Apple" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -53.0
+offset_right = -95.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_tyqyo")
+stretch_mode = 0
+
+[node name="Pizza" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -51.0
+offset_right = 19.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_lt2cs")
+stretch_mode = 0
+
+[node name="Donut" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 67.0
+offset_top = -54.0
+offset_right = 107.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_x3qsy")
+stretch_mode = 0
+
+[node name="Cereal" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.0
+offset_top = 20.0
+offset_right = -97.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_b15kg")
+stretch_mode = 0
+
+[node name="Chicken" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = 27.0
+offset_right = 14.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_tip4w")
+stretch_mode = 0
+
+[node name="Cookie" type="TextureButton" parent="FoodDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = 28.0
+offset_right = 110.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("8_1plk2")
+stretch_mode = 0
+
+[node name="CloseButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+texture_normal = ExtResource("9_v2jr4")
+stretch_mode = 0
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

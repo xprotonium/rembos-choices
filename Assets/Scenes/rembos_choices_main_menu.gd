@@ -6,26 +6,14 @@ extends Control
 @onready var DeleteSaveButton = $Panel/DeleteSaveButton
 
 func _ready() -> void:
-	# check if a save file exists or not
-	# if it does exist enable the load game button and make it visible
-	if FileAccess.file_exists("user://savegame.json"):
-		LoadGameButton.disabled = false
-		LoadGameButton.visible = true
-	else:
-		LoadGameButton.disabled = true
-		LoadGameButton.visible = false
-
-
+	_update_load_delete_buttons()
 
 func _on_new_game_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Assets/Scenes/Main.tscn")
 
-
 func _on_load_game_button_pressed() -> void:
-	# exact same thing in new game button pressed but loads the data from the game
 	get_tree().change_scene_to_file("res://Assets/Scenes/Main.tscn")
 	call_deferred("_do_load_game")
-
 
 func _do_load_game() -> void:
 	if MainGameManager:
@@ -34,10 +22,8 @@ func _do_load_game() -> void:
 	else:
 		print("MainGameManager singleton not found!")
 
-
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
-
 
 func _on_delete_save_button_pressed() -> void:
 	var save_path = "user://savegame.json"
@@ -48,7 +34,7 @@ func _on_delete_save_button_pressed() -> void:
 		else:
 			print("Failed to delete save file, error:", err)
 	_update_load_delete_buttons()
-	
+
 func _update_load_delete_buttons() -> void:
 	var save_exists = FileAccess.file_exists("user://savegame.json")
 	LoadGameButton.visible = save_exists

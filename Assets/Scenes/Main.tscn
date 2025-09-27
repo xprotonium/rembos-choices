@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cw0fkf1qvd47t"]
+[gd_scene load_steps=19 format=4 uid="uid://cw0fkf1qvd47t"]
 
 [ext_resource type="PackedScene" uid="uid://dlhwxlikqirl0" path="res://Assets/Scenes/Player/player.tscn" id="1_kwblh"]
 [ext_resource type="Texture2D" uid="uid://b57421o2app5a" path="res://Assets/Sprites/House/house_tileset.png" id="2_wkehv"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://qi8rt0q6mddn" path="res://Assets/Sprites/House/bedsheet.png" id="4_8bicx"]
 [ext_resource type="Texture2D" uid="uid://bk6oohoehj3ei" path="res://Assets/Sprites/House/laptop_screen_light.png" id="5_fxu2d"]
 [ext_resource type="PackedScene" uid="uid://c74vrswfijli1" path="res://Assets/Scenes/MainHUD/MainHUD.tscn" id="5_g2icf"]
-[ext_resource type="Script" uid="uid://bx3abja85k3gn" path="res://Assets/Scenes/UI_Manager.gd" id="7_fvpbu"]
+[ext_resource type="Script" uid="uid://dkacbk8400f83" path="res://Assets/Scenes/fridge_manager.gd" id="6_f5dhn"]
+[ext_resource type="Script" path="res://Assets/Scenes/UI_Manager.gd" id="7_fvpbu"]
+[ext_resource type="Texture2D" uid="uid://dw6pgn4stiges" path="res://Assets/Sprites/UI Sprites/E_Key.png" id="7_una2h"]
+[ext_resource type="Script" uid="uid://cuul4cpdkvuf1" path="res://Assets/Scenes/supermarket_manager.gd" id="8_una2h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygaiq"]
 texture = ExtResource("2_wkehv")
@@ -141,6 +144,12 @@ texture = ExtResource("2_wkehv")
 [sub_resource type="TileSet" id="TileSet_2qpql"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ygaiq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xycqk"]
+size = Vector2(16, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obb38"]
+size = Vector2(40, 22.5)
 
 [sub_resource type="Animation" id="Animation_fxu2d"]
 length = 0.001
@@ -423,6 +432,34 @@ position = Vector2(232, 183)
 radius = 24.0
 ui_path = NodePath("../CanvasLayer/OperatingSystem")
 
+[node name="Fridge" type="Area2D" parent="."]
+position = Vector2(200, 24)
+script = ExtResource("6_f5dhn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fridge"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_xycqk")
+debug_color = Color(0.458824, 0.592157, 0, 0.45098)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fridge"]
+position = Vector2(0, -2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_una2h")
+
+[node name="Supermarket" type="Area2D" parent="."]
+position = Vector2(353, 142)
+script = ExtResource("8_una2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Supermarket"]
+position = Vector2(-10, 1.25)
+shape = SubResource("RectangleShape2D_obb38")
+debug_color = Color(0.458824, 0.592157, 0, 0.45098)
+
+[node name="Sprite2D" type="Sprite2D" parent="Supermarket"]
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_una2h")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("7_fvpbu")
 
@@ -465,6 +502,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_fvpbu")
 }
 
+[connection signal="body_entered" from="Fridge" to="Fridge" method="_on_body_entered"]
+[connection signal="body_exited" from="Fridge" to="Fridge" method="_on_body_exited"]
+[connection signal="body_entered" from="Supermarket" to="Supermarket" method="_on_body_entered"]
+[connection signal="body_exited" from="Supermarket" to="Supermarket" method="_on_body_exited"]
 [connection signal="focus_entered" from="CanvasLayer/OperatingSystem" to="CanvasLayer/OperatingSystem" method="_on_focus_entered"]
 
 [editable path="Player"]
