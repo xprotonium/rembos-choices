@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxqlqpx0re0x1"
-path="res://.godot/imported/corrupt_astro.png-8d0b6a300556ba7f69e36c16e41b42e7.ctex"
+uid="uid://cfjj5n5rrvgh5"
+path="res://.godot/imported/button_red.png-ef9a93e5084e0f31d5db443be1278326.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Perfect Timing Sprites/corrupt_astro.png"
-dest_files=["res://.godot/imported/corrupt_astro.png-8d0b6a300556ba7f69e36c16e41b42e7.ctex"]
+source_file="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/button_red.png"
+dest_files=["res://.godot/imported/button_red.png-ef9a93e5084e0f31d5db443be1278326.ctex"]
 
 [params]
 

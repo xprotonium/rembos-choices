@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kjtia3p4eb7p"
-path="res://.godot/imported/space_bg.png-4f3d729df74ff1fe2d6d0eabda704559.ctex"
+uid="uid://dqrobbst60auj"
+path="res://.godot/imported/pizza.png-d6f1bb919bb4f128be9e555b826a255d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Perfect Timing Sprites/space_bg.png"
-dest_files=["res://.godot/imported/space_bg.png-4f3d729df74ff1fe2d6d0eabda704559.ctex"]
+source_file="res://Assets/Sprites/Hunger System/Food Sprites/pizza.png"
+dest_files=["res://.godot/imported/pizza.png-d6f1bb919bb4f128be9e555b826a255d.ctex"]
 
 [params]
 

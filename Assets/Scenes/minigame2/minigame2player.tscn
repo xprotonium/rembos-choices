@@ -46,6 +46,7 @@ _data = {
 size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(1.05, 1.05)
 script = ExtResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

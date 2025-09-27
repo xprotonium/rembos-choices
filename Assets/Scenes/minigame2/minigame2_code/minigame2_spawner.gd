@@ -48,7 +48,7 @@ func _on_timer_timeout():
 			var obs2 = obstacle_scene.instantiate()
 			obs2.position = Vector2(600, randf_range(-100, 0))  # ← KEEP ORIGINAL POSITION
 			
-			# MINIMUM 75 PIXEL GAP (was 50)
+		
 			while abs(obs2.position.y - obs1.position.y) < 75:  # ← CHANGED TO 75
 				obs2.position.y = randf_range(-150, 0)
 			
@@ -63,9 +63,9 @@ func _on_timer_timeout():
 			print("DOUBLE OBSTACLES SPAWNED! Gap: ", abs(obs2.position.y - obs1.position.y))
 	
 	# SPAWN ABILITY (30% chance)
-	if ability_scene and randf() < 0.3:
+	if ability_scene and randf() < 0.5:
 		var ability = ability_scene.instantiate()
-		ability.position = Vector2(1000, randf_range(-80, 80))  # ← KEEP ORIGINAL POSITION
+		ability.position = Vector2(1000, randf_range(-80, 50))  # ← KEEP ORIGINAL POSITION
 		get_parent().add_child(ability)
 
 func stop_spawning():
