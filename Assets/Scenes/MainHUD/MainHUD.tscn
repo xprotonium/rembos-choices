@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c74vrswfijli1"]
+[gd_scene load_steps=26 format=3 uid="uid://c74vrswfijli1"]
 
 [ext_resource type="Texture2D" uid="uid://cvnuus2jo2pcu" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_BEHIND.png" id="1_0fg6w"]
 [ext_resource type="Script" uid="uid://eldfxjndpkvi" path="res://Assets/Scenes/MainHUD/pause_menu.gd" id="1_7phoq"]
+[ext_resource type="Script" uid="uid://c8bxpbgfixy7s" path="res://Assets/Scenes/MainHUD/main_hud.gd" id="1_ohg4q"]
 [ext_resource type="Texture2D" uid="uid://dp1si7jtf3tsd" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_OVER.png" id="2_cecok"]
 [ext_resource type="Texture2D" uid="uid://bccsr4gh83rjx" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_PROGRESS.png" id="3_i3uc5"]
 [ext_resource type="Texture2D" uid="uid://dgckdplsu6tef" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_ICON.png" id="4_7evf4"]
@@ -70,6 +71,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ohg4q")
 
 [node name="PlayerStats" type="Panel" parent="."]
 layout_mode = 1
@@ -516,6 +518,57 @@ offset_right = 21.0
 offset_bottom = 9.0
 grow_vertical = 2
 texture = ExtResource("17_nmo04")
+
+[node name="DeathScreen" type="Panel" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 33.0
+offset_right = 38.0
+offset_bottom = 55.3333
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_q8c3w")
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RespawnButton" type="Button" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -2.0
+offset_right = 78.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_q8c3w")
+text = "Continue Last Save"
 
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/SaveGameButton" to="PauseMenu" method="_on_save_game_button_pressed"]
