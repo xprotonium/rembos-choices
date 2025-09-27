@@ -28,10 +28,10 @@ tracks/0/path = NodePath("QuestPopUp:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(200, -40)]
+"values": [Vector2(200, -26), Vector2(200, -26)]
 }
 
 [sub_resource type="Animation" id="Animation_h83nt"]
@@ -46,9 +46,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.75, 5.25, 6),
-"transitions": PackedFloat32Array(0.112657, 0.0769471, 0.148651, 0.0441941),
+"transitions": PackedFloat32Array(0.112657, 0.0769471, 0.148651, 0.112657),
 "update": 0,
-"values": [Vector2(200, -40), Vector2(200, 0), Vector2(200, 0), Vector2(200, -40)]
+"values": [Vector2(200, -26), Vector2(200, 0), Vector2(200, 0), Vector2(200, -26)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v31o2"]
@@ -360,31 +360,31 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -120.0
-offset_top = -40.0
+offset_top = -26.0
 grow_horizontal = 0
 script = ExtResource("14_0vkw0")
 
 [node name="TextureRect" type="TextureRect" parent="QuestPopUp"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("14_77bhk")
+expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="QuestPopUp"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 8.0
-offset_top = -10.0
-offset_right = 28.0
-offset_bottom = 10.0
+offset_left = 9.0
+offset_top = -7.0
+offset_right = 29.0
+offset_bottom = 13.0
 grow_vertical = 2
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("15_0vkw0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="QuestPopUp"]
