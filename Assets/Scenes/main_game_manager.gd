@@ -21,6 +21,7 @@ var quest_details: Dictionary = {}
 # Player Stats
 var player: CharacterBody2D = null
 var player_position: Vector2 = Vector2.ZERO
+var rembo_dead = false
 
 var energy: int = 10
 var max_energy: int = 10
@@ -129,10 +130,14 @@ func setup_timers():
 
 func _on_energy_timer_timeout():
 	energy = max(0, energy - 2)
+	if hunger <= 0:
+		kill_rembo()
 	emit_signal("stats_updated")
 
 func _on_hunger_timer_timeout():
 	hunger = min(max_hunger, hunger - 1)
+	if hunger <= 0:
+		kill_rembo()
 	emit_signal("stats_updated")
 
 func sleep():
@@ -298,3 +303,7 @@ func load_game() -> void:
 	if player:
 		player.global_position = player_position
 		print("Player position set to", player_position)
+
+func kill_rembo():
+	rembo_dead = true
+	get_tree().change_scene_to_file("res://Main.tscn")
