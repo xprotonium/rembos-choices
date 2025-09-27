@@ -517,6 +517,23 @@ offset_bottom = 9.0
 grow_vertical = 2
 texture = ExtResource("17_nmo04")
 
+[node name="WinScreen" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/SaveGameButton" to="PauseMenu" method="_on_save_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
