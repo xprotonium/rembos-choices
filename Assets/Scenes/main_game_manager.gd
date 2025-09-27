@@ -13,7 +13,6 @@ enum QuestStage {
 
 var current_stage: QuestStage = QuestStage.INTRO
 signal quest_stage_changed(new_stage)
-var you_win = false
 
 # Quest data loaded from JSON
 var quest_details: Dictionary = {}
@@ -109,9 +108,6 @@ func advance_stage():
 		current_stage += 1
 		emit_signal("quest_stage_changed", current_stage)
 		update_quest_ui(current_stage)
-		
-		if current_stage == QuestStage.DONE:
-			you_win = true
 
 func setup_timers():
 	energy_timer = Timer.new()

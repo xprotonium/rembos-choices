@@ -519,13 +519,9 @@ offset_bottom = 9.0
 grow_vertical = 2
 texture = ExtResource("17_nmo04")
 
-<<<<<<< HEAD
-[node name="WinScreen" type="Panel" parent="."]
-=======
 [node name="DeathScreen" type="Panel" parent="."]
 process_mode = 3
 visible = false
->>>>>>> d3a5d796be724bd7d557f798133f5c3b29bc9ffd
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -533,11 +529,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-<<<<<<< HEAD
-[node name="ColorRect" type="ColorRect" parent="WinScreen"]
-=======
 [node name="ColorRect" type="ColorRect" parent="DeathScreen"]
->>>>>>> d3a5d796be724bd7d557f798133f5c3b29bc9ffd
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -546,8 +538,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-<<<<<<< HEAD
-=======
 [node name="Label" type="Label" parent="DeathScreen"]
 layout_mode = 1
 anchors_preset = 5
@@ -580,7 +570,6 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("10_q8c3w")
 text = "Continue Last Save"
 
->>>>>>> d3a5d796be724bd7d557f798133f5c3b29bc9ffd
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/SaveGameButton" to="PauseMenu" method="_on_save_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]

@@ -59,7 +59,7 @@ func _on_c_57_pressed() -> void:
 
 func _on_perfect_timing_pressed() -> void:
 	MainGameManager.player_position = player.global_position
-	get_tree().change_scene_to_file("res://Assets/Scenes/Perfect Timing/PTMainMenu.tscn")
+	get_tree().change_scene_to_file("res://Assets/Scenes/Perfect Timing/perfect_timing.tscn")
 
 
 func _on_mail_pressed() -> void:
