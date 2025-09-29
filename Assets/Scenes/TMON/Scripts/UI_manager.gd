@@ -129,10 +129,22 @@ func run_command(cmd: String) -> void:
 					console_history.append_text("\nJump force set to " + str(GameManager.player.jump_force))
 			else:
 				console_history.append_text("\nUsage: set_jump <value|default>")
-		"test_energy":
-			print(MainGameManager.energy)
-			MainGameManager.energy = 3
-			print(MainGameManager.energy)
+		"set_energy":
+			if parts.size() > 1:
+				var val = int(parts[1])
+				MainGameManager.energy = clamp(val, 0, MainGameManager.max_energy)
+				MainGameManager.emit_signal("stats_updated")
+				console_history.append_text("\nEnergy set to " + str(MainGameManager.energy))
+			else:
+				console_history.append_text("\nUsage: set_energy <value>")
+		"set_hunger":
+			if parts.size() > 1:
+				var val = int(parts[1])
+				MainGameManager.hunger = clamp(val, 0, MainGameManager.max_hunger)
+				MainGameManager.emit_signal("stats_updated")
+				console_history.append_text("\nHunger set to " + str(MainGameManager.hunger))
+			else:
+				console_history.append_text("\nUsage: set_hunger <value>")
 		"help":
 			console_history.append_text("\nAvailable commands:")
 			console_history.append_text("\n  die - Kill the player instantly")
@@ -140,7 +152,8 @@ func run_command(cmd: String) -> void:
 			console_history.append_text("\n  dmg <amount> - Deal damage to the player (default 10)")
 			console_history.append_text("\n  set_speed <value|default> - Change or reset player speed")
 			console_history.append_text("\n  set_jump <value|default> - Change or reset jump force")
-			console_history.append_text(("\n test_hunger: set the hunger to lower than 5"))
+			console_history.append_text(("\n set_energy <value|default>: set the energy to specified value"))
+			console_history.append_text(("\n set_hunger <value|default>: set the hunger to specified value"))
 			console_history.append_text("\n  help - Show this list of commands")
 		_:
 			console_history.append_text("\nUnknown command: " + cmd)

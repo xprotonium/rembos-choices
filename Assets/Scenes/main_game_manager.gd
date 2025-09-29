@@ -306,4 +306,3 @@ func load_game() -> void:
 
 func kill_rembo():
 	rembo_dead = true
-	get_tree().change_scene_to_file("res://Main.tscn")

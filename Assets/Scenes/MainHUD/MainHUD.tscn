@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c74vrswfijli1"]
+[gd_scene load_steps=28 format=3 uid="uid://c74vrswfijli1"]
 
 [ext_resource type="Texture2D" uid="uid://cvnuus2jo2pcu" path="res://Assets/Sprites/UI Sprites/MAIN_ENERGY_BAR_BEHIND.png" id="1_0fg6w"]
 [ext_resource type="Script" uid="uid://eldfxjndpkvi" path="res://Assets/Scenes/MainHUD/pause_menu.gd" id="1_7phoq"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://d2hwm46nsws7v" path="res://Assets/Scenes/MainHUD/g.gd" id="17_i70bl"]
 [ext_resource type="Texture2D" uid="uid://catpi152lhufv" path="res://Assets/Sprites/UI Sprites/G_background.png" id="17_l77hb"]
 [ext_resource type="Texture2D" uid="uid://dd7e7b6ba1pdo" path="res://Assets/Sprites/UI Sprites/G.png" id="17_nmo04"]
+[ext_resource type="Script" uid="uid://beirqk0pnyt3s" path="res://Assets/Scenes/MainHUD/console.gd" id="21_gw1x0"]
+[ext_resource type="FontFile" uid="uid://b46u4ake175p0" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="22_sh1y0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fg6w"]
 
@@ -604,6 +606,44 @@ Thank you for playing the demo version
 of Rembo's Choice.. this is just the
 beginning for Rembo!"
 
+[node name="Console" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -180.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("21_gw1x0")
+
+[node name="History" type="RichTextLabel" parent="Console"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("22_sh1y0")
+theme_override_fonts/mono_font = ExtResource("22_sh1y0")
+theme_override_font_sizes/normal_font_size = 6
+text = "command history"
+
+[node name="Input" type="LineEdit" parent="Console"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.3333
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("22_sh1y0")
+theme_override_font_sizes/font_size = 8
+placeholder_text = "enter command"
+
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/SaveGameButton" to="PauseMenu" method="_on_save_game_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PauseMenuLeftPanel/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="DeathScreen/RespawnButton" to="." method="_on_respawn_button_pressed"]
