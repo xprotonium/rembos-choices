@@ -11,6 +11,7 @@ func _process(_delta: float) -> void:
 		battle_result.text = "YOU LOSE"
 	if enemy.hp == 0:
 		battle_result.text = "YOU WIN"
+		MainGameManager.advance_stage()
 		
 
 func _on_respawn_pressed() -> void:

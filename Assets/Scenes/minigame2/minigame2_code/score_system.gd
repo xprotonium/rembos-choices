@@ -152,7 +152,7 @@ func stop_scoring():
 	show_game_over_text()
 	
 	# check if the player can proceed to next minigame
-	if counter >= 10000 and MainGameManager.current_stage == MainGameManager.QuestStage.PLAY_C57:
+	if counter >= 5000 and MainGameManager.current_stage == MainGameManager.QuestStage.PLAY_C57:
 		MainGameManager.advance_stage()
 
 func show_game_over_text():

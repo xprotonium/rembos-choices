@@ -28,6 +28,7 @@ var hunger: int = 10
 var max_hunger: int = 10
 
 var gold = 0
+var you_win = false
 
 var energy_timer: Timer
 var hunger_timer: Timer
@@ -108,6 +109,9 @@ func advance_stage():
 		current_stage += 1
 		emit_signal("quest_stage_changed", current_stage)
 		update_quest_ui(current_stage)
+		
+		if current_stage == QuestStage.DONE:
+			you_win = true
 
 func setup_timers():
 	energy_timer = Timer.new()
@@ -302,4 +306,3 @@ func load_game() -> void:
 
 func kill_rembo():
 	rembo_dead = true
-	get_tree().change_scene_to_file("res://Main.tscn")

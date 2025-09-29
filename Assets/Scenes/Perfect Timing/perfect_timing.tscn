@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bnl4s3itceymn"]
+[gd_scene load_steps=23 format=3 uid="uid://bnl4s3itceymn"]
 
 [ext_resource type="Script" uid="uid://dc7jm5pm0bsi0" path="res://Assets/Scenes/Perfect Timing/QTEcode.gd" id="1_f86a5"]
 [ext_resource type="Script" uid="uid://cepmq5oiv51p" path="res://Assets/Scenes/Perfect Timing/QTE.gd" id="2_mujjv"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://vjgp67qe1xol" path="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/E Button-Sheet.png" id="11_0flcs"]
 [ext_resource type="PackedScene" uid="uid://chil5qh65j443" path="res://Assets/Scenes/Perfect Timing/death_screen.tscn" id="12_8fboc"]
 [ext_resource type="Texture2D" uid="uid://cqfuyftnjlnql" path="res://Assets/Sprites/Perfect Timing Sprites/PT_buttons/Q Button-Sheet.png" id="12_rqwj8"]
+[ext_resource type="AudioStream" uid="uid://bt76dgarb56x5" path="res://Assets/Music/Perfect Timing/Space Walk.mp3" id="14_aam3y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aam3y"]
 
@@ -256,6 +257,11 @@ offset_right = 160.0
 offset_bottom = 90.0
 player = NodePath("../Player")
 enemy = NodePath("../Enemy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_aam3y")
+autoplay = true
+parameters/looping = false
 
 [connection signal="pressed" from="DeathScreen/Panel/HBoxContainer/Quit" to="DeathScreen" method="_on_quit_pressed"]
 

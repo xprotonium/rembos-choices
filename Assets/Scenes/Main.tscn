@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bk6oohoehj3ei" path="res://Assets/Sprites/House/laptop_screen_light.png" id="5_fxu2d"]
 [ext_resource type="PackedScene" uid="uid://c74vrswfijli1" path="res://Assets/Scenes/MainHUD/MainHUD.tscn" id="5_g2icf"]
 [ext_resource type="Script" uid="uid://dkacbk8400f83" path="res://Assets/Scenes/fridge_manager.gd" id="6_f5dhn"]
-[ext_resource type="Script" path="res://Assets/Scenes/UI_Manager.gd" id="7_fvpbu"]
+[ext_resource type="Script" uid="uid://bx3abja85k3gn" path="res://Assets/Scenes/UI_Manager.gd" id="7_fvpbu"]
 [ext_resource type="Texture2D" uid="uid://dw6pgn4stiges" path="res://Assets/Sprites/UI Sprites/E_Key.png" id="7_una2h"]
 [ext_resource type="Script" uid="uid://cuul4cpdkvuf1" path="res://Assets/Scenes/supermarket_manager.gd" id="8_una2h"]
 
